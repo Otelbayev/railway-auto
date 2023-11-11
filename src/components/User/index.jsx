@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "./style";
 
-const Home = () => {
+const User = () => {
   return (
     <Container>
       <h1>jasurbek</h1>
@@ -9,4 +9,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default User;

@@ -7,6 +7,7 @@ import {
   CalendarOutlined,
   UserOutlined,
   InsertRowAboveOutlined,
+  PieChartOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -21,15 +22,15 @@ const App = () => {
   const menuItems = [
     {
       key: "1",
-      icon: <UserOutlined />,
-      label: "User",
-      path: "/home",
+      icon: <CalendarOutlined />,
+      label: "Annually plan",
+      path: "/annually-plan",
     },
     {
       key: "2",
-      icon: <CalendarOutlined />,
-      label: "Yearly plan",
-      path: "/yearly-plan",
+      icon: <PieChartOutlined />,
+      label: "Quarter plan",
+      path: "/quarter-plan",
     },
     {
       key: "3",
@@ -40,6 +41,10 @@ const App = () => {
   ];
 
   const navigate = useNavigate();
+
+  let key = menuItems.find(
+    (item) => item.path === window.location.pathname
+  )?.key;
 
   const menuOnClick = (info) => {
     const key = info.key;
@@ -59,7 +64,7 @@ const App = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={[key]}
           items={menuItems}
           onClick={menuOnClick}
         />
@@ -68,7 +73,7 @@ const App = () => {
         <Header
           style={{
             padding: 0,
-            background: colorBgContainer,
+            background: "#e8e8e8",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -84,7 +89,7 @@ const App = () => {
               height: 64,
             }}
           />
-          <User>
+          <User onClick={() => navigate("/user")}>
             <UserOutlined
               style={{
                 border: "1px solid black",
@@ -98,10 +103,8 @@ const App = () => {
         </Header>
         <Content
           style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
             background: colorBgContainer,
+            overflow: "auto",
           }}
         >
           <Outlet />

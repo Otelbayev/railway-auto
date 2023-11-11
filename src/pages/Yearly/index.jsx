@@ -1,6 +1,6 @@
 import React from "react";
-import Yearly from "../../components/Yearly";
+import Annually from "../../components/Annually";
 
-const YearPage = () => <Yearly />;
+const YearPage = () => <Annually />;
 
 export default YearPage;

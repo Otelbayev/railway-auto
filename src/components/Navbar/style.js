@@ -27,3 +27,4 @@ export const Logos = styled.div`
 export const Logo = styled.img`
   height: 100%;
 `;
+
