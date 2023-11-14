@@ -1,7 +1,7 @@
 import React from "react";
 
-const Yearly = () => {
-  return <h1>Monthly</h1>;
+const Monthly = () => {
+  return <div>Monthly</div>;
 };
 
-export default Yearly;
+export default Monthly;

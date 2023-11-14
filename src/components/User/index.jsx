@@ -1,12 +1,7 @@
 import React from "react";
-import { Container } from "./style";
 
 const User = () => {
-  return (
-    <Container>
-      <h1>jasurbek</h1>
-    </Container>
-  );
+  return <div>User</div>;
 };
 
 export default User;

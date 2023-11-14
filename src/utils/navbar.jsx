@@ -1,7 +1,8 @@
 import UserPage from "../pages/UserPage";
-import YearPage from "../pages/Yearly";
-import MonthlyPage from "../pages/Monthly";
-import QuarterPage from "../pages/Quarter";
+import AnnuallyPage from "../pages/AnnuallyPage";
+import MonthlyPage from "../pages/MonthlyPage";
+import QuarterPage from "../pages/QuarterPage";
+import AddAnnuallyPage from "../pages/AddAnnuallyPage";
 
 export const navbar = [
   {
@@ -12,18 +13,24 @@ export const navbar = [
   },
   {
     id: 2,
-    title: "Yearly Plan",
-    element: <YearPage />,
+    title: "Annually Plan",
+    element: <AnnuallyPage />,
     path: "/annually-plan",
   },
   {
     id: 3,
+    title: "Add Annually Plan",
+    element: <AddAnnuallyPage />,
+    path: "/add-annually-plan",
+  },
+  {
+    id: 4,
     title: "Quarter Plan",
     element: <QuarterPage />,
     path: "/quarter-plan",
   },
   {
-    id: 4,
+    id: 5,
     title: "Monthly Plan",
     element: <MonthlyPage />,
     path: "/monthly-plan",

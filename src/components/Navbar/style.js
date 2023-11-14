@@ -5,6 +5,8 @@ export const User = styled.div`
   display: flex;
   align-items: center;
   margin-right: 25px;
+  padding: 15px;
+  transition: 0.2s;
   gap: 10px;
   cursor: pointer;
 `;
@@ -27,4 +29,3 @@ export const Logos = styled.div`
 export const Logo = styled.img`
   height: 100%;
 `;
-

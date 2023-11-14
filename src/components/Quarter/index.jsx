@@ -1,7 +1,7 @@
 import React from "react";
 
-const quarter = () => {
-  return <h1>quarter</h1>;
+const Quarter = () => {
+  return <div>Quarter</div>;
 };
 
-export default quarter;
+export default Quarter;

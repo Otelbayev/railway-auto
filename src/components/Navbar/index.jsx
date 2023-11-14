@@ -1,72 +1,55 @@
 import React, { useState } from "react";
-import logo from "../../assets/logo.svg";
 import { Logos, Logo, User, Name } from "./style";
+import logo from "../../assets/logo.svg";
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
   CalendarOutlined,
-  UserOutlined,
   InsertRowAboveOutlined,
   PieChartOutlined,
+  UserOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Button, theme } from "antd";
-import { Outlet, useNavigate } from "react-router-dom";
-const { Header, Sider, Content } = Layout;
+import { Layout, Menu, Button } from "antd";
+import { NavLink, Outlet } from "react-router-dom";
+import { navbar } from "../../utils/navbar";
+const { Header, Content, Sider } = Layout;
+
+function getItem(label, key, icon, path, children) {
+  return {
+    key,
+    icon,
+    path,
+    children,
+    label,
+  };
+}
+
+const items = [
+  getItem("Annually", "sub1", <CalendarOutlined />, "/annually", [
+    getItem("Add Data", "1", null, "/annually/add-data"),
+    getItem("Plan", "2", null, "/annually/plan"),
+  ]),
+  getItem("Quarter Plan", "3", <PieChartOutlined />, "/quarterly"),
+  getItem("Monthly Plan", "4", <InsertRowAboveOutlined />, "/monthly"),
+];
 
 const App = () => {
-  const [collapsed, setCollapsed] = useState(true);
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
-  const menuItems = [
-    {
-      key: "1",
-      icon: <CalendarOutlined />,
-      label: "Annually plan",
-      path: "/annually-plan",
-    },
-    {
-      key: "2",
-      icon: <PieChartOutlined />,
-      label: "Quarter plan",
-      path: "/quarter-plan",
-    },
-    {
-      key: "3",
-      icon: <InsertRowAboveOutlined />,
-      label: "Monthly plan",
-      path: "/monthly-plan",
-    },
-  ];
-
-  const navigate = useNavigate();
-
-  let key = menuItems.find(
-    (item) => item.path === window.location.pathname
-  )?.key;
-
-  const menuOnClick = (info) => {
-    const key = info.key;
-    const find = menuItems.find((item) => item.key === key);
-    const path = find.path;
-    if (path) {
-      navigate(path);
-    }
-  };
-
+  const [collapsed, setCollapsed] = useState(false);
   return (
-    <Layout style={{ height: "100vh" }}>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+    <Layout
+      style={{
+        height: "100vh",
+      }}
+    >
+      <Sider collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <Logos className="demo-logo-vertical">
           <Logo src={logo} />
         </Logos>
         <Menu
           theme="dark"
+          defaultSelectedKeys={["1"]}
           mode="inline"
-          defaultSelectedKeys={[key]}
-          items={menuItems}
-          onClick={menuOnClick}
+          items={items}
         />
       </Sider>
       <Layout>
@@ -101,12 +84,7 @@ const App = () => {
             <Name>User</Name>
           </User>
         </Header>
-        <Content
-          style={{
-            background: colorBgContainer,
-            overflow: "auto",
-          }}
-        >
+        <Content style={{ background: "#fff" }}>
           <Outlet />
         </Content>
       </Layout>
