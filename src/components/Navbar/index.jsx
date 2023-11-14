@@ -10,8 +10,7 @@ import {
   MenuFoldOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button } from "antd";
-import { NavLink, Outlet } from "react-router-dom";
-import { navbar } from "../../utils/navbar";
+import { Outlet, useNavigate } from "react-router-dom";
 const { Header, Content, Sider } = Layout;
 
 function getItem(label, key, icon, path, children) {
@@ -25,16 +24,39 @@ function getItem(label, key, icon, path, children) {
 }
 
 const items = [
-  getItem("Annually", "sub1", <CalendarOutlined />, "/annually", [
-    getItem("Add Data", "1", null, "/annually/add-data"),
-    getItem("Plan", "2", null, "/annually/plan"),
+  getItem("Annually", "sub1", <CalendarOutlined />, "", [
+    getItem("Add Data", "0", null, "/add-annually-plan"),
+    getItem("Plan", "1", null, "/annually-plan"),
   ]),
-  getItem("Quarter Plan", "3", <PieChartOutlined />, "/quarterly"),
-  getItem("Monthly Plan", "4", <InsertRowAboveOutlined />, "/monthly"),
+  getItem("Quarter Plan", "2", <PieChartOutlined />, "/quarter-plan"),
+  getItem("Monthly Plan", "3", <InsertRowAboveOutlined />, "/monthly-plan"),
 ];
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
+
+  const paths = [];
+  const keys = [];
+  const getData = (item) => {
+    item.forEach((obj) => {
+      if (Array.isArray(obj.children)) {
+        getData(obj.children);
+      } else {
+        paths.push(obj.path);
+        keys.push(obj.key);
+      }
+    });
+  };
+  getData(items);
+
+  const navigate = useNavigate();
+
+  const key = paths.find((item) => item === window.location.pathname);
+
+  const onMenuClick = (e) => {
+    navigate(`${paths[Number(e.key)]}`);
+  };
+
   return (
     <Layout
       style={{
@@ -47,9 +69,10 @@ const App = () => {
         </Logos>
         <Menu
           theme="dark"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={[`${paths.indexOf(key)}`]}
           mode="inline"
           items={items}
+          onClick={onMenuClick}
         />
       </Sider>
       <Layout>
@@ -84,7 +107,7 @@ const App = () => {
             <Name>User</Name>
           </User>
         </Header>
-        <Content style={{ background: "#fff" }}>
+        <Content style={{ background: "#fff", overflow: "auto" }}>
           <Outlet />
         </Content>
       </Layout>
