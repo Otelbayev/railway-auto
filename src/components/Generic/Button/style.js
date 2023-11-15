@@ -4,7 +4,7 @@ const getType = ({ type }) => {
   switch (type) {
     case "danger":
       return {
-        background: "red",
+        background: "rgb(202, 5, 0)",
         border: "1px solid #fff",
         color: "#fff",
       };
@@ -17,7 +17,7 @@ const getType = ({ type }) => {
     }
     case "success": {
       return {
-        background: "green",
+        background: "rgb(0, 175, 9)",
         border: "1px solid #e6e9ec",
         color: "#fff",
       };

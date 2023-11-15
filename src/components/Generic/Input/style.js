@@ -10,10 +10,10 @@ export const Container = styled.input`
   align-items: center;
   justify-content: center;
   border-radius: 6px;
-  min-width: 120px;
+  min-width: 80px;
 
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : "14px")};
-  width: ${({ width }) => (width ? `${width}px` : "100%")};
+  width: ${({ width }) => (width ? `${width}px` : "20px")};
   height: ${({ height }) => (height ? `${height}px` : "33px")};
   border: 1px solid #e6e9ec;
   outline: none;

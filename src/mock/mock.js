@@ -1,8 +1,7 @@
 export const mockTable = [
   {
     id: 1,
-    title:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minusdeleniti ipsam. Natus incidunt consequatur totam",
+    title: "ЗВЛ80с,2ВЛ60к, ВЛ60к ваO'Z-EL русумли злектровозлар бўйича",
     data: [
       {
         id: 1,
@@ -10,10 +9,10 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
-        section: 1,
+        section: 5,
       },
       {
         id: 2,
@@ -21,8 +20,8 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
         section: 1,
       },
@@ -32,8 +31,8 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
         section: 1,
       },
@@ -43,8 +42,8 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
         section: 1,
       },
@@ -52,8 +51,7 @@ export const mockTable = [
   },
   {
     id: 2,
-    title:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minusdeleniti ipsam. Natus incidunt consequatur totam",
+    title: "UzTE16M ва ТЭ10М русумли тепловозлар буйича ",
     data: [
       {
         id: 1,
@@ -61,8 +59,8 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
         section: 1,
       },
@@ -72,8 +70,8 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
         section: 1,
       },
@@ -83,8 +81,8 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
         section: 1,
       },
@@ -94,8 +92,8 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
         section: 1,
       },
@@ -103,8 +101,7 @@ export const mockTable = [
   },
   {
     id: 3,
-    title:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minusdeleniti ipsam. Natus incidunt consequatur totam",
+    title: "ЧМЭ-3 ва ТЭМ-2 русумли тепловозлар бўйича",
     data: [
       {
         id: 1,
@@ -112,8 +109,8 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
         section: 1,
       },
@@ -123,8 +120,8 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
         section: 1,
       },
@@ -134,8 +131,8 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
         section: 1,
       },
@@ -145,11 +142,49 @@ export const mockTable = [
         model: "mers",
         number: "222",
         depo: "Uzb",
-        repaitMode: "TP-3",
-        repaitPlace: "Uzb",
+        repairMode: "TP-3",
+        repairPlace: "Uzb",
         outRepair: "January",
         section: 1,
       },
     ],
   },
+];
+
+export const months = [
+  { id: 1, value: "Январь", label: "Январь" },
+  { id: 2, value: "Февраль", label: "Февраль" },
+  { id: 3, value: "Март", label: "Март" },
+  { id: 4, value: "Апрель", label: "Апрель" },
+  { id: 5, value: "Май", label: "Май" },
+  { id: 6, value: "Июнь", label: "Июнь" },
+  { id: 7, value: "Июль", label: "Июль" },
+  { id: 8, value: "Август", label: "Август" },
+  { id: 9, value: "Сентябрь", label: "Сентябрь" },
+  { id: 10, value: "Октябрь", label: "Октябрь" },
+  { id: 11, value: "Ноябрь", label: "Ноябрь" },
+  { id: 12, value: "Декабрь", label: "Декабрь" },
+];
+
+export const place = [
+  { id: 1, value: "Ўзбекистон", label: "Ўзбекистон" },
+  { id: 2, value: "ТР3УК", label: "ТР3УК" },
+];
+
+export const repair = [
+  { id: 1, value: "ТP-3", label: "ТP-3" },
+  { id: 2, value: "КРП", label: "КРП" },
+];
+
+export const registrDepo = [
+  { id: 1, value: "Ўзбекистон", label: "Ўзбекистон" },
+  { id: 2, value: "Кўнгирот", label: "Кўнгирот" },
+  { id: 3, value: "Қарши", label: "Қарши" },
+  { id: 4, value: "Урганч", label: "Урганч" },
+];
+
+export const numbers = [
+  { id: 1, value: "№1639", label: "№1639" },
+  { id: 2, value: "№2477", label: "№2477" },
+  { id: 3, value: "№408", label: "№408" },
 ];
