@@ -13,7 +13,7 @@ export const Container = styled.input`
   min-width: 80px;
 
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : "14px")};
-  width: ${({ width }) => (width ? `${width}px` : "20px")};
+  width: ${({ width }) => (width ? `${width}px` : "10px")};
   height: ${({ height }) => (height ? `${height}px` : "33px")};
   border: 1px solid #e6e9ec;
   outline: none;

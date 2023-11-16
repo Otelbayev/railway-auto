@@ -145,7 +145,7 @@ export const mockTable = [
         repairMode: "TP-3",
         repairPlace: "Uzb",
         outRepair: "January",
-        section: 1,
+        section: 10,
       },
     ],
   },
@@ -183,8 +183,9 @@ export const registrDepo = [
   { id: 4, value: "Урганч", label: "Урганч" },
 ];
 
-export const numbers = [
-  { id: 1, value: "№1639", label: "№1639" },
-  { id: 2, value: "№2477", label: "№2477" },
-  { id: 3, value: "№408", label: "№408" },
+export const models = [
+  { id: 1, value: "ЗВЛ80с", label: "ЗВЛ80с" },
+  { id: 2, value: "2ВЛ60к", label: "2ВЛ60к" },
+  { id: 3, value: "UzTE16M ", label: "UzTE16M" },
+  { id: 3, value: "ТЭ10М ", label: "ТЭ10М" },
 ];

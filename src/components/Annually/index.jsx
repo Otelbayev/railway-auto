@@ -6,16 +6,26 @@ import {
   place,
   repair,
   registrDepo,
-  numbers,
+  models,
 } from "../../mock/mock";
 import { Button, Input, Select } from "../Generic";
 
 const Annually = () => {
   const [isEdit, setIsEdit] = useState("");
+  const [mockData, setMockData] = useState(mockTable);
 
   const onEdit = (id) => {
     setIsEdit(id);
   };
+
+  const onSave = (id) => {
+    setIsEdit("");
+  };
+
+  const count = mockData.map((item) => {
+    return item.data.reduce((curr, value) => (curr += value.section), 0);
+  });
+  console.log(count);
 
   return (
     <Container>
@@ -32,7 +42,7 @@ const Annually = () => {
             <Th>Действие</Th>
           </Tr>
         </thead>
-        {mockTable.map(({ id, title, data }) => {
+        {mockData.map(({ id, title, data }) => {
           return (
             <tbody key={id}>
               <Tr>
@@ -56,7 +66,6 @@ const Annually = () => {
                       <Td>
                         {isEdit === unique_id ? (
                           <div
-                            div
                             style={{
                               display: "flex",
                               alignItems: "center",
@@ -64,8 +73,8 @@ const Annually = () => {
                               gap: "5px",
                             }}
                           >
-                            <Input type="text" placeholder="model" />
-                            <Select options={numbers} width={90} />
+                            <Select options={models} width={90} />
+                            <Input type="text" placeholder="Рақами" />
                           </div>
                         ) : (
                           `${model} ${number}`
@@ -102,7 +111,7 @@ const Annually = () => {
                       </Td>
                       <Td>
                         {isEdit === unique_id ? (
-                          <Input type="text" placeholder="Секция" />
+                          <Input type="number" placeholder="Секция" />
                         ) : (
                           section
                         )}
@@ -119,7 +128,11 @@ const Annually = () => {
                         >
                           {isEdit === unique_id ? (
                             <>
-                              <Button type="success" width={60}>
+                              <Button
+                                type="success"
+                                onClick={() => onSave(unique_id)}
+                                width={60}
+                              >
                                 save
                               </Button>
                               <Button
@@ -146,7 +159,7 @@ const Annually = () => {
               )}
               <Tr>
                 <Td colSpan={6}>ЖАМИ:</Td>
-                <Td colSpan={7}>{"count"} та секция</Td>
+                <Td colSpan={7}>{count[id - 1]} та секция</Td>
               </Tr>
             </tbody>
           );
