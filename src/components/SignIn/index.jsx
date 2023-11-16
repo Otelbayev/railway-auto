@@ -41,8 +41,15 @@ const SignIn = () => {
           type="text"
           placeholder="username"
           width={200}
+          defaultValue={"user"}
         />
-        <Input ref={pwRef} type="password" placeholder="password" width={200} />
+        <Input
+          ref={pwRef}
+          defaultValue={"user"}
+          type="password"
+          placeholder="password"
+          width={200}
+        />
         <Button
           type="primary"
           loading={loadings[1]}
