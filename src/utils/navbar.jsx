@@ -16,6 +16,7 @@ import {
   CalendarOutlined,
 } from "@ant-design/icons";
 import UserPage from "../Pages/UserPage";
+import SInglePage from "../Pages/Annual/SinglePage";
 
 export const navbar = [
   {
@@ -27,6 +28,11 @@ export const navbar = [
     id: 2,
     path: "/annual-plan",
     element: <AnnualPlanPage />,
+  },
+  {
+    id: 21,
+    path: "/annual-plan/:id",
+    element: <SInglePage />,
   },
   {
     id: 3,
