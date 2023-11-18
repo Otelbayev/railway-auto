@@ -1,6 +1,6 @@
 import React from "react";
 import Single from "../../../components/Annual/Single";
 
-const SInglePage = () => <Single />;
+const SingleAnnual = () => <Single />;
 
-export default SInglePage;
+export default SingleAnnual;

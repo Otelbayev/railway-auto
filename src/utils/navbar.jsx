@@ -16,7 +16,9 @@ import {
   CalendarOutlined,
 } from "@ant-design/icons";
 import UserPage from "../Pages/UserPage";
-import SInglePage from "../Pages/Annual/SinglePage";
+import SingleAnnual from "../Pages/Annual/SinglePage";
+import SingleQuarter from "../Pages/Quarter/SinglePage";
+import SingleMonthly from "../Pages/Monthly/SinglePage";
 
 export const navbar = [
   {
@@ -32,7 +34,7 @@ export const navbar = [
   {
     id: 21,
     path: "/annual-plan/:id",
-    element: <SInglePage />,
+    element: <SingleAnnual />,
   },
   {
     id: 3,
@@ -45,6 +47,11 @@ export const navbar = [
     element: <QuarterPlanPage />,
   },
   {
+    id: 41,
+    path: "/quarter-plan/:id",
+    element: <SingleQuarter />,
+  },
+  {
     id: 5,
     path: "/quarter-doc",
     element: <QuarterDocPage />,
@@ -53,6 +60,11 @@ export const navbar = [
     id: 6,
     path: "/monthly-plan",
     element: <MonthlyPlanPage />,
+  },
+  {
+    id: 61,
+    path: "/monthly-plan/:id",
+    element: <SingleMonthly />,
   },
   {
     id: 7,
