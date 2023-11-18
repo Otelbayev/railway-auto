@@ -55,7 +55,7 @@ const SignIn = () => {
         </Content>
         <Line />
         <Slider>
-          <Carousels autoplay autoplaySpeed={2500}>
+          <Carousels autoplay>
             <CarouselItem>
               <Img src={gall1} />
             </CarouselItem>

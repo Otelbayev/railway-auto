@@ -12,6 +12,9 @@ export const Container = styled.div`
   @media (max-width: 960px) {
     padding: 10px;
   }
+  @media (max-width: 600px) {
+    padding: 0;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -23,6 +26,11 @@ export const Wrapper = styled.div`
   gap: 20px;
   @media (max-width: 960px) {
     flex-direction: column;
+  }
+  @media (max-width: 600px) {
+    height: 100vh;
+    width: 100%;
+    border-radius: 0;
   }
 `;
 
