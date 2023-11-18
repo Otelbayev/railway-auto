@@ -121,41 +121,41 @@ export const mockTable = [
   },
 ];
 
-// export const months = [
-//   { id: 1, value: "Январь", label: "Январь" },
-//   { id: 2, value: "Февраль", label: "Февраль" },
-//   { id: 3, value: "Март", label: "Март" },
-//   { id: 4, value: "Апрель", label: "Апрель" },
-//   { id: 5, value: "Май", label: "Май" },
-//   { id: 6, value: "Июнь", label: "Июнь" },
-//   { id: 7, value: "Июль", label: "Июль" },
-//   { id: 8, value: "Август", label: "Август" },
-//   { id: 9, value: "Сентябрь", label: "Сентябрь" },
-//   { id: 10, value: "Октябрь", label: "Октябрь" },
-//   { id: 11, value: "Ноябрь", label: "Ноябрь" },
-//   { id: 12, value: "Декабрь", label: "Декабрь" },
-// ];
+export const months = [
+  { id: 1, value: "Январь", label: "Январь" },
+  { id: 2, value: "Февраль", label: "Февраль" },
+  { id: 3, value: "Март", label: "Март" },
+  { id: 4, value: "Апрель", label: "Апрель" },
+  { id: 5, value: "Май", label: "Май" },
+  { id: 6, value: "Июнь", label: "Июнь" },
+  { id: 7, value: "Июль", label: "Июль" },
+  { id: 8, value: "Август", label: "Август" },
+  { id: 9, value: "Сентябрь", label: "Сентябрь" },
+  { id: 10, value: "Октябрь", label: "Октябрь" },
+  { id: 11, value: "Ноябрь", label: "Ноябрь" },
+  { id: 12, value: "Декабрь", label: "Декабрь" },
+];
 
-// export const place = [
-//   { id: 1, value: "Ўзбекистон", label: "Ўзбекистон" },
-//   { id: 2, value: "ТР3УК", label: "ТР3УК" },
-// ];
+export const place = [
+  { id: 1, value: "Ўзбекистон", label: "Ўзбекистон" },
+  { id: 2, value: "ТР3УК", label: "ТР3УК" },
+];
 
-// export const repair = [
-//   { id: 1, value: "ТP-3", label: "ТP-3" },
-//   { id: 2, value: "КРП", label: "КРП" },
-// ];
+export const repair = [
+  { id: 1, value: "ТP-3", label: "ТP-3" },
+  { id: 2, value: "КРП", label: "КРП" },
+];
 
-// export const registrDepo = [
-//   { id: 1, value: "Ўзбекистон", label: "Ўзбекистон" },
-//   { id: 2, value: "Кўнгирот", label: "Кўнгирот" },
-//   { id: 3, value: "Қарши", label: "Қарши" },
-//   { id: 4, value: "Урганч", label: "Урганч" },
-// ];
+export const registrDepo = [
+  { id: 1, value: "Ўзбекистон", label: "Ўзбекистон" },
+  { id: 2, value: "Кўнгирот", label: "Кўнгирот" },
+  { id: 3, value: "Қарши", label: "Қарши" },
+  { id: 4, value: "Урганч", label: "Урганч" },
+];
 
-// export const models = [
-//   { id: 1, value: "ЗВЛ80с", label: "ЗВЛ80с" },
-//   { id: 2, value: "2ВЛ60к", label: "2ВЛ60к" },
-//   { id: 3, value: "UzTE16M ", label: "UzTE16M" },
-//   { id: 3, value: "ТЭ10М ", label: "ТЭ10М" },
-// ];
+export const models = [
+  { id: 1, value: "ЗВЛ80с", label: "ЗВЛ80с" },
+  { id: 2, value: "2ВЛ60к", label: "2ВЛ60к" },
+  { id: 3, value: "UzTE16M ", label: "UzTE16M" },
+  { id: 3, value: "ТЭ10М ", label: "ТЭ10М" },
+];
