@@ -26,6 +26,7 @@ export const Wrapper = styled.div`
   gap: 20px;
   @media (max-width: 960px) {
     flex-direction: column;
+    justify-content: center;
   }
   @media (max-width: 600px) {
     height: 100vh;
