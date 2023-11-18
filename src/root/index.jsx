@@ -1,11 +1,11 @@
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { navbar } from "../utils/navbar";
 import Navbar from "../components/Navbar";
-import NotFound from "../components/NotFound";
-import SignInPage from "../pages/SignInPage";
+import LandingPage from "../Pages/LandingPage";
+import NotFoundPage from "../Pages/NotFoundPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const index = () => {
+const Root = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -14,12 +14,11 @@ const index = () => {
             <Route key={id} path={path} element={element} />
           ))}
         </Route>
-        <Route path={"*"} element={<NotFound />} />
-        <Route path={"/"} element={<Navigate to={"/signin"} />} />
-        <Route path={"/signin"} element={<SignInPage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
 };
 
-export default index;
+export default Root;
