@@ -48,7 +48,7 @@ export const Content = styled.div`
   gap: 20px;
   flex-direction: column;
   @media (max-width: 600px) {
-    width: 98%;
+    width: 94%;
   }
 `;
 

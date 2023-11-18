@@ -36,13 +36,18 @@ const SignIn = () => {
       password.style.borderColor = "red";
     }
   };
+
+  const formSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Container>
       <Wrapper>
         <Content>
           <Logo src={logo} />
           <Title>ДОБРО ПОЖАЛОВАТЬ</Title>
-          <Form>
+          <Form onSubmit={formSubmit}>
             <Input type="text" id="input" ref={emailRef} placeholder="email" />
             <Input
               type="password"

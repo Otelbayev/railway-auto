@@ -59,7 +59,7 @@ export const Title = styled.div`
     font-size: 20px;
   }
 `;
-export const Form = styled.div`
+export const Form = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
