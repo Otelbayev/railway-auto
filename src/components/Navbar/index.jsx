@@ -93,7 +93,11 @@ const App = () => {
             }}
           />
         </Headers>
-        <Content>
+        <Content
+          style={{
+            overflow: "auto",
+          }}
+        >
           <Outlet />
         </Content>
       </Layout>
