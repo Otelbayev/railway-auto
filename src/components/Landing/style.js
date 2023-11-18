@@ -44,6 +44,9 @@ export const Content = styled.div`
   transform: 0.5s;
   margin: 0 auto;
   width: 90%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
   @media (max-width: 600px) {
     width: 98%;
   }
@@ -125,7 +128,7 @@ export const Button = styled.button`
   padding: 10px 20px;
   text-transform: uppercase;
   font-size: 16px;
-  box-shadow: 0 0 7px #fff;
+  box-shadow: inset 0 0 7px #fff;
   font-weight: 400;
   border-radius: 2px;
   background: transparent;
