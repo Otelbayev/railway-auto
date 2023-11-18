@@ -85,5 +85,5 @@ export const SidebarItems = [
   ]),
   getItem(<NavLink to="/user">Профиль</NavLink>, "8", <UserOutlined />),
   getItem(<NavLink to="/">На Сайт</NavLink>, "site", <GlobalOutlined />),
-  getItem(<NavLink to="/">ВЫйти</NavLink>, "exit", <LogoutOutlined />),
+  getItem(<NavLink to="/">Выйти</NavLink>, "exit", <LogoutOutlined />),
 ];
