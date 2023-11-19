@@ -17,6 +17,7 @@ import {
 } from "@ant-design/icons";
 import UserPage from "../Pages/UserPage";
 import SingleAnnual from "../Pages/Annual/SinglePage";
+import YearPage from "../Pages/Annual/YearPage";
 import SingleQuarter from "../Pages/Quarter/SinglePage";
 import SingleMonthly from "../Pages/Monthly/SinglePage";
 
@@ -33,7 +34,12 @@ export const navbar = [
   },
   {
     id: 21,
-    path: "/annual-plan/:id",
+    path: "/annual-plan/:year",
+    element: <YearPage />,
+  },
+  {
+    id: 21,
+    path: "/annual-plan/:year/:id",
     element: <SingleAnnual />,
   },
   {

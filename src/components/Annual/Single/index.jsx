@@ -49,10 +49,10 @@ const Single = () => {
               <Label>Секциялар сони</Label>
               <Input type="text" defaultValue={section} />
             </Div>
-            <Buttons type="primary" onClick={() => navigate("/annual-plan")}>
+            <Buttons type="primary" onClick={() => navigate(-1)}>
               Сохранить
             </Buttons>
-            <Buttons danger onClick={() => navigate("/annual-plan")}>
+            <Buttons danger onClick={() => navigate(-1)}>
               Отменить
             </Buttons>
           </Form>
