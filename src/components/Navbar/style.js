@@ -1,3 +1,4 @@
+import Sider from "antd/es/layout/Sider";
 import { Header } from "antd/es/layout/layout";
 import styled from "styled-components";
 
@@ -29,4 +30,11 @@ export const Name = styled.div`
   color: #fff;
   text-align: center;
   padding: 10px;
+`;
+
+export const Siders = styled(Sider)`
+  width: 230px;
+  @media (max-width: 600px) {
+    display: ${({ collapsed }) => (collapsed ? "none" : "block")};
+  }
 `;

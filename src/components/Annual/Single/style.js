@@ -25,6 +25,9 @@ export const Label = styled.label`
   font-weight: 600;
   font-size: 18px;
   width: 30%;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 export const Input = styled.input`
   border: 1px solid lightgray;
@@ -33,16 +36,20 @@ export const Input = styled.input`
   padding-left: 15px;
   font-size: 15px;
   height: 40px;
-  width: 70%;
+  width: 50%;
   color: gray;
 `;
 export const Buttons = styled(Button)`
   font-size: 18px;
   height: 40px;
   margin: 10px;
+  @media (max-width: 600px) {
+    font-size: 14px;
+    margin: 5px;
+  }
 `;
 
 export const Selects = styled(Select)`
   height: 40px;
-  width: 70%;
+  width: 50%;
 `;

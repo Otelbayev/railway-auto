@@ -9,11 +9,11 @@ import {
 import { SidebarItems } from "../../utils/navbar";
 import { Layout, Menu, Button } from "antd";
 import { Outlet } from "react-router-dom";
-import { Div, Img, Headers, Name } from "./style";
-const { Sider, Content } = Layout;
+import { Div, Img, Headers, Name, Siders } from "./style";
+const { Content } = Layout;
 
 const App = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
   const openFullScreen = () => {
@@ -41,20 +41,13 @@ const App = () => {
     }
   };
 
-  const onMenuClick = (e) => {
-    localStorage.setItem("key", e.key);
-    if (e.key === "exit" || e.key === "site") {
-      localStorage.removeItem("key");
-    }
-  };
-
   return (
     <Layout
       style={{
         height: "100vh",
       }}
     >
-      <Sider trigger={null} collapsible collapsed={collapsed} width={230}>
+      <Siders trigger={null} collapsible collapsed={collapsed}>
         <Div className="demo-logo-vertical">
           <Img src={logo} />
         </Div>
@@ -62,11 +55,10 @@ const App = () => {
         <Menu
           theme="dark"
           mode="inline"
-          onClick={onMenuClick}
-          defaultSelectedKeys={[localStorage.getItem("key") || "1"]}
+          defaultSelectedKeys={["1"]}
           items={SidebarItems}
         />
-      </Sider>
+      </Siders>
       <Layout>
         <Headers>
           <Button
