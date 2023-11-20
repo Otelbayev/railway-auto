@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import $ from "jquery";
 import "datatables.net";
 import "datatables.net-bs4";
@@ -14,15 +14,14 @@ import {
   Icon2,
   Icon3,
 } from "./style";
-import { mockTable } from "../../../mock/mock";
 import { useNavigate, useParams } from "react-router-dom";
+import { PlanContext } from "../../../context/PlanContext";
 
 const Year = () => {
   const tableRef = useRef();
-
+  const [data, setData] = useContext(PlanContext);
   const navigate = useNavigate();
   const param = useParams();
-  console.log(param);
 
   useEffect(() => {
     const dataTable = $(tableRef.current).DataTable({
@@ -40,7 +39,7 @@ const Year = () => {
     return () => {
       dataTable.destroy();
     };
-  }, [mockTable]);
+  }, [data]);
 
   return (
     <div className="container">
@@ -60,7 +59,7 @@ const Year = () => {
             </Tr>
           </thead>
           <tbody>
-            {mockTable.map(
+            {data.map(
               ({
                 id,
                 model,

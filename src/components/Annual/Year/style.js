@@ -56,6 +56,7 @@ const common = css`
 export const Button = styled.button`
   border: 1px solid ${Color};
   border-radius: 4px;
+  background: transparent;
   cursor: pointer;
   &:disabled {
     opacity: 0.5;

@@ -1,10 +1,17 @@
-import React from "react";
-import { Container, Table, Th, Tr } from "./style";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Container, Table, Th, Tr, Td, Icon1, Icon3 } from "./style";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Input, Select } from "antd";
 import { months, place, repair, registrDepo, models } from "../../../mock/mock";
+import { Button as Btn } from "antd";
+import { PlanContext } from "../../../context/PlanContext";
 const AnnualPlan = () => {
   const navigate = useNavigate();
+  const param = useParams();
+
+  const [data, setData] = useContext(PlanContext);
+  const [newData, setNewData] = useState([]);
+
   return (
     <div className="container">
       <div className="title">Создать годовой план</div>
@@ -53,14 +60,59 @@ const AnnualPlan = () => {
                 <Input type="number" defaultValue={1} />
               </Th>
               <Th>
-                <Button type="primary">Добавить</Button>
+                <Btn type="primary">Добавить</Btn>
               </Th>
             </Tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {newData.map(
+              ({
+                id,
+                model,
+                number,
+                depo,
+                repairMode,
+                repairPlace,
+                outRepair,
+                section,
+              }) => {
+                return (
+                  <Tr key={id}>
+                    <Td>{id}</Td>
+                    <Td>
+                      {model} {number}
+                    </Td>
+                    <Td>{depo}</Td>
+                    <Td>{repairMode}</Td>
+                    <Td>{repairPlace}</Td>
+                    <Td>{outRepair}</Td>
+                    <Td>{section}</Td>
+                    <Td>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "5px",
+                          width: "100%",
+                        }}
+                      >
+                        <Button type="gold">
+                          <Icon1 />
+                        </Button>
+                        <Button type="red">
+                          <Icon3 />
+                        </Button>
+                      </div>
+                    </Td>
+                  </Tr>
+                );
+              }
+            )}
+          </tbody>
         </Table>
         <div style={{ textAlign: "center" }}>
-          <Button
+          <Btn
             style={{
               background: "green",
               color: "#fff",
@@ -68,7 +120,7 @@ const AnnualPlan = () => {
             }}
           >
             Сохранит
-          </Button>
+          </Btn>
         </div>
       </Container>
     </div>

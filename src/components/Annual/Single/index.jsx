@@ -1,20 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Content, Div, Label, Form, Input, Buttons, Selects } from "./style";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  mockTable,
-  models,
-  registrDepo,
-  place,
-  repair,
-  months,
-} from "../../../mock/mock";
+import { PlanContext } from "../../../context/PlanContext";
+import { models, registrDepo, place, repair, months } from "../../../mock/mock";
 
 const Single = () => {
+  const [data, setData] = useContext(PlanContext);
   const params = useParams();
   const navigate = useNavigate();
   const { model, number, depo, repairMode, repairPlace, outRepair, section } =
-    mockTable.find((item) => item.id == Number(params.id));
+    data.find((item) => item.id == Number(params.id));
   return (
     <div className="container">
       <div className="title">Профиль</div>

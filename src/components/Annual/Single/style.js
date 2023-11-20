@@ -43,6 +43,7 @@ export const Buttons = styled(Button)`
   font-size: 18px;
   height: 40px;
   margin: 10px;
+  background: transparent;
   @media (max-width: 600px) {
     font-size: 14px;
     margin: 5px;
