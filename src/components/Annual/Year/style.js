@@ -50,7 +50,7 @@ const Color = (props) => {
 const common = css`
   font-size: 24px;
   padding: 6px;
-  background: #fff;
+  background: transparent;
 `;
 
 export const Button = styled.button`

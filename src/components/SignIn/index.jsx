@@ -48,12 +48,19 @@ const SignIn = () => {
           <Logo src={logo} />
           <Title>ДОБРО ПОЖАЛОВАТЬ</Title>
           <Form onSubmit={formSubmit}>
-            <Input type="text" id="input" ref={emailRef} placeholder="email" />
+            <Input
+              type="text"
+              id="input"
+              defaultValue={"admin"}
+              ref={emailRef}
+              placeholder="email"
+            />
             <Input
               type="password"
               id="password"
               ref={pwRef}
               placeholder="password"
+              defaultValue={"admin"}
             />
             <Button onClick={onButton}>ВОЙТИ</Button>
           </Form>

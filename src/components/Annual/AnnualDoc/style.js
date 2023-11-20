@@ -1,4 +1,6 @@
+import { Button } from "antd";
 import styled from "styled-components";
+import { EyeOutlined } from "@ant-design/icons";
 
 export const Container = styled.div`
   background: #fff;
@@ -12,15 +14,11 @@ export const Container = styled.div`
   gap: 10px;
 `;
 
-export const Div = styled.div`
+export const Div = styled(Button)`
   height: 40px;
-  background-color: ${({ active }) => (active ? "blue" : "lightblue")};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
   font-size: 20px;
   font-weight: 700;
-  color: #fff;
   cursor: pointer;
 `;
+
+export const Icon = styled(EyeOutlined)``;

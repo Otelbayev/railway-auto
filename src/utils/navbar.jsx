@@ -106,11 +106,11 @@ export const SidebarItems = [
     getItem(<NavLink to="/annual-doc">Документ</NavLink>, "2"),
   ]),
   getItem("Четверть план", "sub3", <PieChartOutlined />, [
-    getItem(<NavLink to="/quarter-plan">План</NavLink>, "7"),
+    getItem(<NavLink to="/quarter-plan">Создать</NavLink>, "7"),
     getItem(<NavLink to="/quarter-doc">Документ</NavLink>, "6"),
   ]),
   getItem("Ежемесячный план", "sub2", <InsertRowAboveOutlined />, [
-    getItem(<NavLink to="/monthly-plan">План</NavLink>, "5"),
+    getItem(<NavLink to="/monthly-plan">Создать</NavLink>, "5"),
     getItem(<NavLink to="/monthly-doc">Документ</NavLink>, "4"),
   ]),
   getItem(<NavLink to="/user">Профиль</NavLink>, "8", <UserOutlined />),

@@ -12,15 +12,22 @@ export const Container = styled.div`
   gap: 10px;
 `;
 
-export const Div = styled.div`
-  height: 40px;
-  background-color: ${({ active }) => (active ? "blue" : "lightblue")};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-  cursor: pointer;
+export const Table = styled.table`
+  border-collapse: collapse;
+  background-color: #fff;
+  margin: 10px;
+`;
+export const Tr = styled.tr`
+  text-align: center;
+  font-weight: 500;
+`;
+
+export const Th = styled.th`
+  padding: 10px;
+  border: 1px solid lightgray;
+`;
+export const Td = styled.td`
+  padding: 10px;
+  color: rgba(0, 0, 0, 0.9);
+  border: 1px solid lightgray;
 `;
