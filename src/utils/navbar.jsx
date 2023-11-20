@@ -20,6 +20,7 @@ import SingleAnnual from "../Pages/Annual/SinglePage";
 import YearPage from "../Pages/Annual/YearPage";
 import SingleQuarter from "../Pages/Quarter/SinglePage";
 import SingleMonthly from "../Pages/Monthly/SinglePage";
+import QuarterIdPage from "../Pages/Quarter/Quarter";
 
 export const navbar = [
   {
@@ -34,12 +35,12 @@ export const navbar = [
   },
   {
     id: 21,
-    path: "/annual-plan/:year",
+    path: "/annual-doc/:year",
     element: <YearPage />,
   },
   {
-    id: 21,
-    path: "/annual-plan/:year/:id",
+    id: 22,
+    path: "/annual-doc/:year/:id",
     element: <SingleAnnual />,
   },
   {
@@ -54,7 +55,12 @@ export const navbar = [
   },
   {
     id: 41,
-    path: "/quarter-plan/:id",
+    path: "/quarter-plan/:year",
+    element: <QuarterIdPage />,
+  },
+  {
+    id: 42,
+    path: "/quarter-plan/:year/:id",
     element: <SingleQuarter />,
   },
   {
@@ -96,7 +102,7 @@ function getItem(label, key, icon, children) {
 export const SidebarItems = [
   getItem(<NavLink to="/home">Гавная</NavLink>, "1", <HomeOutlined />),
   getItem("Годовой план", "sub1", <CalendarOutlined />, [
-    getItem(<NavLink to="/annual-plan">План</NavLink>, "3"),
+    getItem(<NavLink to="/annual-plan">Создать</NavLink>, "3"),
     getItem(<NavLink to="/annual-doc">Документ</NavLink>, "2"),
   ]),
   getItem("Четверть план", "sub3", <PieChartOutlined />, [

@@ -12,19 +12,21 @@ export const Container = styled.div`
 export const Table = styled.table`
   border-collapse: collapse;
   background-color: #fff;
-  border-color: lightgray;
   margin: 10px;
 `;
 export const Tr = styled.tr`
   text-align: center;
   font-weight: 500;
 `;
+
 export const Th = styled.th`
   padding: 10px;
+  border: 1px solid lightgray;
 `;
 export const Td = styled.td`
   padding: 10px;
   color: rgba(0, 0, 0, 0.9);
+  border: 1px solid lightgray;
 `;
 
 const Color = (props) => {

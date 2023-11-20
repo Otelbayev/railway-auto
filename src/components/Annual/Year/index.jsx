@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
+import $ from "jquery";
+import "datatables.net";
+import "datatables.net-bs4";
+import "datatables.net-select";
 import {
   Table,
   Tr,
@@ -14,15 +18,35 @@ import { mockTable } from "../../../mock/mock";
 import { useNavigate, useParams } from "react-router-dom";
 
 const Year = () => {
-  const [mockData, setMockData] = useState(mockTable);
+  const tableRef = useRef();
+
   const navigate = useNavigate();
   const param = useParams();
-  console.log();
+  console.log(param);
+
+  useEffect(() => {
+    const dataTable = $(tableRef.current).DataTable({
+      columns: [
+        { data: "id" },
+        { data: "model" },
+        { data: "number" },
+        { data: "depo" },
+        { data: "repairMode" },
+        { data: "repairPlace" },
+        { data: "outRepair" },
+        { data: "section" },
+      ],
+    });
+    return () => {
+      dataTable.destroy();
+    };
+  }, [mockTable]);
+
   return (
     <div className="container">
-      <div className="title">Годовой план - {param.year}</div>
+      <div className="title">Годовой план</div>
       <Container>
-        <Table border="1">
+        <Table ref={tableRef}>
           <thead>
             <Tr>
               <Th>№</Th>
@@ -36,7 +60,7 @@ const Year = () => {
             </Tr>
           </thead>
           <tbody>
-            {mockData.map(
+            {mockTable.map(
               ({
                 id,
                 model,
@@ -76,7 +100,7 @@ const Year = () => {
                               : true
                           }
                           onClick={() =>
-                            navigate(`/annual-plan/${param.year}/${id}`)
+                            navigate(`/annual-doc/${param.year}/${id}`)
                           }
                         >
                           <Icon1 />
