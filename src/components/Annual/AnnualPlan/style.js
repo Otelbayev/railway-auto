@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { EditOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, CheckOutlined } from "@ant-design/icons";
 
 const Color = (props) => {
   switch (props.type) {
@@ -76,7 +76,7 @@ export const Icon1 = styled(EditOutlined)`
   }
 `;
 
-export const Icon2 = styled(EyeOutlined)`
+export const Icon2 = styled(CheckOutlined)`
   ${common};
   color: blue;
   &:hover {
