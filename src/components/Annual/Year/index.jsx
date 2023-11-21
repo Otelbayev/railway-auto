@@ -1,8 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
-import $ from "jquery";
-import "datatables.net";
-import "datatables.net-bs4";
-import "datatables.net-select";
+import React, { useContext, useState } from "react";
 import {
   Table,
   Tr,
@@ -11,41 +7,48 @@ import {
   Button,
   Container,
   Icon1,
-  Icon2,
   Icon3,
+  Paginations,
 } from "./style";
 import { useNavigate, useParams } from "react-router-dom";
 import { PlanContext } from "../../../context/PlanContext";
+import { Select } from "antd";
 
 const Year = () => {
-  const tableRef = useRef();
   const [data, setData] = useContext(PlanContext);
   const navigate = useNavigate();
   const param = useParams();
 
-  useEffect(() => {
-    const dataTable = $(tableRef.current).DataTable({
-      columns: [
-        { data: "id" },
-        { data: "model" },
-        { data: "number" },
-        { data: "depo" },
-        { data: "repairMode" },
-        { data: "repairPlace" },
-        { data: "outRepair" },
-        { data: "section" },
-      ],
-    });
-    return () => {
-      dataTable.destroy();
-    };
-  }, [data]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [items, setItems] = useState(10);
+  const itemsPerPage = items;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentData = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleChangePage = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleSelect = (e) => {
+    setItems(e);
+  };
 
   return (
     <div className="container">
       <div className="title">Годовой план</div>
       <Container>
-        <Table ref={tableRef}>
+        <Select
+          defaultValue={10}
+          options={[
+            { value: 10, key: 10 },
+            { value: 20, key: 20 },
+            { value: 30, key: 30 },
+          ]}
+          onChange={(e) => handleSelect(e)}
+        />
+        <Table>
           <thead>
             <Tr>
               <Th>№</Th>
@@ -59,7 +62,7 @@ const Year = () => {
             </Tr>
           </thead>
           <tbody>
-            {data.map(
+            {currentData.map(
               ({
                 id,
                 model,
@@ -122,6 +125,12 @@ const Year = () => {
             )}
           </tbody>
         </Table>
+        <Paginations
+          defaultCurrent={1}
+          total={data.length}
+          onChange={handleChangePage}
+          pageSize={itemsPerPage}
+        />
       </Container>
     </div>
   );

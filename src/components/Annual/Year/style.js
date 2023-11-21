@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { EditOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Pagination } from "antd";
 
 export const Container = styled.div`
   background: #fff;
@@ -88,4 +89,10 @@ export const Icon3 = styled(DeleteOutlined)`
     color: #fff;
     background: red;
   }
+`;
+
+export const Paginations = styled(Pagination)`
+  display: flex;
+  justify-content: flex-end;
+  margin: 30px 30px 0 0;
 `;

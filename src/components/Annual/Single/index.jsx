@@ -12,7 +12,7 @@ const Single = () => {
     data.find((item) => item.id == Number(params.id));
   return (
     <div className="container">
-      <div className="title">Профиль</div>
+      <div className="title">Изменить</div>
       <div>
         <Content>
           <Form>

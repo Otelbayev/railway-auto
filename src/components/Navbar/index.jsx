@@ -13,7 +13,7 @@ import { Div, Img, Headers, Name, Siders } from "./style";
 const { Content } = Layout;
 
 const App = () => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
   const openFullScreen = () => {
