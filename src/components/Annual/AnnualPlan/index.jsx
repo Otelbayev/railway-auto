@@ -17,7 +17,6 @@ import { PlanContext } from "../../../context/PlanContext";
 
 const AnnualPlan = () => {
   const navigate = useNavigate();
-
   const [data, setData] = useContext(PlanContext);
   const [newData, setNewData] = useState([]);
 
@@ -29,10 +28,10 @@ const AnnualPlan = () => {
   const [repairValue, setrepairValue] = useState(data[0].repairMode);
   const [placeValue, setplaceValue] = useState(data[0].repairPlace);
   const [outValue, setoutValue] = useState(data[0].outRepair);
-
   const [editId, setEditId] = useState(0);
 
   const handleClick = () => {
+    console.log(depoValue);
     setNewData([
       ...newData,
       {

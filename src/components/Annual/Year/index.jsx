@@ -42,9 +42,10 @@ const Year = () => {
         <Select
           defaultValue={10}
           options={[
-            { value: 10, key: 10 },
-            { value: 20, key: 20 },
-            { value: 30, key: 30 },
+            { value: 10 },
+            { value: 20 },
+            { value: 30 },
+            { value: data.length },
           ]}
           onChange={(e) => handleSelect(e)}
         />

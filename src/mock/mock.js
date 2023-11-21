@@ -151,6 +151,7 @@ export const registrDepo = [
   { id: 2, value: "Кўнгирот", label: "Кўнгирот" },
   { id: 3, value: "Қарши", label: "Қарши" },
   { id: 4, value: "Урганч", label: "Урганч" },
+  { id: 5, value: "Термиз", label: "Термиз" },
 ];
 
 export const models = [
