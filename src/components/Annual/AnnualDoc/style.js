@@ -21,11 +21,19 @@ export const Wrapper = styled.div`
 `;
 
 export const Div = styled(Btn)`
-  height: 40px;
-  font-size: 20px;
-  font-weight: 700;
   cursor: pointer;
-  width: ${({ none }) => (none ? "15%" : "85%")};
+  width: ${({ none }) => (none ? "15%" : "90%")};
+  margin: 10px 0;
 `;
 
 export const Icon = styled(EyeOutlined)``;
+
+export const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  tr {
+    text-align: center;
+  }
+  td {
+  }
+`;

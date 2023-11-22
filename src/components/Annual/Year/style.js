@@ -14,6 +14,7 @@ export const Table = styled.table`
   border-collapse: collapse;
   background-color: #fff;
   margin: 10px;
+  width: 100%;
 `;
 export const Tr = styled.tr`
   text-align: center;

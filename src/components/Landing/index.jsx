@@ -24,45 +24,42 @@ const Landing = () => {
         <Content>
           <Header>
             <Logo src={logo} />
-            <Title>УП "O'ZTEMIRYO'LMASHTAMIR"</Title>
-            <Button onClick={() => navigate("/signin")}>вход</Button>
+            <Title>"O'ZTEMIRYO'LMASHTAMIR" AJ</Title>
+            <Button onClick={() => navigate("/signin")}>kirish</Button>
           </Header>
           <Body1 id="body1">
             <Text>
               <Ul>
                 <P>
-                  УП «О'ztemiryo'lmashta'mir» является структурным предприятием
-                  АО «Узбекистон темир йуллари», который введен в портал реестр
-                  единых поставщиков по ремонту локомотивов в Республики
-                  Узбекистан. Основной вид деятельности предприятия
+                  «О'ztemiryo'lmashta'mir» AJ tuzilmaviy korxona hisoblanadi
+                  Reyestr portaliga kiritilgan “O'zbekiston temir yo'llari” AJ
+                  Respublikada lokomotiv ta'mirlash bo'yicha yagona yetkazib
+                  beruvchilar O'zbekiston. Korxonaning asosiy faoliyati
                 </P>
-                <Li> капитальный и капитально</Li>
                 <Li>
-                  восстановительный ремонт подвижных составов, в частности:
+                  barcha seriyali teplovozlarning xizmat qilish muddatini
+                  uzaytirgan holda kapital va kapital ta'mirlash;
                 </Li>
-                <Li> капитального ремонта и капитально</Li>
                 <Li>
-                  восстановительного ремонта с продлением срока службы
-                  тепловозов всех серий;
+                  VL80S va VL60K o'zgaruvchan tok elektrovozlarining xizmat
+                  muddatini uzaytirgan holda kapital va kapital ta'mirlash;
                 </Li>
-                <Li> капитальный и капитально</Li>
+                <Li> yuk vagonlarini kapital ta'mirlash;</Li>
                 <Li>
-                  восстановительный ремонт с продлением срока службы
-                  электровозов переменного тока ВЛ80С и ВЛ60К;
+                  xizmat muddatini uzaytirgan holda yuk vagonlarini
+                  modernizatsiya qilish;
                 </Li>
-                <Li> капитальный ремонт грузовых вагонов;</Li>
+                <Li> elektr mashinalarini kapital ta'mirlash;</Li>
+                <Li> g'ildirak guruhlarini shakllantirish;</Li>
+                <Li> ED118 lokomotiv elektr motorlarini tiklash;</Li>
+                <Li> lokomotiv agregatlarini ta'mirlash;</Li>
                 <Li>
-                  модернизация грузовых вагонов с продлением срока службы;
+                  asboblar va barcha turdagi asbobuskunalar ishlab chiqarish;
                 </Li>
-                <Li> капитальный ремонт электрических машин;</Li>
-                <Li> формирование колёсных пар;</Li>
-                <Li> восстановление тепловозных электродвигателей ЭД-118;</Li>
-                <Li> ремонт агрегатов локомотивов;</Li>
-                <Li> изготовления инструментов и всех видов оснасток;</Li>
-                <Li> изготовления резинотехнических изделий;</Li>
+                <Li> rezina buyumlar ishlab chiqarish; harakatlanuvchi</Li>
                 <Li>
-                  изготовления запасных частей для подвижного состава и верхнего
-                  строения пути.
+                  tarkib va ​​yo'l ustki tuzilishi uchun ehtiyot qismlar ishlab
+                  chiqarish.
                 </Li>
               </Ul>
             </Text>

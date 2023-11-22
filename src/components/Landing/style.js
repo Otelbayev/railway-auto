@@ -111,7 +111,8 @@ export const Ul = styled.ul`
 `;
 export const Li = styled.li`
   margin-left: 30px;
-  font-size: 14px;
+  font-size: 16px;
+  padding: 3px 0;
   @media (max-width: 600px) {
     font-size: 13px;
   }

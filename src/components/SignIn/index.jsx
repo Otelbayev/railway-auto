@@ -46,7 +46,7 @@ const SignIn = () => {
       <Wrapper>
         <Content>
           <Logo src={logo} />
-          <Title>ДОБРО ПОЖАЛОВАТЬ</Title>
+          <Title>XUSH KELIBSIZ!</Title>
           <Form onSubmit={formSubmit}>
             <Input
               type="text"
@@ -62,7 +62,7 @@ const SignIn = () => {
               placeholder="password"
               defaultValue={"admin"}
             />
-            <Button onClick={onButton}>ВОЙТИ</Button>
+            <Button onClick={onButton}>KIRISH</Button>
           </Form>
         </Content>
         <Line />

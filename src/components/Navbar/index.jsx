@@ -51,7 +51,7 @@ const App = () => {
         <Div className="demo-logo-vertical">
           <Img src={logo} />
         </Div>
-        {!collapsed && <Name>Админов Админ</Name>}
+        {!collapsed && <Name>Adminov Admin</Name>}
         <Menu
           theme="dark"
           mode="inline"

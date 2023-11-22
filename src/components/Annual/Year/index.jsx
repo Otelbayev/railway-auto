@@ -60,13 +60,13 @@ const Year = () => {
           <thead>
             <Tr>
               <Th>№</Th>
-              <Th>Локомотив русуми ва рақами</Th>
-              <Th>Локомотив рўйхатдан ўтган депо</Th>
-              <Th>Таъмирлаш тури</Th>
-              <Th>Таъмирлаш жойи</Th>
-              <Th>Таъмирдан чикиши</Th>
-              <Th>Секциялар сони</Th>
-              <Th>Действие</Th>
+              <Th>Lokomativ rusimi va raqami</Th>
+              <Th>Lokomativ royxatdan o'tgan depo</Th>
+              <Th>Tamirlash turi</Th>
+              <Th>Tamirlash joyi</Th>
+              <Th>Tamirdan chiqishi</Th>
+              <Th>Seksiyalar soni</Th>
+              <Th>Tahrirlash</Th>
             </Tr>
           </thead>
           <tbody>

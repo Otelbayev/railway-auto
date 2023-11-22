@@ -40,6 +40,7 @@ export const Content = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 30px;
+  width: 350px;
   padding-right: 30px;
   @media (max-width: 600px) {
     gap: 20px;

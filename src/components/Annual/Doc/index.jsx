@@ -66,12 +66,12 @@ const Doc = () => {
             <thead>
               <tr>
                 <th>№</th>
-                <th>Локомотив русуми ва рақами</th>
-                <th>Локомотив рўйхатдан ўтган депо</th>
-                <th>Таъмирлаш тури</th>
-                <th>Таъмирлаш жойи</th>
-                <th>Таъмирдан чикиши</th>
-                <th>Секциялар сони</th>
+                <th>Lokomativ rusimi va raqami</th>
+                <th>Lokomativ royxatdan o'tgan depo</th>
+                <th>Tamirlash turi</th>
+                <th>Tamirlash joyi</th>
+                <th>Tamirdan chiqishi</th>
+                <th>Seksiyalar soni</th>
               </tr>
             </thead>
             <tbody>
@@ -180,8 +180,11 @@ const Doc = () => {
             </tbody>
           </Table>
         </div>
-        <button style={{ margin: "10px 0" }} onClick={convertToPdf}>
-          download
+        <button
+          style={{ margin: "10px 0", padding: "2px 5px", cursor: "pointer" }}
+          onClick={convertToPdf}
+        >
+          yuklab olish
         </button>
       </Wrapper>
     </Container>

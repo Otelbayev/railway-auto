@@ -7,12 +7,12 @@ import { Box, Content, Count, Div, Icon, P, Span } from "./style";
 const Home = () => {
   return (
     <div className="container">
-      <div className="title">Главная</div>
+      <div className="title">Asosiy</div>
       <Content>
         <Box type="red">
           <Div>
             <Count>50</Count>
-            <P>Регистрация пользователей</P>
+            <P>Royxatdan otgan foydalanuvchilar</P>
           </Div>
           <Icon src={user} />
         </Box>
@@ -21,14 +21,14 @@ const Home = () => {
             <Count>
               50<Span>%</Span>
             </Count>
-            <P>Показатель отказов</P>
+            <P>Qaytish darajasi</P>
           </Div>
           <Icon src={statistic} />
         </Box>
         <Box type="gold">
           <Div>
             <Count>50</Count>
-            <P>Уникальные посетители</P>
+            <P>Noyob tashrif buyuruvchilar</P>
           </Div>
           <Icon src={quarter} />
         </Box>

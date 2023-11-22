@@ -42,12 +42,12 @@ const Single = () => {
 
   return (
     <div className="container">
-      <div className="title">Изменить</div>
+      <div className="title">O'zgartitish</div>
       <div>
         <Content>
           <Form>
             <Div>
-              <Label>Локомотив русуми</Label>
+              <Label>Lokomativ rusumi</Label>
               <Selects
                 defaultValue={model}
                 onChange={(e) => setmodelValue(e)}
@@ -55,11 +55,11 @@ const Single = () => {
               />
             </Div>
             <Div>
-              <Label>Локомотив рақами</Label>
+              <Label>Lokomativ raqami</Label>
               <Input defaultValue={number} type="text" ref={numRef} />
             </Div>
             <Div>
-              <Label>Локомотив рўйхатдан ўтган депо</Label>
+              <Label>Lokomativ royxatdan o'tgan depo</Label>
               <Selects
                 defaultValue={depo}
                 onChange={(e) => setdepoValue(e)}
@@ -67,7 +67,7 @@ const Single = () => {
               />
             </Div>
             <Div>
-              <Label>Таъмирлаш тури</Label>
+              <Label>Tamirlash turi</Label>
               <Selects
                 defaultValue={repairMode}
                 onChange={(e) => setrepairValue(e)}
@@ -75,7 +75,7 @@ const Single = () => {
               />
             </Div>
             <Div>
-              <Label>Таъмирлаш жойи</Label>
+              <Label>Tamirlash joyi</Label>
               <Selects
                 defaultValue={repairPlace}
                 onChange={(e) => setplaceValue(e)}
@@ -83,7 +83,7 @@ const Single = () => {
               />
             </Div>
             <Div>
-              <Label>Таъмирдан чикиши</Label>
+              <Label>Tamirdan chiqish</Label>
               <Selects
                 defaultValue={outRepair}
                 onChange={(e) => setoutValue(e)}
@@ -91,14 +91,14 @@ const Single = () => {
               />
             </Div>
             <Div>
-              <Label>Секциялар сони</Label>
+              <Label>Seksiyalar soni</Label>
               <Input type="number" ref={sectionRef} defaultValue={section} />
             </Div>
             <Buttons type="primary" onClick={handleSave}>
-              Сохранить
+              Sqalash
             </Buttons>
             <Buttons danger onClick={() => navigate(-1)}>
-              Отменить
+              Bekor qilish
             </Buttons>
           </Form>
         </Content>

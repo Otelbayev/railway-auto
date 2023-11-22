@@ -25,6 +25,7 @@ const bgColor = (props) => {
 };
 
 export const Content = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
