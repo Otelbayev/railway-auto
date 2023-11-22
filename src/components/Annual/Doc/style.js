@@ -9,8 +9,8 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   margin: 0 auto;
   background: #fff;
-  width: 210mm;
-  min-height: 297mm;
+  width: 1100px;
   font-family: "Times New Roman", Times, serif;
-  padding: 50px;
+  padding: 25px;
+  box-shadow: 0 0 10px gray;
 `;

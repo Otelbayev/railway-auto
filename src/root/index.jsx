@@ -21,7 +21,7 @@ const Root = () => {
           <Route path="signin" element={<SignInPage />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/doc/2023" element={<Doc />} />
+          <Route path="/doc/:year" element={<Doc />} />
         </Routes>
       </RootContext>
     </BrowserRouter>
