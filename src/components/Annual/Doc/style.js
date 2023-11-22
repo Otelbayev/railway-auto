@@ -9,15 +9,15 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   margin: 0 auto;
   background: #fff;
-  width: 1100px;
+  width: 210mm;
   font-family: "Times New Roman", Times, serif;
   padding: 20px 50px;
   box-shadow: 0 0 10px gray;
   & > div {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; */
   }
 `;
 
@@ -25,7 +25,7 @@ export const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
   th {
-    padding: 10px;
+    padding: 3px;
   }
   td {
     text-align: center;
@@ -36,6 +36,7 @@ export const Table = styled.table`
 
 export const Top = styled.div`
   text-align: center;
+  margin-left: 200px;
   width: 100%;
   font-size: 14px;
   p {
@@ -44,7 +45,7 @@ export const Top = styled.div`
 `;
 
 export const Title = styled.div`
-  width: 100%;
+  margin: 0 90px;
   text-align: center;
-  padding: 10px 0;
+  padding: 20px 0;
 `;

@@ -35,7 +35,7 @@ const Doc = () => {
       html2pdf().from(wrapper).set(pdfOptions).save();
     }
   };
-
+  let nums0 = 0;
   let nums = 0;
   let nums1 = 0;
 
@@ -91,9 +91,10 @@ const Doc = () => {
                   outRepair,
                   section,
                 }) => {
+                  nums0++;
                   return (
                     <tr key={id}>
-                      <td>{id}</td>
+                      <td>{nums0}</td>
                       <td>
                         {model} {number}
                       </td>
