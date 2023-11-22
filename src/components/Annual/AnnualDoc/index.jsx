@@ -8,10 +8,10 @@ const AnnualDoc = () => {
       <div className="title">Годовой план</div>
       <Container>
         <Wrapper>
-          <Div type="default" onClick={() => navigate("/doc/2022")}>
+          <Div type="default" onClick={() => navigate("/annual-doc/2022")}>
             2022
           </Div>
-          <Div none="a" onClick={() => navigate("/annual-doc/2022/doc")}>
+          <Div none="a" onClick={() => navigate("/doc/2022")}>
             <Icon />
           </Div>
         </Wrapper>
