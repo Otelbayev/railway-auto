@@ -6,6 +6,7 @@ import NotFoundPage from "../Pages/NotFoundPage";
 import SignInPage from "../Pages/SignInPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RootContext from "../context";
+import Doc from "../components/Annual/Doc";
 
 const Root = () => {
   return (
@@ -20,6 +21,7 @@ const Root = () => {
           <Route path="signin" element={<SignInPage />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/doc/2023" element={<Doc />} />
         </Routes>
       </RootContext>
     </BrowserRouter>

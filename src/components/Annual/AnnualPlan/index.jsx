@@ -50,7 +50,6 @@ const AnnualPlan = () => {
   const handleSubmit = () => {
     setData([...data, ...newData]);
     setNewData([]);
-    navigate("/annual-doc/2023");
   };
 
   const onEdit = (id) => {
@@ -201,7 +200,7 @@ const AnnualPlan = () => {
                         <Select
                           defaultValue={registrDepo[0].value}
                           options={registrDepo}
-                          onClick={(e) => setdepoValue(e)}
+                          onChange={(e) => setdepoValue(e)}
                         />
                       ) : (
                         depo

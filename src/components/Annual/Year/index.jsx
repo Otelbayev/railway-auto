@@ -9,6 +9,8 @@ import {
   Icon1,
   Icon3,
   Paginations,
+  Header,
+  Span,
 } from "./style";
 import { useNavigate, useParams } from "react-router-dom";
 import { PlanContext } from "../../../context/PlanContext";
@@ -37,7 +39,12 @@ const Year = () => {
 
   return (
     <div className="container">
-      <div className="title">Годовой план</div>
+      <Header>
+        <div className="title">Годовой план {param.year}</div>
+        <Span onClick={() => navigate(-1)}>
+          <i className="fa-solid fa-arrow-left"></i>
+        </Span>
+      </Header>
       <Container>
         <Select
           defaultValue={10}

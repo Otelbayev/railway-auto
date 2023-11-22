@@ -96,3 +96,23 @@ export const Paginations = styled(Pagination)`
   justify-content: flex-end;
   margin: 30px 30px 0 0;
 `;
+
+export const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Span = styled.button`
+  cursor: pointer;
+  margin-right: 50px;
+  font-size: 25px;
+  padding: 2px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid lightgray;
+  color: coral;
+  background: #fff;
+  border-radius: 5px;
+`;
