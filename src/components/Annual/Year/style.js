@@ -13,7 +13,6 @@ export const Container = styled.div`
 export const Table = styled.table`
   border-collapse: collapse;
   background-color: #fff;
-  margin: 10px;
   width: 100%;
 `;
 export const Tr = styled.tr`
@@ -26,7 +25,7 @@ export const Th = styled.th`
   border: 1px solid lightgray;
 `;
 export const Td = styled.td`
-  padding: 10px;
+  padding: 8px;
   color: rgba(0, 0, 0, 0.9);
   border: 1px solid lightgray;
 `;

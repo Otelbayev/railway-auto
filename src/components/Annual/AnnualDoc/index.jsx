@@ -11,7 +11,7 @@ const AnnualDoc = () => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Yil</th>
+              <th>Yillik plan</th>
               <th>Tahrirlash</th>
             </tr>
           </thead>
@@ -24,7 +24,7 @@ const AnnualDoc = () => {
                   onClick={() => navigate("/annual-doc/2022")}
                   active="true"
                 >
-                  Yillik Plan 2022
+                  2022 - Yillik Plan
                 </Div>
               </td>
               <td a="true">
@@ -41,7 +41,7 @@ const AnnualDoc = () => {
                   onClick={() => navigate("/annual-doc/2023")}
                   active="true"
                 >
-                  Yillik Plan 2023
+                  2023 - Yillik Plan
                 </Div>
               </td>
               <td a="true">

@@ -207,6 +207,18 @@ export const SidebarItems = [
     getItem(<NavLink to="/monthly-doc">Hujjat</NavLink>, "4"),
   ]),
   getItem(<NavLink to="/user">Profil</NavLink>, "8", <UserOutlined />),
-  getItem(<NavLink to="/">Saytga</NavLink>, "site", <GlobalOutlined />),
-  getItem(<NavLink to="/">Chiqish</NavLink>, "exit", <LogoutOutlined />),
+  getItem(
+    <NavLink to="/" onClick={() => localStorage.setItem("token", "admin")}>
+      Saytga
+    </NavLink>,
+    "site",
+    <GlobalOutlined />
+  ),
+  getItem(
+    <NavLink to="/" onClick={() => localStorage.removeItem("token")}>
+      Chiqish
+    </NavLink>,
+    "exit",
+    <LogoutOutlined />
+  ),
 ];

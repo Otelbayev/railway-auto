@@ -25,7 +25,13 @@ const Landing = () => {
           <Header>
             <Logo src={logo} />
             <Title>"O'ZTEMIRYO'LMASHTAMIR" AJ</Title>
-            <Button onClick={() => navigate("/signin")}>kirish</Button>
+            <Button
+              onClick={() =>
+                navigate(localStorage.getItem("token") ? "/home" : "/signin")
+              }
+            >
+              {localStorage.getItem("token") || "kirish"}
+            </Button>
           </Header>
           <Body1 id="body1">
             <Text>

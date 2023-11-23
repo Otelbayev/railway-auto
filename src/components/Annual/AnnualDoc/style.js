@@ -29,11 +29,11 @@ export const Div = styled(Btn)`
 export const Icon = styled(EyeOutlined)``;
 
 export const Table = styled.table`
+  border: 1px solid lightgray;
   width: 100%;
   border-collapse: collapse;
   tr {
     text-align: center;
-  }
-  td {
+    height: 5 0px;
   }
 `;
