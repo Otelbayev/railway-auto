@@ -7,6 +7,7 @@ import SignInPage from "../Pages/SignInPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RootContext from "../context";
 import Doc from "../components/Annual/Doc";
+import DocQuarter from "../components/Quarter/Doc";
 
 const Root = () => {
   return (
@@ -22,6 +23,7 @@ const Root = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/doc/:year" element={<Doc />} />
+          <Route path="/doc/:year/:quarter" element={<DocQuarter />} />
         </Routes>
       </RootContext>
     </BrowserRouter>

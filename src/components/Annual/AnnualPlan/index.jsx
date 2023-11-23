@@ -31,7 +31,6 @@ const AnnualPlan = () => {
   const [editId, setEditId] = useState(0);
 
   const handleClick = () => {
-    console.log(depoValue);
     setNewData([
       ...newData,
       {

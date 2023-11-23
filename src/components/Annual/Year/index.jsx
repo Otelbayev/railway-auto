@@ -17,7 +17,6 @@ import { Select, Pagination, Input, Button as Btn } from "antd";
 import useSearch from "../../../hooks/useSearch";
 import { useReplace } from "../../../hooks/useReplace";
 import { models, months, place, registrDepo, repair } from "../../../mock/mock";
-import { useEffect } from "react";
 
 const Year = () => {
   const [data, setData] = useContext(PlanContext);

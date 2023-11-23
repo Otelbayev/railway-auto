@@ -40,6 +40,7 @@ export const Table = styled.table`
 export const Tr = styled.tr`
   text-align: center;
   font-weight: 500;
+  font-size: 18px;
 `;
 
 export const Th = styled.th`

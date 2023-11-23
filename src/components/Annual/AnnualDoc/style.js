@@ -34,6 +34,9 @@ export const Table = styled.table`
   border-collapse: collapse;
   tr {
     text-align: center;
-    height: 5 0px;
+    height: 50px;
+    td {
+      font-size: 20px;
+    }
   }
 `;

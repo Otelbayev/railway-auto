@@ -1,4 +1,3 @@
-import { Menu } from "antd";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -13,11 +12,14 @@ export const Container = styled.div`
   gap: 10px;
 `;
 
-export const Div = styled(Menu)`
-  height: 40px;
-  border-radius: 3px;
-  font-size: 20px;
-  font-weight: 600;
-  color: black;
-  cursor: pointer;
+export const Table = styled.table`
+  border: 1px solid lightgray;
+  border-collapse: collapse;
+  tr {
+    text-align: center;
+    height: 50px;
+    td {
+      font-size: 20px;
+    }
+  }
 `;

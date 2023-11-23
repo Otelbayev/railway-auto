@@ -3,9 +3,6 @@ import React, { Suspense } from "react";
 const HomePage = React.lazy(() => import("../Pages/HomePage"));
 const AnnualPlanPage = React.lazy(() => import("../Pages/Annual/AnnualPlan"));
 const AnnualDocPage = React.lazy(() => import("../Pages/Annual/AnnualDoc"));
-const QuarterPlanPage = React.lazy(() =>
-  import("../Pages/Quarter/QuarterPlan")
-);
 const QuarterDocPage = React.lazy(() => import("../Pages/Quarter/QuarterDoc"));
 const MonthlyPlanPage = React.lazy(() =>
   import("../Pages/Monthly/MonthlyPlan")
@@ -94,17 +91,6 @@ export const navbar = [
     ),
   },
   {
-    id: 4,
-    path: "/quarter-plan",
-    element: (
-      <div style={wrapperStyle}>
-        <Suspense fallback={<Spin size="large" />}>
-          <QuarterPlanPage />
-        </Suspense>
-      </div>
-    ),
-  },
-  {
     id: 41,
     path: "/quarter-plan/:year/:quarter",
     element: (
@@ -117,7 +103,7 @@ export const navbar = [
   },
   {
     id: 42,
-    path: "/quarter-plan/:year/:id",
+    path: "/quarter-plan/:year/:quarter/:id",
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -199,11 +185,9 @@ export const SidebarItems = [
     getItem(<NavLink to="/annual-doc">Hujjat</NavLink>, "2"),
   ]),
   getItem("Chorak plan", "sub3", <PieChartOutlined />, [
-    // getItem(<NavLink to="/quarter-plan"></NavLink>, "7"),
     getItem(<NavLink to="/quarter-doc">Hujjat</NavLink>, "6"),
   ]),
   getItem("Oylik plan", "sub2", <InsertRowAboveOutlined />, [
-    // getItem(<NavLink to="/monthly-plan">Создать</NavLink>, "5"),
     getItem(<NavLink to="/monthly-doc">Hujjat</NavLink>, "4"),
   ]),
   getItem(<NavLink to="/user">Profil</NavLink>, "8", <UserOutlined />),
