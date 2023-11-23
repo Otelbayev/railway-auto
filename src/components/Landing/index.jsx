@@ -62,10 +62,10 @@ const Landing = () => {
                 <Li>
                   asboblar va barcha turdagi asbobuskunalar ishlab chiqarish;
                 </Li>
-                <Li> rezina buyumlar ishlab chiqarish; harakatlanuvchi</Li>
+                <Li> rezina buyumlar ishlab chiqarish;</Li>
                 <Li>
-                  tarkib va ​​yo'l ustki tuzilishi uchun ehtiyot qismlar ishlab
-                  chiqarish.
+                  harakatlanuvchi tarkib va ​​yo'l ustki tuzilishi uchun ehtiyot
+                  qismlar ishlab chiqarish.
                 </Li>
               </Ul>
             </Text>

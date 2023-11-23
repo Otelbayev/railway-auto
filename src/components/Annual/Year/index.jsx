@@ -11,7 +11,7 @@ import {
   Header,
   Span,
 } from "./style";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { PlanContext } from "../../../context/PlanContext";
 import { Select, Pagination, Input, Button as Btn } from "antd";
 import useSearch from "../../../hooks/useSearch";
@@ -25,7 +25,7 @@ const Year = () => {
   const navigate = useNavigate();
   const param = useParams();
   const query = useSearch();
-
+  const { search } = useLocation();
   //pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [items, setItems] = useState(10);
@@ -81,10 +81,12 @@ const Year = () => {
     });
   };
 
+  console.log();
+
   return (
     <div className="container">
       <Header>
-        <div className="title">Годовой план {param.year}</div>
+        <div className="title">Yillik plan - {param.year}</div>
         <Span onClick={() => navigate("/annual-doc")}>
           <i className="fa-solid fa-arrow-left"></i>
         </Span>
