@@ -10,7 +10,7 @@ const QuarterDoc = () => {
   const param = useParams();
   return (
     <div className="container">
-      <div className="title">Четверть план</div>
+      <div className="title">Chorak plan</div>
       <Container>
         <Table border={1}>
           <thead>

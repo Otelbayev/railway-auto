@@ -77,7 +77,7 @@ const AnnualPlan = () => {
 
   return (
     <div className="container">
-      <div className="title">Создать годовой план</div>
+      <div className="title">Yillik plan qo'shish</div>
       <Container>
         <Table>
           <thead>

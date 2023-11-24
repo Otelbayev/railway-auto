@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Wrapper, Table, Top, Title } from "./style";
+import { Container, Wrapper, Table, Bottom, Name, Title } from "./style";
 import html2pdf from "html2pdf.js";
 import { useParams } from "react-router-dom";
 import { months } from "../../../mock/mock";
@@ -192,6 +192,17 @@ const Doc = () => {
               </tr>
             </thead>
           </Table>
+
+          <Bottom>
+            <Name>Ishlab chiqarish boyicha bosh direktor o'rinbosari:</Name>
+            <Name>N.O.Ramatov</Name>
+          </Bottom>
+          <Bottom>
+            <Name>
+              Ishlab chiqarish boyicha bosh distpecherlik bo'lim boshligi:
+            </Name>
+            <Name>J.Y.Shomurodov</Name>
+          </Bottom>
         </div>
         <button
           style={{ margin: "10px 0", padding: "2px 5px", cursor: "pointer" }}

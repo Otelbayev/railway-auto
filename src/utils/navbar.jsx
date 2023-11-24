@@ -4,8 +4,8 @@ const HomePage = React.lazy(() => import("../Pages/HomePage"));
 const AnnualPlanPage = React.lazy(() => import("../Pages/Annual/AnnualPlan"));
 const AnnualDocPage = React.lazy(() => import("../Pages/Annual/AnnualDoc"));
 const QuarterDocPage = React.lazy(() => import("../Pages/Quarter/QuarterDoc"));
-const MonthlyPlanPage = React.lazy(() =>
-  import("../Pages/Monthly/MonthlyPlan")
+const MonthlyPlanTable = React.lazy(() =>
+  import("../Pages/Monthly/MonthlyTable")
 );
 const MonthlyDocPage = React.lazy(() => import("../Pages/Monthly/MonthlyDoc"));
 const UserPage = React.lazy(() => import("../Pages/UserPage"));
@@ -125,18 +125,18 @@ export const navbar = [
   },
   {
     id: 6,
-    path: "/monthly-plan",
+    path: "/monthly-doc/:year/:quarter/:month",
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
-          <MonthlyPlanPage />
+          <MonthlyPlanTable />
         </Suspense>
       </div>
     ),
   },
   {
     id: 61,
-    path: "/monthly-plan/:id",
+    path: "/monthly-doc/:year/:quarter/:month/:id",
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>

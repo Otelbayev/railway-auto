@@ -16,7 +16,6 @@ export const Table = styled.table`
   font-size: 16px;
   tr {
     text-align: center;
-    font-size: 18px;
   }
   th {
     padding: 8px;

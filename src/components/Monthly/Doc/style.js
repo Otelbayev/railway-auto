@@ -9,7 +9,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   margin: 0 auto;
   background: #fff;
-  width: 297mm;
+  width: 210mm;
   font-family: "Times New Roman", Times, serif;
   padding: 20px 50px;
   box-shadow: 0 0 10px gray;
@@ -19,11 +19,11 @@ export const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
   th {
-    padding: 3px;
+    padding: 10px;
   }
   td {
     text-align: center;
-    padding: 3px;
+    padding: 10px;
     font-size: 14px;
   }
 `;
@@ -39,7 +39,7 @@ export const Top = styled.div`
 `;
 
 export const Title = styled.div`
-  margin: 0 210px;
+  margin: 0 90px;
   text-align: center;
   padding: 20px 0;
 `;
@@ -49,7 +49,7 @@ export const Bottom = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  margin-top: 20px;
+  margin-top: 100px;
 `;
 
 export const Name = styled.div`
