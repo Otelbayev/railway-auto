@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Table, Span } from "./style";
 import { months } from "../../../mock/mock";
-import { Icon1, Button } from "../../Annual/AnnualPlan/style";
+import { Icon1, Button, Icon3 } from "../../Annual/AnnualPlan/style";
 
 const Quarter = () => {
   const param = useParams();
@@ -75,12 +75,23 @@ const Quarter = () => {
               <td></td>
               <td></td>
               <td>
-                <Button
-                  onClick={() => navigate("/quarter-plan/2022/1/1")}
-                  type="gold"
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "5px",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <Icon1 />
-                </Button>
+                  <Button
+                    onClick={() => navigate("/quarter-plan/2022/1/1")}
+                    type="gold"
+                  >
+                    <Icon1 />
+                  </Button>
+                  <Button type="red">
+                    <Icon3 />
+                  </Button>
+                </div>
               </td>
             </tr>
             <tr>
@@ -104,12 +115,23 @@ const Quarter = () => {
               <td>3</td>
               <td>064АБВ</td>
               <td>
-                <Button
-                  onClick={() => navigate("/quarter-plan/2022/1/1")}
-                  type="gold"
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "5px",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <Icon1 />
-                </Button>
+                  <Button
+                    onClick={() => navigate("/quarter-plan/2022/1/1")}
+                    type="gold"
+                  >
+                    <Icon1 />
+                  </Button>
+                  <Button type="red">
+                    <Icon3 />
+                  </Button>
+                </div>
               </td>
             </tr>
             <tr>
@@ -123,12 +145,23 @@ const Quarter = () => {
               <td></td>
               <td></td>
               <td>
-                <Button
-                  onClick={() => navigate("/quarter-plan/2022/1/1")}
-                  type="gold"
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "5px",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <Icon1 />
-                </Button>
+                  <Button
+                    onClick={() => navigate("/quarter-plan/2022/1/1")}
+                    type="gold"
+                  >
+                    <Icon1 />
+                  </Button>
+                  <Button type="red">
+                    <Icon3 />
+                  </Button>
+                </div>
               </td>
             </tr>
             <tr>
@@ -142,12 +175,23 @@ const Quarter = () => {
               <td>2</td>
               <td>1343АБ</td>
               <td>
-                <Button
-                  onClick={() => navigate("/quarter-plan/2022/1/1")}
-                  type="gold"
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "5px",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <Icon1 />
-                </Button>
+                  <Button
+                    onClick={() => navigate("/quarter-plan/2022/1/1")}
+                    type="gold"
+                  >
+                    <Icon1 />
+                  </Button>
+                  <Button type="red">
+                    <Icon3 />
+                  </Button>
+                </div>
               </td>
             </tr>
             <tr>
@@ -161,12 +205,23 @@ const Quarter = () => {
               <td>2</td>
               <td>3472АБ</td>
               <td>
-                <Button
-                  onClick={() => navigate("/quarter-plan/2022/1/1")}
-                  type="gold"
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "5px",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <Icon1 />
-                </Button>
+                  <Button
+                    onClick={() => navigate("/quarter-plan/2022/1/1")}
+                    type="gold"
+                  >
+                    <Icon1 />
+                  </Button>
+                  <Button type="red">
+                    <Icon3 />
+                  </Button>
+                </div>
               </td>
             </tr>
             <tr>
@@ -180,12 +235,23 @@ const Quarter = () => {
               <td>2</td>
               <td>6572,7087</td>
               <td>
-                <Button
-                  onClick={() => navigate("/quarter-plan/2022/1/1")}
-                  type="gold"
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "5px",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <Icon1 />
-                </Button>
+                  <Button
+                    onClick={() => navigate("/quarter-plan/2022/1/1")}
+                    type="gold"
+                  >
+                    <Icon1 />
+                  </Button>
+                  <Button type="red">
+                    <Icon3 />
+                  </Button>
+                </div>
               </td>
             </tr>
             <tr>
@@ -199,12 +265,23 @@ const Quarter = () => {
               <td>2</td>
               <td>5185,5914</td>
               <td>
-                <Button
-                  onClick={() => navigate("/quarter-plan/2022/1/1")}
-                  type="gold"
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "5px",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <Icon1 />
-                </Button>
+                  <Button
+                    onClick={() => navigate("/quarter-plan/2022/1/1")}
+                    type="gold"
+                  >
+                    <Icon1 />
+                  </Button>
+                  <Button type="red">
+                    <Icon3 />
+                  </Button>
+                </div>
               </td>
             </tr>
             <tr>
