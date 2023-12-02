@@ -1,19 +1,22 @@
 import React, { Suspense } from "react";
 
 const HomePage = React.lazy(() => import("../Pages/HomePage"));
-const AnnualPlanPage = React.lazy(() => import("../Pages/Annual/AnnualPlan"));
-const AnnualDocPage = React.lazy(() => import("../Pages/Annual/AnnualDoc"));
-const QuarterDocPage = React.lazy(() => import("../Pages/Quarter/QuarterDoc"));
-const MonthlyPlanTable = React.lazy(() =>
-  import("../Pages/Monthly/MonthlyTable")
-);
-const MonthlyDocPage = React.lazy(() => import("../Pages/Monthly/MonthlyDoc"));
+
+const AnnualCreate = React.lazy(() => import("../Pages/Annual/Create"));
+const AnnualTable = React.lazy(() => import("../Pages/Annual/Table"));
+const AnnaulEdit = React.lazy(() => import("../Pages/Annual/Edit"));
+const YearPage = React.lazy(() => import("../Pages/Annual/Year"));
+
+const QuarterPage = React.lazy(() => import("../Pages/Quarter/Quarter"));
+const EditQuarter = React.lazy(() => import("../Pages/Quarter/Edit"));
+const QuarterTable = React.lazy(() => import("../Pages/Quarter/Table"));
+
+const MonthlyPlanTable = React.lazy(() => import("../Pages/Monthly/Table"));
+const Months = React.lazy(() => import("../Pages/Monthly/Months"));
+const EditMonthly = React.lazy(() => import("../Pages/Monthly/Edit"));
+
 const UserPage = React.lazy(() => import("../Pages/UserPage"));
-const SingleAnnual = React.lazy(() => import("../Pages/Annual/SinglePage"));
-const YearPage = React.lazy(() => import("../Pages/Annual/YearPage"));
-const SingleQuarter = React.lazy(() => import("../Pages/Quarter/SinglePage"));
-const SingleMonthly = React.lazy(() => import("../Pages/Monthly/SinglePage"));
-const QuarterIdPage = React.lazy(() => import("../Pages/Quarter/Quarter"));
+
 import { NavLink } from "react-router-dom";
 import {
   UserOutlined,
@@ -52,7 +55,7 @@ export const navbar = [
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
-          <AnnualPlanPage />
+          <AnnualCreate />
         </Suspense>
       </div>
     ),
@@ -63,7 +66,7 @@ export const navbar = [
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
-          <YearPage />
+          <AnnualTable />
         </Suspense>
       </div>
     ),
@@ -74,7 +77,7 @@ export const navbar = [
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
-          <SingleAnnual />
+          <AnnaulEdit />
         </Suspense>
       </div>
     ),
@@ -85,7 +88,7 @@ export const navbar = [
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
-          <AnnualDocPage />
+          <YearPage />
         </Suspense>
       </div>
     ),
@@ -96,7 +99,7 @@ export const navbar = [
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
-          <QuarterIdPage />
+          <QuarterTable />
         </Suspense>
       </div>
     ),
@@ -107,7 +110,7 @@ export const navbar = [
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
-          <SingleQuarter />
+          <EditQuarter />
         </Suspense>
       </div>
     ),
@@ -118,7 +121,7 @@ export const navbar = [
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
-          <QuarterDocPage />,
+          <QuarterPage />,
         </Suspense>
       </div>
     ),
@@ -140,7 +143,7 @@ export const navbar = [
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
-          <SingleMonthly />,
+          <EditMonthly />,
         </Suspense>
       </div>
     ),
@@ -151,7 +154,7 @@ export const navbar = [
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
-          <MonthlyDocPage />,
+          <Months />,
         </Suspense>
       </div>
     ),
