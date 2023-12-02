@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/logo.png";
 import {
   MenuFoldOutlined,
@@ -10,11 +10,15 @@ import { SidebarItems } from "../../utils/navbar";
 import { Layout, Menu, Button } from "antd";
 import { Outlet } from "react-router-dom";
 import { Div, Img, Headers, Name, Siders } from "./style";
+import { UserContext } from "../../context/UserContext";
+
 const { Content } = Layout;
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const [data] = useContext(UserContext);
 
   const openFullScreen = () => {
     setIsFullScreen(!isFullScreen);
@@ -51,7 +55,11 @@ const App = () => {
         <Div className="demo-logo-vertical">
           <Img src={logo} />
         </Div>
-        {!collapsed && <Name>Adminov Admin</Name>}
+        {!collapsed && (
+          <Name>
+            {firstName} {lastName}
+          </Name>
+        )}
         <Menu
           theme="dark"
           mode="inline"

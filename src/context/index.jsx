@@ -1,8 +1,13 @@
 import React from "react";
 import PlanContextProvider from "./PlanContext";
+import UserContextProvider from "./UserContext";
 
 const RootContext = ({ children }) => {
-  return <PlanContextProvider>{children}</PlanContextProvider>;
+  return (
+    <UserContextProvider>
+      <PlanContextProvider>{children}</PlanContextProvider>
+    </UserContextProvider>
+  );
 };
 
 export default RootContext;

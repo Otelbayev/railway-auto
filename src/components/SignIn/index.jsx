@@ -1,6 +1,8 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
+
 import gall1 from "../../assets/gall1.png";
 import gall2 from "../../assets/gall2.png";
 import gall3 from "../../assets/gall3.png";
@@ -28,8 +30,27 @@ const SignIn = () => {
   const navigate = useNavigate();
   const emailRef = useRef();
   const pwRef = useRef();
-  const onButton = () => {
-    if (emailRef.current.value === "admin" && pwRef.current.value === "admin") {
+
+  const [data, setData] = useContext(UserContext);
+
+  const onButton = async () => {
+    let response = await fetch("/api/Authorizatsion/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        login: emailRef?.current?.value,
+        password: pwRef?.current?.value,
+      }),
+    });
+    response
+      .then((res) => res.json())
+      .then((res) => {
+        localStorage.setItem("token", JSON.stringify(res.token));
+        setData(res);
+      });
+    if (localStorage.getItem("token")) {
       navigate("/home");
     } else {
       input.style.borderColor = "red";
