@@ -34,7 +34,7 @@ const SignIn = () => {
   const [data, setData] = useContext(UserContext);
 
   const onButton = async () => {
-    let response = await fetch("/api/Authorizatsion/login", {
+    await fetch("/api/Authorizatsion/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,8 +43,7 @@ const SignIn = () => {
         login: emailRef?.current?.value,
         password: pwRef?.current?.value,
       }),
-    });
-    response
+    })
       .then((res) => res.json())
       .then((res) => {
         localStorage.setItem("token", JSON.stringify(res.token));

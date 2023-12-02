@@ -20,6 +20,8 @@ const App = () => {
 
   const [data] = useContext(UserContext);
 
+  const { firstName, lastName } = data?.userDetails;
+
   const openFullScreen = () => {
     setIsFullScreen(!isFullScreen);
     const doc = document.documentElement;
