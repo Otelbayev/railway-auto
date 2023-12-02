@@ -1,8 +1,6 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import logo from "../../assets/logo.png";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
-
 import gall1 from "../../assets/gall1.png";
 import gall2 from "../../assets/gall2.png";
 import gall3 from "../../assets/gall3.png";
@@ -25,31 +23,32 @@ import {
   CarouselItem,
   Img,
 } from "./style";
+import { useUserContext } from "../../context/UserContext";
+import Cookies from "js-cookie";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const emailRef = useRef();
   const pwRef = useRef();
 
-  const [data, setData] = useContext(UserContext);
+  const { signIn } = useUserContext();
 
-  const onButton = async () => {
+  const onClick = async () => {
     await fetch("/api/Authorizatsion/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        login: emailRef?.current?.value,
-        password: pwRef?.current?.value,
+        login: emailRef?.current?.value.trim(),
+        password: pwRef?.current?.value.trim(),
       }),
     })
       .then((res) => res.json())
       .then((res) => {
-        localStorage.setItem("token", JSON.stringify(res.token));
-        setData(res);
+        signIn(res);
       });
-    if (localStorage.getItem("token")) {
+    if (Cookies.get("token")) {
       navigate("/home");
     } else {
       input.style.borderColor = "red";
@@ -82,7 +81,7 @@ const SignIn = () => {
               placeholder="password"
               defaultValue={"admin"}
             />
-            <Button onClick={onButton}>KIRISH</Button>
+            <Button onClick={onClick}>KIRISH</Button>
           </Form>
         </Content>
         <Line />

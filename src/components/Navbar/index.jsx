@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
 import {
   MenuFoldOutlined,
@@ -10,7 +10,7 @@ import { SidebarItems } from "../../utils/navbar";
 import { Layout, Menu, Button } from "antd";
 import { Outlet } from "react-router-dom";
 import { Div, Img, Headers, Name, Siders } from "./style";
-import { UserContext } from "../../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 
 const { Content } = Layout;
 
@@ -18,9 +18,7 @@ const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  const [data] = useContext(UserContext);
-
-  const { firstName, lastName } = data?.userDetails;
+  const { userDetails } = useUserContext();
 
   const openFullScreen = () => {
     setIsFullScreen(!isFullScreen);
@@ -36,9 +34,7 @@ const App = () => {
       doc.msRequestFullscreen();
     }
 
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
+    if (document.mozCancelFullScreen) {
       document.mozCancelFullScreen();
     } else if (document.webkitExitFullscreen) {
       document.webkitExitFullscreen();
@@ -59,14 +55,14 @@ const App = () => {
         </Div>
         {!collapsed && (
           <Name>
-            {firstName} {lastName}
+            {userDetails?.firstName} {userDetails?.lastName}
           </Name>
         )}
         <Menu
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
-          items={SidebarItems}
+          items={SidebarItems()}
         />
       </Siders>
       <Layout>

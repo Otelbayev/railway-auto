@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import statistic from "../../assets/statistic.png";
 import user from "../../assets/user.png";
 import quarter from "../../assets/quarter.png";

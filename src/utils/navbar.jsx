@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import { useUserContext } from "../context/UserContext";
 
 const HomePage = React.lazy(() => import("../Pages/HomePage"));
 
@@ -28,6 +29,7 @@ import {
   CalendarOutlined,
 } from "@ant-design/icons";
 import { Spin } from "antd";
+import Cookies from "js-cookie";
 
 const wrapperStyle = {
   display: "flex",
@@ -40,6 +42,7 @@ const wrapperStyle = {
 export const navbar = [
   {
     id: 1,
+    isPrivate: true,
     path: "/home",
     element: (
       <div style={wrapperStyle}>
@@ -51,6 +54,7 @@ export const navbar = [
   },
   {
     id: 2,
+    isPrivate: true,
     path: "/annual-plan",
     element: (
       <div style={wrapperStyle}>
@@ -62,6 +66,7 @@ export const navbar = [
   },
   {
     id: 21,
+    isPrivate: true,
     path: "/annual-doc/:year",
     element: (
       <div style={wrapperStyle}>
@@ -73,6 +78,7 @@ export const navbar = [
   },
   {
     id: 22,
+    isPrivate: true,
     path: "/annual-doc/:year/:id",
     element: (
       <div style={wrapperStyle}>
@@ -84,6 +90,7 @@ export const navbar = [
   },
   {
     id: 3,
+    isPrivate: true,
     path: "/annual-doc",
     element: (
       <div style={wrapperStyle}>
@@ -95,6 +102,7 @@ export const navbar = [
   },
   {
     id: 41,
+    isPrivate: true,
     path: "/quarter-plan/:year/:quarter",
     element: (
       <div style={wrapperStyle}>
@@ -106,6 +114,7 @@ export const navbar = [
   },
   {
     id: 42,
+    isPrivate: true,
     path: "/quarter-plan/:year/:quarter/:id",
     element: (
       <div style={wrapperStyle}>
@@ -117,6 +126,7 @@ export const navbar = [
   },
   {
     id: 5,
+    isPrivate: true,
     path: "/quarter-doc",
     element: (
       <div style={wrapperStyle}>
@@ -128,6 +138,7 @@ export const navbar = [
   },
   {
     id: 6,
+    isPrivate: true,
     path: "/monthly-doc/:year/:quarter/:month",
     element: (
       <div style={wrapperStyle}>
@@ -139,6 +150,7 @@ export const navbar = [
   },
   {
     id: 61,
+    isPrivate: true,
     path: "/monthly-doc/:year/:quarter/:month/:id",
     element: (
       <div style={wrapperStyle}>
@@ -150,6 +162,7 @@ export const navbar = [
   },
   {
     id: 7,
+    isPrivate: true,
     path: "/monthly-doc",
     element: (
       <div style={wrapperStyle}>
@@ -161,6 +174,7 @@ export const navbar = [
   },
   {
     id: 8,
+    isPrivate: true,
     path: "/user",
     element: (
       <div style={wrapperStyle}>
@@ -181,31 +195,28 @@ function getItem(label, key, icon, children) {
   };
 }
 
-export const SidebarItems = [
-  getItem(<NavLink to="/home">Asosiy</NavLink>, "1", <HomeOutlined />),
-  getItem("Yillik plan", "sub1", <CalendarOutlined />, [
-    getItem(<NavLink to="/annual-plan">Yararish</NavLink>, "3"),
-    getItem(<NavLink to="/annual-doc">Hujjat</NavLink>, "2"),
-  ]),
-  getItem("Chorak plan", "sub3", <PieChartOutlined />, [
-    getItem(<NavLink to="/quarter-doc">Hujjat</NavLink>, "6"),
-  ]),
-  getItem("Oylik plan", "sub2", <InsertRowAboveOutlined />, [
-    getItem(<NavLink to="/monthly-doc">Hujjat</NavLink>, "4"),
-  ]),
-  getItem(<NavLink to="/user">Profil</NavLink>, "8", <UserOutlined />),
-  getItem(
-    <NavLink to="/" onClick={() => localStorage.setItem("token", "admin")}>
-      Saytga
-    </NavLink>,
-    "site",
-    <GlobalOutlined />
-  ),
-  getItem(
-    <NavLink to="/" onClick={() => localStorage.removeItem("token")}>
-      Chiqish
-    </NavLink>,
-    "exit",
-    <LogoutOutlined />
-  ),
-];
+export const SidebarItems = () => {
+  const { signOut } = useUserContext();
+  return [
+    getItem(<NavLink to="/home">Asosiy</NavLink>, "1", <HomeOutlined />),
+    getItem("Yillik plan", "sub1", <CalendarOutlined />, [
+      getItem(<NavLink to="/annual-plan">Yararish</NavLink>, "3"),
+      getItem(<NavLink to="/annual-doc">Hujjat</NavLink>, "2"),
+    ]),
+    getItem("Chorak plan", "sub3", <PieChartOutlined />, [
+      getItem(<NavLink to="/quarter-doc">Hujjat</NavLink>, "6"),
+    ]),
+    getItem("Oylik plan", "sub2", <InsertRowAboveOutlined />, [
+      getItem(<NavLink to="/monthly-doc">Hujjat</NavLink>, "4"),
+    ]),
+    getItem(<NavLink to="/user">Profil</NavLink>, "8", <UserOutlined />),
+    getItem(<NavLink to="/">Saytga</NavLink>, "site", <GlobalOutlined />),
+    getItem(
+      <NavLink to="/" onClick={signOut}>
+        Chiqish
+      </NavLink>,
+      "exit",
+      <LogoutOutlined />
+    ),
+  ];
+};

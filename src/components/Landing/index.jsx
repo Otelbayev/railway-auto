@@ -15,9 +15,20 @@ import {
   Li,
 } from "./style";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../context/UserContext";
 
 const Landing = () => {
   const navigate = useNavigate();
+  const { token, userDetails } = useUserContext();
+
+  const onClick = () => {
+    if (token && userDetails) {
+      navigate("/home");
+    } else {
+      navigate("/signin");
+    }
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -25,12 +36,8 @@ const Landing = () => {
           <Header>
             <Logo src={logo} />
             <Title>"O'ZTEMIRYO'LMASHTAMIR" AJ</Title>
-            <Button
-              onClick={() =>
-                navigate(localStorage.getItem("token") ? "/home" : "/signin")
-              }
-            >
-              {localStorage.getItem("token") || "kirish"}
+            <Button onClick={onClick}>
+              {userDetails?.firstName || "kirish"}
             </Button>
           </Header>
           <Body1 id="body1">
