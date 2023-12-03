@@ -67,14 +67,16 @@ export const Form = styled.form`
   gap: 12px;
 `;
 export const Input = styled.input`
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
   outline: none;
-  padding: 10px 5px;
-  font-size: 14px;
+  padding: 10px 8px;
+  font-size: 15px;
   border: 1px solid goldenrod;
   border-radius: 3px;
   box-shadow: 0 0 5px goldenrod;
   @media (max-width: 600px) {
-    padding: 8px 4px;
+    padding: 8px;
   }
 `;
 export const Button = styled.button`
@@ -129,4 +131,8 @@ export const Img = styled.img`
     width: 100%;
     height: 250px;
   }
+`;
+
+export const Error = styled.p`
+  color: red;
 `;

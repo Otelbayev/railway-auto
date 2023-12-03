@@ -22,11 +22,13 @@ import {
   Carousels,
   CarouselItem,
   Img,
+  Error,
 } from "./style";
 import { useUserContext } from "../../context/UserContext";
 import Cookies from "js-cookie";
 
 const SignIn = () => {
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const emailRef = useRef();
   const pwRef = useRef();
@@ -34,26 +36,43 @@ const SignIn = () => {
   const { signIn } = useUserContext();
 
   const onClick = async () => {
-    await fetch("/api/Authorizatsion/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        login: emailRef?.current?.value.trim(),
-        password: pwRef?.current?.value.trim(),
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        signIn(res);
-      });
-    if (Cookies.get("token")) {
-      navigate("/home");
-    } else {
-      input.style.borderColor = "red";
-      password.style.borderColor = "red";
+    try {
+      await fetch("/api/Authorizatsion/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          login: emailRef?.current?.value.trim(),
+          password: pwRef?.current?.value.trim(),
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          signIn(res);
+        });
+
+      Cookies.get("token") && navigate("/home");
+    } catch (error) {
+      setError("Login yoki parol notog'ri");
+      input.style.cssText = `
+        background:rgba(255, 0, 0, 0.156);
+        box-shadow:0;
+        border:none;
+      `;
+      password.style.cssText = `
+      background:rgba(255, 0, 0, 0.156);
+      box-shadow:0;
+      border:none;`;
     }
+    input.onfocus = () => {
+      input.style.cssText = ``;
+      setError("");
+    };
+    password.onfocus = () => {
+      password.style.cssText = ``;
+      setError("");
+    };
   };
 
   const formSubmit = (e) => {
@@ -82,6 +101,7 @@ const SignIn = () => {
               defaultValue={"admin"}
             />
             <Button onClick={onClick}>KIRISH</Button>
+            <Error>{error}</Error>
           </Form>
         </Content>
         <Line />

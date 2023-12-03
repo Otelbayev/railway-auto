@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useUserContext } from "../../context/UserContext";
 import {
   Contents,
   Content,
@@ -10,39 +11,94 @@ import {
   Input,
   Buttons,
 } from "./style";
+import Cookies from "js-cookie";
 
 const User = () => {
+  const { userDetails } = useUserContext();
+
+  const loginRef = useRef();
+  const oldPwRef = useRef();
+  const newPwRef = useRef();
+  const checkNewPwRef = useRef();
+
+  const body = {
+    login: loginRef?.current?.value,
+    password: newPwRef?.current?.value,
+  };
+
+  const onSave = async () => {
+    try {
+      if (
+        newPwRef?.current?.value?.trim() ===
+        checkNewPwRef?.current?.value?.trim()
+      ) {
+        await fetch("/api/usercrud/1", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Cookies.get("token")}`,
+          },
+        }).then((res) => res.json());
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      pw1.style.cssText = `
+      background:rgba(255, 0, 0, 0.156);
+      box-shadow:0;
+      border:none;
+    `;
+      pw2.style.cssText = `
+    background:rgba(255, 0, 0, 0.156);
+    box-shadow:0;
+    border:none;`;
+    }
+    pw1.onfocus = () => {
+      pw1.style.cssText = ``;
+    };
+    pw2.onfocus = () => {
+      pw2.style.cssText = ``;
+    };
+  };
+
   return (
     <div className="container">
-      <div className="title">Профиль</div>
+      <div className="title">Profil</div>
       <Contents>
         <Content first="true">
-          <Name>Админов Админ</Name>
-          <Position>Администратор</Position>
+          <Name>
+            {userDetails?.firstName} {userDetails?.lastName}
+          </Name>
+          <Position>{userDetails?.firstName}</Position>
         </Content>
         <Content>
           <Form>
             <Div>
-              <Label>Имя</Label>
-              <Input type="text" defaultValue="Админов Админ" />
+              <Label>Login</Label>
+              <Input
+                type="text"
+                defaultValue={userDetails?.login}
+                ref={loginRef}
+              />
             </Div>
             <Div>
-              <Label>Email</Label>
-              <Input type="text" defaultValue="admin@admin" />
+              <Label>Eski parol</Label>
+              <Input type="text" ref={oldPwRef} />
             </Div>
             <Div>
-              <Label>Старый пароль</Label>
-              <Input type="text" />
+              <Label>Yangi parol</Label>
+              <Input id="pw1" type="text" ref={newPwRef} />
             </Div>
             <Div>
-              <Label>Новый пароль</Label>
-              <Input type="text" />
+              <Label>Qayta Yangi parol</Label>
+              <Input id="pw2" type="text" ref={checkNewPwRef} />
             </Div>
             <Div>
-              <Label>Повторите пароль</Label>
-              <Input type="text" />
+              <Buttons type="primary" onClick={onSave}>
+                Saqlash
+              </Buttons>
+              <p>error</p>
             </Div>
-            <Buttons type="primary">Сохранить</Buttons>
           </Form>
         </Content>
       </Contents>

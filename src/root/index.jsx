@@ -9,29 +9,29 @@ import RootContext from "../context";
 import Doc from "../components/Annual/Doc";
 import DocQuarter from "../components/Quarter/Doc";
 import DocQuarterMonth from "../components/Monthly/Doc";
-import { useUserContext } from "../context/UserContext";
+import Cookies from "js-cookie";
 
 const Root = () => {
-  const { token } = useUserContext();
-
+  const token = 'Cookies.get("token")';
   return (
     <BrowserRouter>
       <RootContext>
         <Routes>
           <Route element={<Navbar />}>
-            {navbar.map(({ id, path, element, isPrivate }) => {
-              if (isPrivate) {
-                return (
+            {navbar.map(
+              ({ id, path, element, isPrivate }) =>
+                isPrivate && (
                   <Route
                     key={id}
                     path={path}
-                    element={token ? element : <Navigate to={"/signin"} />}
+                    element={token ? element : <Navigate to="/signin" />}
                   />
-                );
-              } else {
-                return <Route key={id} path={path} element={element} />;
-              }
-            })}
+                )
+            )}
+            {navbar.map(
+              ({ id, path, element, isPrivate }) =>
+                !isPrivate && <Route key={id} path={path} element={element} />
+            )}
           </Route>
           <Route path="signin" element={<SignInPage />} />
           <Route path="/" element={<LandingPage />} />

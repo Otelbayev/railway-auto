@@ -29,7 +29,6 @@ import {
   CalendarOutlined,
 } from "@ant-design/icons";
 import { Spin } from "antd";
-import Cookies from "js-cookie";
 
 const wrapperStyle = {
   display: "flex",
@@ -42,8 +41,8 @@ const wrapperStyle = {
 export const navbar = [
   {
     id: 1,
-    isPrivate: true,
     path: "/home",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -54,8 +53,8 @@ export const navbar = [
   },
   {
     id: 2,
-    isPrivate: true,
     path: "/annual-plan",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -66,8 +65,8 @@ export const navbar = [
   },
   {
     id: 21,
-    isPrivate: true,
     path: "/annual-doc/:year",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -78,8 +77,8 @@ export const navbar = [
   },
   {
     id: 22,
-    isPrivate: true,
     path: "/annual-doc/:year/:id",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -90,8 +89,8 @@ export const navbar = [
   },
   {
     id: 3,
-    isPrivate: true,
     path: "/annual-doc",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -102,8 +101,8 @@ export const navbar = [
   },
   {
     id: 41,
-    isPrivate: true,
     path: "/quarter-plan/:year/:quarter",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -114,8 +113,8 @@ export const navbar = [
   },
   {
     id: 42,
-    isPrivate: true,
     path: "/quarter-plan/:year/:quarter/:id",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -126,8 +125,8 @@ export const navbar = [
   },
   {
     id: 5,
-    isPrivate: true,
     path: "/quarter-doc",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -138,8 +137,8 @@ export const navbar = [
   },
   {
     id: 6,
-    isPrivate: true,
     path: "/monthly-doc/:year/:quarter/:month",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -150,8 +149,8 @@ export const navbar = [
   },
   {
     id: 61,
-    isPrivate: true,
     path: "/monthly-doc/:year/:quarter/:month/:id",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -162,8 +161,8 @@ export const navbar = [
   },
   {
     id: 7,
-    isPrivate: true,
     path: "/monthly-doc",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -174,8 +173,8 @@ export const navbar = [
   },
   {
     id: 8,
-    isPrivate: true,
     path: "/user",
+    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>

@@ -21,7 +21,6 @@ const UserContextProvider = ({ children }) => {
   const signIn = (res) => {
     setUserDetails(res.userDetails);
     setToken(res.token);
-
     Cookies.set("userDetails", JSON.stringify(res.userDetails));
     Cookies.set("token", res.token);
   };
