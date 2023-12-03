@@ -61,7 +61,9 @@ export const Input = styled.input`
   font-size: 15px;
   height: 40px;
   width: 70%;
-  color: gray;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
 `;
 export const Buttons = styled(Button)`
   font-size: 18px;
