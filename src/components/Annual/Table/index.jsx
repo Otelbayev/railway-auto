@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Table as T,
   Tr,
@@ -10,28 +10,29 @@ import {
   Icon3,
   Header,
   Span,
+  Title,
 } from "./style";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { PlanContext } from "../../../context/PlanContext";
 import { Select, Pagination, Input, Button as Btn } from "antd";
 import useSearch from "../../../hooks/useSearch";
 import { useReplace } from "../../../hooks/useReplace";
 import { models, months, place, registrDepo, repair } from "../../../mock/mock";
+import Cookies from "js-cookie";
 
 const Table = () => {
-  const [data, setData] = useContext(PlanContext);
-  const [filterData, setFitlerData] = useState(data);
+  const [data, setData] = useState([]);
+  const [year, setYear] = useState(new Date().getFullYear());
   const navigate = useNavigate();
   const param = useParams();
   const query = useSearch();
   const { search } = useLocation();
-  //pagination
+  //!pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [items, setItems] = useState(10);
   const itemsPerPage = items;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentData = filterData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentData = data.slice(indexOfFirstItem, indexOfLastItem);
   const handleChangePage = (page) => {
     setCurrentPage(page);
   };
@@ -39,53 +40,71 @@ const Table = () => {
     setItems(e);
   };
 
-  const selectWidth = {
-    width: "150px",
-  };
+  //!filter
+  // const initialState = {
+  //   id: query.get("id") || null,
+  //   number: query.get("number") || null,
+  //   section: query.get("section") || null,
+  //   model: query.get("model") || null,
+  //   depos: query.get("depos") || null,
+  //   repairMode: query.get("repairMode") || null,
+  //   repairPlace: query.get("repairPlace") || null,
+  //   outRepair: query.get("outRepair") || null,
+  // };
 
-  //filter
-  const initialState = {
-    id: query.get("id") || null,
-    number: query.get("number") || null,
-    section: query.get("section") || null,
-    model: query.get("model") || null,
-    depos: query.get("depos") || null,
-    repairMode: query.get("repairMode") || null,
-    repairPlace: query.get("repairPlace") || null,
-    outRepair: query.get("outRepair") || null,
-  };
+  // const [formData, setFormData] = useState(initialState);
 
-  const [formData, setFormData] = useState(initialState);
+  // const onInputChange = ({ target: { value, name } }) => {
+  //   setFormData({ ...formData, [name]: value });
+  //   navigate(`${location?.pathname}${useReplace(name, value)}`);
+  // };
+  // const onSelectionChange = (value, type) => {
+  //   setFormData({ ...formData, [type]: value });
+  //   navigate(`${location.pathname}${useReplace(type, value)}`);
+  // };
 
-  const onInputChange = ({ target: { value, name } }) => {
-    setFormData({ ...formData, [name]: value });
-    navigate(`${location?.pathname}${useReplace(name, value)}`);
-  };
-  const onSelectionChange = (value, type) => {
-    setFormData({ ...formData, [type]: value });
-    navigate(`${location.pathname}${useReplace(type, value)}`);
-  };
+  // const onCancle = () => {
+  //   navigate(`${location.pathname}`);
+  //   setFormData({
+  //     id: null,
+  //     number: null,
+  //     section: null,
+  //     model: null,
+  //     depos: null,
+  //     repairMode: null,
+  //     repairPlace: null,
+  //     outRepair: null,
+  //   });
+  // };
 
-  const onCancle = () => {
-    navigate(`${location.pathname}`);
-    setFormData({
-      id: null,
-      number: null,
-      section: null,
-      model: null,
-      depos: null,
-      repairMode: null,
-      repairPlace: null,
-      outRepair: null,
-    });
-  };
+  const years = [
+    { id: 1, value: 2022, label: 2022 },
+    { id: 2, value: 2023, label: 2023 },
+  ];
+  console.log(data);
 
-  console.log();
+  useEffect(() => {
+    fetch(`/api/AnualyPlan/GetAllAnnualPlan?year=${year}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setData(res));
+  }, [year]);
 
   return (
     <div className="container">
       <Header>
-        <div className="title">Yillik plan - {param.year}</div>
+        <Title className="title">
+          Yillik Plan -
+          <Select
+            onChange={(value) => setYear(value)}
+            options={years}
+            defaultValue={year}
+          />
+        </Title>
         <Span onClick={() => navigate("/annual-doc")}>
           <i className="fa-solid fa-arrow-left"></i>
         </Span>
@@ -93,7 +112,7 @@ const Table = () => {
       <Container>
         <T>
           <thead>
-            <Tr>
+            {/* <Tr>
               <Th>
                 <Input
                   placeholder="№"
@@ -176,79 +195,65 @@ const Table = () => {
                   cancle
                 </Btn>
               </Th>
-            </Tr>
+            </Tr> */}
             <Tr>
               <Th>№</Th>
-              <Th>Lokomativ rusimi</Th>
-              <Th>Lokomativ raqami</Th>
-              <Th>Lokomativ royxatdan o'tgan depo</Th>
-              <Th>Tamirlash turi</Th>
-              <Th>Tamirlash joyi</Th>
-              <Th>Tamirdan chiqishi</Th>
-              <Th>Seksiyalar soni</Th>
+              <Th>Lokomativ va ta'mir turi</Th>
+              <Th>{year} yilga reja (seksiya)</Th>
+              <Th>Jami qiymati</Th>
               <Th>Tahrirlash</Th>
             </Tr>
           </thead>
           <tbody>
-            {currentData.map(
-              ({
-                id,
-                model,
-                number,
-                depo,
-                repairMode,
-                repairPlace,
-                outRepair,
-                section,
-              }) => {
-                return (
-                  <Tr key={id}>
-                    <Td>{id}</Td>
-                    <Td>{model}</Td>
-                    <Td>{number}</Td>
-                    <Td>{depo}</Td>
-                    <Td>{repairMode}</Td>
-                    <Td>{repairPlace}</Td>
-                    <Td>{outRepair}</Td>
-                    <Td>{section}</Td>
-                    <Td>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "5px",
-                          width: "100%",
-                        }}
-                      >
-                        <Button
-                          type="gold"
-                          disabled={
-                            Number(param.year) === new Date().getFullYear()
-                              ? false
-                              : true
-                          }
-                          onClick={() =>
-                            navigate(`/annual-doc/${param.year}/${id}`)
-                          }
+            {currentData.length !== 0 ? (
+              currentData.map(
+                ({
+                  all_price,
+                  anualy_id,
+                  reprair_type,
+                  sections_reprair_number,
+                  locomative_name,
+                }) => {
+                  return (
+                    <Tr key={anualy_id}>
+                      <Td>{anualy_id}</Td>
+                      <Td>
+                        {locomative_name?.name} {locomative_name?.fuel_type}{" "}
+                        {reprair_type}
+                      </Td>
+                      <Td>{sections_reprair_number}</Td>
+                      <Td>{all_price}</Td>
+                      <Td>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "5px",
+                            width: "100%",
+                          }}
                         >
-                          <Icon1 />
-                        </Button>
-                        <Button
-                          type="red"
-                          disabled={
-                            Number(param.year) === new Date().getFullYear()
-                              ? false
-                              : true
-                          }
-                        >
-                          <Icon3 />
-                        </Button>
-                      </div>
-                    </Td>
-                  </Tr>
-                );
-              }
+                          <Button
+                            type="gold"
+                            disabled={
+                              year === new Date().getFullYear() ? false : true
+                            }
+                            onClick={() =>
+                              navigate(`/annual-table/${anualy_id}`)
+                            }
+                          >
+                            <Icon1 />
+                          </Button>
+                        </div>
+                      </Td>
+                    </Tr>
+                  );
+                }
+              )
+            ) : (
+              <Tr>
+                <Td colSpan={5}>hech narsa topilmadi</Td>
+              </Tr>
             )}
             <tr>
               <td colSpan={9}>

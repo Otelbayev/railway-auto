@@ -6,7 +6,6 @@ const HomePage = React.lazy(() => import("../Pages/HomePage"));
 const AnnualCreate = React.lazy(() => import("../Pages/Annual/Create"));
 const AnnualTable = React.lazy(() => import("../Pages/Annual/Table"));
 const AnnaulEdit = React.lazy(() => import("../Pages/Annual/Edit"));
-const YearPage = React.lazy(() => import("../Pages/Annual/Year"));
 
 const QuarterPage = React.lazy(() => import("../Pages/Quarter/Quarter"));
 const EditQuarter = React.lazy(() => import("../Pages/Quarter/Edit"));
@@ -53,7 +52,7 @@ export const navbar = [
   },
   {
     id: 2,
-    path: "/annual-plan",
+    path: "/annual-add",
     isPrivate: true,
     element: (
       <div style={wrapperStyle}>
@@ -65,7 +64,7 @@ export const navbar = [
   },
   {
     id: 21,
-    path: "/annual-doc/:year",
+    path: "/annual-table",
     isPrivate: true,
     element: (
       <div style={wrapperStyle}>
@@ -77,24 +76,12 @@ export const navbar = [
   },
   {
     id: 22,
-    path: "/annual-doc/:year/:id",
+    path: "/annual-table/:id",
     isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
           <AnnaulEdit />
-        </Suspense>
-      </div>
-    ),
-  },
-  {
-    id: 3,
-    path: "/annual-doc",
-    isPrivate: true,
-    element: (
-      <div style={wrapperStyle}>
-        <Suspense fallback={<Spin size="large" />}>
-          <YearPage />
         </Suspense>
       </div>
     ),
@@ -199,8 +186,8 @@ export const SidebarItems = () => {
   return [
     getItem(<NavLink to="/home">Asosiy</NavLink>, "1", <HomeOutlined />),
     getItem("Yillik plan", "sub1", <CalendarOutlined />, [
-      getItem(<NavLink to="/annual-plan">Yararish</NavLink>, "3"),
-      getItem(<NavLink to="/annual-doc">Hujjat</NavLink>, "2"),
+      getItem(<NavLink to="/annual-add">Yararish</NavLink>, "3"),
+      getItem(<NavLink to="/annual-table">Hujjat</NavLink>, "2"),
     ]),
     getItem("Chorak plan", "sub3", <PieChartOutlined />, [
       getItem(<NavLink to="/quarter-doc">Hujjat</NavLink>, "6"),

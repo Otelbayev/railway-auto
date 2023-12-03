@@ -3,6 +3,7 @@ import { EditOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Pagination } from "antd";
 
 export const Container = styled.div`
+  font-family: "Montserrat";
   background: #fff;
   padding: 20px;
   border-radius: 3px;
@@ -115,4 +116,10 @@ export const Span = styled.button`
   color: coral;
   background: #fff;
   border-radius: 5px;
+`;
+
+export const Title = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;
