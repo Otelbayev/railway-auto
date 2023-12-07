@@ -8,26 +8,19 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import RootContext from "../context";
 
 const Root = () => {
-  const token = 'Cookies.get("token")';
+  const token = "none";
   return (
     <BrowserRouter>
       <RootContext>
         <Routes>
           <Route element={<Navbar />}>
-            {navbar.map(
-              ({ id, path, element, isPrivate }) =>
-                isPrivate && (
-                  <Route
-                    key={id}
-                    path={path}
-                    element={token ? element : <Navigate to="/signin" />}
-                  />
-                )
-            )}
-            {navbar.map(
-              ({ id, path, element, isPrivate }) =>
-                !isPrivate && <Route key={id} path={path} element={element} />
-            )}
+            {navbar.map(({ id, path, element }) => (
+              <Route
+                key={id}
+                path={path}
+                element={token ? element : <Navigate to="/signin" />}
+              />
+            ))}
           </Route>
           <Route path="signin" element={<SignInPage />} />
           <Route path="/" element={<LandingPage />} />

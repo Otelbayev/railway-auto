@@ -36,7 +36,6 @@ export const navbar = [
   {
     id: 1,
     path: "/home",
-    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -48,7 +47,6 @@ export const navbar = [
   {
     id: 2,
     path: "/annual-table",
-    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -60,7 +58,6 @@ export const navbar = [
   {
     id: 3,
     path: "/annual-table-1",
-    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -72,7 +69,6 @@ export const navbar = [
   {
     id: 4,
     path: "/annual-table-2",
-    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -84,7 +80,6 @@ export const navbar = [
   {
     id: 5,
     path: "/annual-add-1",
-    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -96,7 +91,6 @@ export const navbar = [
   {
     id: 6,
     path: "/annual-add-2",
-    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
@@ -108,7 +102,6 @@ export const navbar = [
   {
     id: 7,
     path: "/user",
-    isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>

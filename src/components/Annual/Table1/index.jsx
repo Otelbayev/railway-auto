@@ -92,8 +92,6 @@ const Table = () => {
       .then((res) => setData(res));
   }, [year]);
 
-  console.log(data);
-
   const a = (number) => {
     switch (number) {
       case 1:
