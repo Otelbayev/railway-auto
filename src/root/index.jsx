@@ -6,8 +6,6 @@ import NotFoundPage from "../Pages/NotFoundPage";
 import SignInPage from "../Pages/SignInPage";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import RootContext from "../context";
-import DocQuarter from "../components/Quarter/Doc";
-import DocQuarterMonth from "../components/Monthly/Doc";
 
 const Root = () => {
   const token = 'Cookies.get("token")';
@@ -34,11 +32,6 @@ const Root = () => {
           <Route path="signin" element={<SignInPage />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/doc/:year/:quarter" element={<DocQuarter />} />
-          <Route
-            path="/doc/:year/:quarter/:month"
-            element={<DocQuarterMonth />}
-          />
         </Routes>
       </RootContext>
     </BrowserRouter>

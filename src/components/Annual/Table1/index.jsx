@@ -25,7 +25,6 @@ import html2pdf from "html2pdf.js";
 
 const Table = () => {
   const [data, setData] = useState([]);
-
   const [edit, setEdit] = useState(false);
 
   const year = new Date().getFullYear();
@@ -92,6 +91,8 @@ const Table = () => {
       .then((res) => res.json())
       .then((res) => setData(res));
   }, [year]);
+
+  console.log(data);
 
   const a = (number) => {
     switch (number) {

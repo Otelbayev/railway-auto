@@ -9,14 +9,6 @@ const AnnualTable2 = React.lazy(() => import("../Pages/Annual/Table1.2"));
 const Create1 = React.lazy(() => import("../Pages/Annual/Create1"));
 const Create2 = React.lazy(() => import("../Pages/Annual/Create1.1"));
 
-const QuarterPage = React.lazy(() => import("../Pages/Quarter/Quarter"));
-const EditQuarter = React.lazy(() => import("../Pages/Quarter/Edit"));
-const QuarterTable = React.lazy(() => import("../Pages/Quarter/Table"));
-
-const MonthlyPlanTable = React.lazy(() => import("../Pages/Monthly/Table"));
-const Months = React.lazy(() => import("../Pages/Monthly/Months"));
-const EditMonthly = React.lazy(() => import("../Pages/Monthly/Edit"));
-
 const UserPage = React.lazy(() => import("../Pages/UserPage"));
 
 import { NavLink } from "react-router-dom";
@@ -54,7 +46,7 @@ export const navbar = [
     ),
   },
   {
-    id: 21,
+    id: 2,
     path: "/annual-table",
     isPrivate: true,
     element: (
@@ -66,7 +58,7 @@ export const navbar = [
     ),
   },
   {
-    id: 211,
+    id: 3,
     path: "/annual-table-1",
     isPrivate: true,
     element: (
@@ -78,7 +70,7 @@ export const navbar = [
     ),
   },
   {
-    id: 212,
+    id: 4,
     path: "/annual-table-2",
     isPrivate: true,
     element: (
@@ -90,7 +82,7 @@ export const navbar = [
     ),
   },
   {
-    id: 23,
+    id: 5,
     path: "/annual-add-1",
     isPrivate: true,
     element: (
@@ -102,7 +94,7 @@ export const navbar = [
     ),
   },
   {
-    id: 24,
+    id: 6,
     path: "/annual-add-2",
     isPrivate: true,
     element: (
@@ -113,81 +105,8 @@ export const navbar = [
       </div>
     ),
   },
-
-  {
-    id: 41,
-    path: "/quarter-plan/:year/:quarter",
-    isPrivate: true,
-    element: (
-      <div style={wrapperStyle}>
-        <Suspense fallback={<Spin size="large" />}>
-          <QuarterTable />
-        </Suspense>
-      </div>
-    ),
-  },
-  {
-    id: 42,
-    path: "/quarter-plan/:year/:quarter/:id",
-    isPrivate: true,
-    element: (
-      <div style={wrapperStyle}>
-        <Suspense fallback={<Spin size="large" />}>
-          <EditQuarter />
-        </Suspense>
-      </div>
-    ),
-  },
-  {
-    id: 5,
-    path: "/quarter-doc",
-    isPrivate: true,
-    element: (
-      <div style={wrapperStyle}>
-        <Suspense fallback={<Spin size="large" />}>
-          <QuarterPage />,
-        </Suspense>
-      </div>
-    ),
-  },
-  {
-    id: 6,
-    path: "/monthly-doc/:year/:quarter/:month",
-    isPrivate: true,
-    element: (
-      <div style={wrapperStyle}>
-        <Suspense fallback={<Spin size="large" />}>
-          <MonthlyPlanTable />
-        </Suspense>
-      </div>
-    ),
-  },
-  {
-    id: 61,
-    path: "/monthly-doc/:year/:quarter/:month/:id",
-    isPrivate: true,
-    element: (
-      <div style={wrapperStyle}>
-        <Suspense fallback={<Spin size="large" />}>
-          <EditMonthly />,
-        </Suspense>
-      </div>
-    ),
-  },
   {
     id: 7,
-    path: "/monthly-doc",
-    isPrivate: true,
-    element: (
-      <div style={wrapperStyle}>
-        <Suspense fallback={<Spin size="large" />}>
-          <Months />,
-        </Suspense>
-      </div>
-    ),
-  },
-  {
-    id: 8,
     path: "/user",
     isPrivate: true,
     element: (

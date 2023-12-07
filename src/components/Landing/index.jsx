@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
 import {
   Container,
@@ -16,6 +16,7 @@ import {
 } from "./style";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
+import Cookies from "js-cookie";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const Landing = () => {
             <Logo src={logo} />
             <Title>"O'ZTEMIRYO'LMASHTAMIR" AJ</Title>
             <Button onClick={onClick}>
-              {userDetails?.firstName || "kirish"}
+              {userDetails?.firstName || "KIRISH"}
             </Button>
           </Header>
           <Body1 id="body1">

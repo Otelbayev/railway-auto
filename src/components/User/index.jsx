@@ -37,7 +37,8 @@ const User = () => {
     try {
       if (
         newPwRef?.current?.value?.trim() ===
-        checkNewPwRef?.current?.value?.trim()
+          checkNewPwRef?.current?.value?.trim() &&
+        newPwRef?.current?.value?.trim() !== ""
       ) {
         await fetch(`/api/usercrud/updateuser/${userDetails?.id}`, {
           method: "PUT",
@@ -86,7 +87,7 @@ const User = () => {
     <div className="container">
       <div className="title">Profil</div>
       <Contents>
-        <Content first="true">
+        <Content $none={"jasurbek"}>
           <Name>
             {userDetails?.firstName} {userDetails?.lastName}
           </Name>

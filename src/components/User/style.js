@@ -14,18 +14,18 @@ export const Contents = styled.div`
 `;
 
 export const Content = styled.div`
-  width: ${({ first }) => (first ? "30%" : "70%")};
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 0 3px gray;
   min-width: 250px;
-  border-top: ${({ first }) => first && "3px solid blue"};
   display: flex;
   flex-direction: column;
-  align-items: ${({ first }) => first && "center"};
   justify-content: center;
   padding: 30px;
-  text-align: ${({ first }) => first && "center"};
+  width: ${({ $none }) => ($none ? "30%" : "70%")};
+  border-top: ${({ $none }) => $none && "3px solid blue"};
+  align-items: ${({ $none }) => $none && "center"};
+  text-align: ${({ $none }) => $none && "center"};
   @media (max-width: 1000px) {
     width: 100%;
   }

@@ -78,6 +78,17 @@ const Create = () => {
 
   const year = new Date().getFullYear();
 
+  const a = (txt) => {
+    switch (txt) {
+      case "Tlektrovoz":
+        return 1;
+      case "Teplovoz":
+        return 2;
+      case "Drezina":
+        return 3;
+    }
+  };
+
   return (
     <div className="container">
       <div className="title">Yillik plan qo'shish</div>
@@ -100,13 +111,23 @@ const Create = () => {
                   options={registrDepo}
                   onChange={(e) => setdepoValue(e)}
                 />
-              </Th>
-              <Th>
                 <Select
-                  defaultValue={repair[0].value}
-                  onChange={(e) => setrepairValue(e)}
-                  options={repair}
+                  defaultValue={registrDepo[0].value}
+                  style={{
+                    margin: "0 10px",
+                  }}
+                  options={registrDepo}
+                  onChange={(e) => setdepoValue(e)}
                 />
+                <Select
+                  defaultValue={registrDepo[0].value}
+                  options={registrDepo}
+                  onChange={(e) => setdepoValue(e)}
+                />
+              </Th>
+
+              <Th>
+                <Input type="number" />
               </Th>
 
               <Th>
