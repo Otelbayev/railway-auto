@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -19,10 +20,11 @@ body {
 
 .title{
   font-size: 25px;
-  font-weight: 400;
+  font-weight: 500;
   display:flex;
   align-items: center;
   justify-content: space-between;
+  color:rgb(58, 58, 58);
 }
 
 .dataTables_paginate {

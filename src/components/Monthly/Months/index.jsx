@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "./style";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { Icon } from "../../Annual/Year/style";
+import { Icon } from "../../Quarter/Quarter/style";
 import { Button } from "antd";
 import { Table } from "./style";
 

@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
-import { EditOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import { Pagination } from "antd";
-
 export const Container = styled.div`
   font-family: "Montserrat";
   background: #fff;
@@ -35,22 +34,22 @@ const Color = (props) => {
   switch (props.type) {
     case "gold":
       return "goldenrod";
-      break;
     case "blue":
-      return "blue";
-      break;
+      return "rgb(93, 93, 236)";
     case "red":
       return "red";
-      break;
+
+    case "green":
+      return "rgb(32, 167, 55)";
 
     default:
-      return "gray";
-      break;
+      return "rgb(109, 109, 109)";
   }
 };
 
 const common = css`
-  font-size: 24px;
+  transition: 0.2s;
+  font-size: 22px;
   padding: 6px;
   background: transparent;
 `;
@@ -60,8 +59,8 @@ export const Button = styled.button`
   border-radius: 4px;
   background: transparent;
   cursor: pointer;
-  &:disabled {
-    opacity: 0.5;
+  &:active {
+    opacity: 0.7;
   }
 `;
 
@@ -74,16 +73,16 @@ export const Icon1 = styled(EditOutlined)`
   }
 `;
 
-export const Icon2 = styled(EyeOutlined)`
+export const Icon2 = styled(CheckOutlined)`
   ${common};
-  color: blue;
+  color: rgb(32, 167, 55);
   &:hover {
     color: #fff;
-    background: blue;
+    background: rgb(32, 167, 55);
   }
 `;
 
-export const Icon3 = styled(DeleteOutlined)`
+export const Icon3 = styled(CloseOutlined)`
   ${common};
   color: red;
   &:hover {
@@ -104,22 +103,58 @@ export const Header = styled.div`
   justify-content: space-between;
 `;
 
-export const Span = styled.button`
-  cursor: pointer;
-  margin-right: 50px;
-  font-size: 25px;
-  padding: 2px 10px;
+export const Footer = styled.div`
+  margin-top: 30px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid lightgray;
-  color: coral;
-  background: #fff;
-  border-radius: 5px;
+  justify-content: flex-end;
+  gap: 10px;
+`;
+
+export const Btn = styled.button`
+  border: 1px solid ${Color};
+  border-radius: 4px;
+  background: ${Color};
+  padding: 8px 10px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  &:active {
+    opacity: 0.7;
+  }
 `;
 
 export const Title = styled.div`
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 10px 0;
+  & > div {
+    text-transform: uppercase;
+  }
+`;
+
+export const Epig = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  & > div {
+    line-height: 22px;
+    text-align: center;
+    padding: 5px 20px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+`;
+
+export const Bottom = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
+  justify-content: space-between;
+  margin: 15px 0;
+`;
+
+export const Name = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  margin: 10px 15px;
 `;

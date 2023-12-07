@@ -14,7 +14,7 @@ import {
   Content,
   Logo,
   Title,
-  Button,
+  Buttons,
   Form,
   Input,
   Slider,
@@ -29,6 +29,7 @@ import Cookies from "js-cookie";
 
 const SignIn = () => {
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const emailRef = useRef();
   const pwRef = useRef();
@@ -37,6 +38,7 @@ const SignIn = () => {
 
   const onClick = async () => {
     try {
+      setIsLoading(true);
       await fetch("/api/Authorizatsion/login", {
         method: "POST",
         headers: {
@@ -54,6 +56,7 @@ const SignIn = () => {
 
       Cookies.get("token") && navigate("/home");
     } catch (error) {
+      setIsLoading(false);
       setError("Login yoki parol notog'ri");
       input.style.cssText = `
         background:rgba(255, 0, 0, 0.156);
@@ -100,7 +103,9 @@ const SignIn = () => {
               placeholder="password"
               defaultValue={"admin"}
             />
-            <Button onClick={onClick}>KIRISH</Button>
+            <Buttons type="primary" onClick={onClick} loading={isLoading}>
+              KIRISH
+            </Buttons>
             <Error>{error}</Error>
           </Form>
         </Content>

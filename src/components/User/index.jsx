@@ -26,7 +26,7 @@ const User = () => {
   const [body, setBody] = useState({});
 
   useEffect(() => {
-    fetch(`api/usercrud/${userDetails?.id}GetByIdUser`, {
+    fetch(`api/usercrud/getbyiduser/${userDetails?.id}`, {
       headers: { Authorization: `Bearer ${Cookies.get("token")}` },
     })
       .then((res) => res.json())
@@ -39,7 +39,7 @@ const User = () => {
         newPwRef?.current?.value?.trim() ===
         checkNewPwRef?.current?.value?.trim()
       ) {
-        await fetch(`/api/usercrud/${userDetails?.id}UpdateUser`, {
+        await fetch(`/api/usercrud/updateuser/${userDetails?.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const User = () => {
           firstName: nameRef?.current?.value,
           lastName: lastRef?.current?.value,
         });
-        navigate("/home");
+        navigate("/signin");
       } else {
         throw new Error();
       }

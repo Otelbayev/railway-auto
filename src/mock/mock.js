@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 export const mockTable = [
   {
     id: 1,
@@ -222,28 +224,37 @@ export const mockTable = [
 ];
 
 export const months = [
-  { id: 1, value: "Январь", label: "Январь" },
-  { id: 2, value: "Февраль", label: "Февраль" },
-  { id: 3, value: "Март", label: "Март" },
-  { id: 4, value: "Апрель", label: "Апрель" },
-  { id: 5, value: "Май", label: "Май" },
-  { id: 6, value: "Июнь", label: "Июнь" },
-  { id: 7, value: "Июль", label: "Июль" },
-  { id: 8, value: "Август", label: "Август" },
-  { id: 9, value: "Сентябрь", label: "Сентябрь" },
-  { id: 10, value: "Октябрь", label: "Октябрь" },
-  { id: 11, value: "Ноябрь", label: "Ноябрь" },
-  { id: 12, value: "Декабрь", label: "Декабрь" },
+  { id: 1, value: "Yanvar", label: "Yanvar" },
+  { id: 2, value: "Fevral", label: "Fevral" },
+  { id: 3, value: "Mart", label: "Mart" },
+  { id: 4, value: "Aprel", label: "Aprel" },
+  { id: 5, value: "May", label: "May" },
+  { id: 6, value: "Iyun", label: "Июнь" },
+  { id: 7, value: "Iyul", label: "Iyul" },
+  { id: 8, value: "Avgust", label: "Avgust" },
+  { id: 9, value: "Sentyabr", label: "Sentyabr" },
+  { id: 10, value: "Oktyabr", label: "Oktyabr" },
+  { id: 11, value: "Noyabr", label: "Noyabr" },
+  { id: 12, value: "Dekabr", label: "Dekabr" },
 ];
 
 export const place = [
   { id: 1, value: "Ўзбекистон", label: "Ўзбекистон" },
-  { id: 2, value: "ТР3УК", label: "ТР3УК" },
+  { id: 2, value: "TP3YK", label: "TP3YK" },
 ];
 
+// 1.	To‘liq ta’mir 1 (ТT-1) (КР-1)
+// 2.	To‘liq ta’mir 2 (ТT-2) (КР-1)
+// 3.	To‘liq ishlab chiqarish ta’miri (TIT) (КРП)
+// 4.	To‘liq qayta tiklash ta’miri (TQT) (КВР)
+// 5.	Joriy ta’mir 3 (TJ-3) (ТР-3)
+
 export const repair = [
-  { id: 1, value: "ТP-3", label: "ТP-3" },
-  { id: 2, value: "КРП", label: "КРП" },
+  { id: 1, value: "TT-1", label: "TT-1" },
+  { id: 2, value: "TT-2", label: "TT-2" },
+  { id: 3, value: "TIT", label: "TIT" },
+  { id: 4, value: "TQT", label: "TQT" },
+  { id: 5, value: "TJ-3", label: "TJ-3" },
 ];
 
 export const registrDepo = [
@@ -254,9 +265,54 @@ export const registrDepo = [
   { id: 5, value: "Термиз", label: "Термиз" },
 ];
 
+// 1.	UzTE16M teplovoz
+// 2.	ТЭ10М, ТЭ10У teplovoz
+// 3.	ТЭП70БС teplovoz
+// 4.	ТЭ116 teplovoz
+// 5.	ТЭМ2 teplovoz
+// 6.	ЧМЭ-3 teplovoz
+// 7.	ВЛ60 elektrovoz
+// 8.	ВЛ80 elektrovoz
+// 9.	АДМ drezina
+// 10. UZY elektrovoz
+// 11. O‘zbekiston elektrovoz
+// 12. UZEL elektrovoz
+// 13. UZELR elektrovoz
+
 export const models = [
-  { id: 1, value: "ЗВЛ80с", label: "ЗВЛ80с" },
-  { id: 2, value: "2ВЛ60к", label: "2ВЛ60к" },
-  { id: 3, value: "UzTE16M ", label: "UzTE16M" },
-  { id: 3, value: "ТЭ10М ", label: "ТЭ10М" },
+  { id: 1, value: "UzTE16M", label: "UzTE16M" },
+  { id: 2, value: "TЭ10M", label: "TЭ10M" },
+  { id: 3, value: "TЭП70БC", label: "TЭП70БC" },
+  { id: 4, value: "TЭ116", label: "TЭ116" },
+  { id: 5, value: "ЧМЭ-3", label: "ЧМЭ-3" },
+  { id: 5, value: "BЛ60", label: "BЛ60" },
+  { id: 5, value: "BЛ80", label: "BЛ80" },
+  { id: 5, value: "АДМ", label: "АДМ" },
+  { id: 5, value: "UZY", label: "UZY" },
+  { id: 5, value: "UZEL", label: "UZEL" },
+  { id: 5, value: "UZELR", label: "UZELR" },
+];
+
+export const teplovozModel = [
+  { id: 1, value: "UzTE16M", label: "UzTE16M" },
+  { id: 2, value: "TЭ10M", label: "TЭ10M" },
+  { id: 3, value: "TЭП70БC", label: "TЭП70БC" },
+  { id: 4, value: "TЭ116", label: "TЭ116" },
+  { id: 5, value: "ЧМЭ-3", label: "ЧМЭ-3" },
+];
+
+export const elektrovozModel = [
+  { id: 1, value: "BЛ60", label: "BЛ60" },
+  { id: 2, value: "BЛ80", label: "BЛ80" },
+  { id: 3, value: "UZY", label: "UZY" },
+  { id: 4, value: "UZEL", label: "UZEL" },
+  { id: 5, value: "UZELR", label: "UZELR" },
+];
+
+export const drezinaModel = [{ id: 1, value: "АДМ", label: "АДМ" }];
+
+export const locomativ = [
+  { id: 1, value: "Teplovoz", label: "Teplovoz" },
+  { id: 1, value: "Elektrovoz", label: "Elektrovoz" },
+  { id: 3, value: "Drezina", label: "Drezina" },
 ];

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Carousel } from "antd";
+import { Button, Carousel } from "antd";
 
 export const Container = styled.div`
   width: 100%;
@@ -79,16 +79,21 @@ export const Input = styled.input`
     padding: 8px;
   }
 `;
-export const Button = styled.button`
+export const Buttons = styled(Button)`
   font-size: 16px;
   background: goldenrod;
-  color: #ffff;
-  padding: 10px 16px;
+  color: white;
+  width: 120px;
+  height: 40px;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   &:active {
     opacity: 0.6;
+  }
+  &:hover {
+    color: #fff;
+    background: goldenrod !important;
   }
   @media (max-width: 600px) {
     font-size: 14px;

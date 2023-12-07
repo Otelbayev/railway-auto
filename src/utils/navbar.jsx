@@ -3,9 +3,11 @@ import { useUserContext } from "../context/UserContext";
 
 const HomePage = React.lazy(() => import("../Pages/HomePage"));
 
-const AnnualCreate = React.lazy(() => import("../Pages/Annual/Create"));
-const AnnualTable = React.lazy(() => import("../Pages/Annual/Table"));
-const AnnaulEdit = React.lazy(() => import("../Pages/Annual/Edit"));
+const AnnualTable = React.lazy(() => import("../Pages/Annual/Table1"));
+const AnnualTable1 = React.lazy(() => import("../Pages/Annual/Table1.1"));
+const AnnualTable2 = React.lazy(() => import("../Pages/Annual/Table1.2"));
+const Create1 = React.lazy(() => import("../Pages/Annual/Create1"));
+const Create2 = React.lazy(() => import("../Pages/Annual/Create1.1"));
 
 const QuarterPage = React.lazy(() => import("../Pages/Quarter/Quarter"));
 const EditQuarter = React.lazy(() => import("../Pages/Quarter/Edit"));
@@ -28,6 +30,7 @@ import {
   CalendarOutlined,
 } from "@ant-design/icons";
 import { Spin } from "antd";
+import Cookies from "js-cookie";
 
 const wrapperStyle = {
   display: "flex",
@@ -51,18 +54,6 @@ export const navbar = [
     ),
   },
   {
-    id: 2,
-    path: "/annual-add",
-    isPrivate: true,
-    element: (
-      <div style={wrapperStyle}>
-        <Suspense fallback={<Spin size="large" />}>
-          <AnnualCreate />
-        </Suspense>
-      </div>
-    ),
-  },
-  {
     id: 21,
     path: "/annual-table",
     isPrivate: true,
@@ -75,17 +66,54 @@ export const navbar = [
     ),
   },
   {
-    id: 22,
-    path: "/annual-table/:id",
+    id: 211,
+    path: "/annual-table-1",
     isPrivate: true,
     element: (
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
-          <AnnaulEdit />
+          <AnnualTable1 />
         </Suspense>
       </div>
     ),
   },
+  {
+    id: 212,
+    path: "/annual-table-2",
+    isPrivate: true,
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <AnnualTable2 />
+        </Suspense>
+      </div>
+    ),
+  },
+  {
+    id: 23,
+    path: "/annual-add-1",
+    isPrivate: true,
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <Create1 />
+        </Suspense>
+      </div>
+    ),
+  },
+  {
+    id: 24,
+    path: "/annual-add-2",
+    isPrivate: true,
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <Create2 />
+        </Suspense>
+      </div>
+    ),
+  },
+
   {
     id: 41,
     path: "/quarter-plan/:year/:quarter",
@@ -184,18 +212,25 @@ function getItem(label, key, icon, children) {
 export const SidebarItems = () => {
   const { signOut } = useUserContext();
   return [
-    getItem(<NavLink to="/home">Asosiy</NavLink>, "1", <HomeOutlined />),
+    getItem(<NavLink to="/home">Asosiy</NavLink>, "/home", <HomeOutlined />),
     getItem("Yillik plan", "sub1", <CalendarOutlined />, [
-      getItem(<NavLink to="/annual-add">Yararish</NavLink>, "3"),
-      getItem(<NavLink to="/annual-table">Hujjat</NavLink>, "2"),
+      getItem(<NavLink to="/annual-table">Pragnoz</NavLink>, "/annual-table"),
+      getItem(
+        <NavLink to="/annual-table-1">Jadval 1.1</NavLink>,
+        "/annual-table-1"
+      ),
+      getItem(
+        <NavLink to="/annual-table-2">Jadval 1.2</NavLink>,
+        "/annual-table-2"
+      ),
     ]),
     getItem("Chorak plan", "sub3", <PieChartOutlined />, [
-      getItem(<NavLink to="/quarter-doc">Hujjat</NavLink>, "6"),
+      getItem(<NavLink to="/quarter-doc">Hujjat</NavLink>, "/quarter-doc"),
     ]),
     getItem("Oylik plan", "sub2", <InsertRowAboveOutlined />, [
-      getItem(<NavLink to="/monthly-doc">Hujjat</NavLink>, "4"),
+      getItem(<NavLink to="/monthly-doc">Hujjat</NavLink>, "/monthly-doc"),
     ]),
-    getItem(<NavLink to="/user">Profil</NavLink>, "8", <UserOutlined />),
+    getItem(<NavLink to="/user">Profil</NavLink>, "/user", <UserOutlined />),
     getItem(<NavLink to="/">Saytga</NavLink>, "site", <GlobalOutlined />),
     getItem(
       <NavLink to="/" onClick={signOut}>

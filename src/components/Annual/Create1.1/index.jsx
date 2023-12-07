@@ -282,9 +282,19 @@ const Create = () => {
         <div style={{ textAlign: "center" }}>
           <Btn
             style={{
+              background: "red",
+              color: "#fff",
+              width: "100px",
+            }}
+            onClick={() => navigate(-1)}
+          >
+            Orqaga
+          </Btn>
+          <Btn
+            style={{
               background: "green",
               color: "#fff",
-              width: "170px",
+              width: "100px",
             }}
             onClick={handleSubmit}
           >

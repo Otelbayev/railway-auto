@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Span, Table as T } from "../../Quarter/Table/style";
 import { useNavigate, useParams } from "react-router-dom";
-import { Icon1, Icon3, Button } from "../../Annual/Table/style";
+import { Icon1, Icon3, Button } from "../../Annual/Table1/style";
 
 const Table = () => {
   const param = useParams();

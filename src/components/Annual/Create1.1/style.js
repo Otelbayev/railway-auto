@@ -25,7 +25,6 @@ export const Container = styled.div`
   border-radius: 3px;
   margin-top: 20px;
   border: 1px solid lightgray;
-  min-height: 500px;
   display: flex;
   flex-direction: column;
   gap: 10px;

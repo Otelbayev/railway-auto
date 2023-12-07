@@ -1,6 +1,9 @@
+import { Layout } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Header } from "antd/es/layout/layout";
 import styled from "styled-components";
+
+const { Content } = Layout;
 
 export const Div = styled.div`
   display: flex;
@@ -34,7 +37,43 @@ export const Name = styled.div`
 
 export const Siders = styled(Sider)`
   width: 230px;
+  overflow: auto;
+  height: 100vh;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
   @media (max-width: 600px) {
     display: ${({ collapsed }) => (collapsed ? "none" : "block")};
+  }
+`;
+
+export const Contents = styled(Content)`
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 `;

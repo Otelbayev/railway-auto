@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { EyeOutlined } from "@ant-design/icons";
 
 export const Container = styled.div`
   background: #fff;
@@ -23,3 +24,5 @@ export const Table = styled.table`
     }
   }
 `;
+
+export const Icon = styled(EyeOutlined)``;

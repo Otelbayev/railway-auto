@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logo from "../../assets/logo.png";
 import {
   MenuFoldOutlined,
@@ -8,11 +8,10 @@ import {
 } from "@ant-design/icons";
 import { SidebarItems } from "../../utils/navbar";
 import { Layout, Menu, Button } from "antd";
-import { Outlet } from "react-router-dom";
-import { Div, Img, Headers, Name, Siders } from "./style";
+import { Outlet, useParams } from "react-router-dom";
+import { Div, Img, Headers, Name, Siders, Contents } from "./style";
 import { useUserContext } from "../../context/UserContext";
-
-const { Content } = Layout;
+import Cookies from "js-cookie";
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -43,6 +42,11 @@ const App = () => {
     }
   };
 
+  const [path, setPath] = useState(window.location.pathname);
+  const onMenu = (e) => {
+    setPath(e.key);
+  };
+
   return (
     <Layout
       style={{
@@ -61,8 +65,9 @@ const App = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          selectedKeys={[path]}
           items={SidebarItems()}
+          onClick={onMenu}
         />
       </Siders>
       <Layout>
@@ -91,13 +96,13 @@ const App = () => {
             }}
           />
         </Headers>
-        <Content
+        <Contents
           style={{
             overflow: "auto",
           }}
         >
           <Outlet />
-        </Content>
+        </Contents>
       </Layout>
     </Layout>
   );

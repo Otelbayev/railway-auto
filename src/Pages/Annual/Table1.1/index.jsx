@@ -1,5 +1,5 @@
 import React from "react";
-import Table from "../../../components/Annual/Table";
+import Table from "../../../components/Annual/Table1.1";
 
 const AnnualTablePage = () => <Table />;
 

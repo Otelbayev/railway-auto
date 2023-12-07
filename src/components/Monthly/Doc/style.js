@@ -53,6 +53,6 @@ export const Bottom = styled.div`
 `;
 
 export const Name = styled.div`
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
 `;
