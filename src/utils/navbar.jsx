@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useUserContext } from "../context/UserContext";
 
 const HomePage = React.lazy(() => import("../Pages/HomePage"));
@@ -10,6 +10,7 @@ const Create1 = React.lazy(() => import("../Pages/Annual/Create1"));
 const Create2 = React.lazy(() => import("../Pages/Annual/Create1.1"));
 
 const UserPage = React.lazy(() => import("../Pages/UserPage"));
+const UsersPage = React.lazy(() => import("../Pages/UsersPage"));
 
 import { NavLink } from "react-router-dom";
 import {
@@ -20,6 +21,7 @@ import {
   PieChartOutlined,
   InsertRowAboveOutlined,
   CalendarOutlined,
+  UsergroupAddOutlined,
 } from "@ant-design/icons";
 import { Spin } from "antd";
 import Cookies from "js-cookie";
@@ -110,6 +112,17 @@ export const navbar = [
       </div>
     ),
   },
+  {
+    id: 8,
+    path: "/users",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <UsersPage />
+        </Suspense>
+      </div>
+    ),
+  },
 ];
 
 function getItem(label, key, icon, children) {
@@ -122,7 +135,7 @@ function getItem(label, key, icon, children) {
 }
 
 export const SidebarItems = () => {
-  const { signOut } = useUserContext();
+  const { signOut, userDetails } = useUserContext();
   return [
     getItem(<NavLink to="/home">Asosiy</NavLink>, "/home", <HomeOutlined />),
     getItem("Yillik plan", "sub1", <CalendarOutlined />, [
@@ -143,6 +156,12 @@ export const SidebarItems = () => {
       getItem(<NavLink to="/monthly-doc">Hujjat</NavLink>, "/monthly-doc"),
     ]),
     getItem(<NavLink to="/user">Profil</NavLink>, "/user", <UserOutlined />),
+    userDetails?.id === 1 &&
+      getItem(
+        <NavLink to="/users">Users</NavLink>,
+        "/users",
+        <UsergroupAddOutlined />
+      ),
     getItem(<NavLink to="/">Saytga</NavLink>, "site", <GlobalOutlined />),
     getItem(
       <NavLink to="/" onClick={signOut}>

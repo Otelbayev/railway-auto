@@ -33,9 +33,14 @@ const UserContextProvider = ({ children }) => {
     Cookies.remove("token");
   };
 
+  const isLogin = () => {
+    if (Cookies.get("token")) return true;
+    return false;
+  };
+
   return (
     <UserContext.Provider
-      value={{ userDetails, token, signIn, signOut, setUserDetails }}
+      value={{ userDetails, token, signIn, signOut, setUserDetails, isLogin }}
     >
       {children}
     </UserContext.Provider>

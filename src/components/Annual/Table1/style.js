@@ -1,34 +1,11 @@
 import styled, { css } from "styled-components";
-import { EditOutlined, CheckOutlined, CloseOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  CheckOutlined,
+  CloseOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
 import { Pagination } from "antd";
-export const Container = styled.div`
-  font-family: "Montserrat";
-  background: #fff;
-  padding: 20px;
-  border-radius: 3px;
-  margin-top: 20px;
-  border: 1px solid lightgray;
-`;
-
-export const Table = styled.table`
-  border-collapse: collapse;
-  background-color: #fff;
-  width: 100%;
-`;
-export const Tr = styled.tr`
-  text-align: center;
-  font-weight: 500;
-`;
-
-export const Th = styled.th`
-  padding: 10px;
-  border: 1px solid lightgray;
-`;
-export const Td = styled.td`
-  padding: 8px;
-  color: rgba(0, 0, 0, 0.9);
-  border: 1px solid lightgray;
-`;
 
 const Color = (props) => {
   switch (props.type) {
@@ -57,6 +34,7 @@ const common = css`
 export const Button = styled.button`
   border: 1px solid ${Color};
   border-radius: 4px;
+  margin: 0 2px;
   background: transparent;
   cursor: pointer;
   &:active {
@@ -83,6 +61,14 @@ export const Icon2 = styled(CheckOutlined)`
 `;
 
 export const Icon3 = styled(CloseOutlined)`
+  ${common};
+  color: red;
+  &:hover {
+    color: #fff;
+    background: red;
+  }
+`;
+export const Icon4 = styled(DeleteOutlined)`
   ${common};
   color: red;
   &:hover {

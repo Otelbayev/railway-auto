@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  Table as T,
-  Tr,
-  Th,
-  Td,
   Button,
-  Container,
   Icon1,
   Icon2,
   Icon3,
@@ -124,12 +119,14 @@ const Table = () => {
     }
   };
 
+  const onSave = (id) => {};
+
   return (
     <div className="container">
       <Header>
         <div className="title">Yillik Prognoz - {year}</div>
       </Header>
-      <Container>
+      <div className="wrapper">
         <Epig>
           <div>
             <p>"TASDIQLAYMAN"</p>
@@ -145,15 +142,15 @@ const Table = () => {
           uchun yillik
           <div>prognoz</div>
         </Title>
-        <T>
+        <table className="table">
           <thead>
-            <Tr>
-              <Th>№</Th>
-              <Th>Lokomativ va ta'mir turi</Th>
-              <Th>{year} yilga reja (seksiya)</Th>
-              <Th>Jami qiymati</Th>
-              <Th>Tahrirlash</Th>
-            </Tr>
+            <tr className="tr">
+              <th className="th">№</th>
+              <th className="th">Lokomativ va ta'mir turi</th>
+              <th className="th">{year} yilga reja (seksiya)</th>
+              <th className="th">Jami qiymati</th>
+              <th className="th">Tahrirlash</th>
+            </tr>
           </thead>
           <tbody>
             {currentData.length !== 0 ? (
@@ -166,9 +163,9 @@ const Table = () => {
                   locomative_name,
                 }) => {
                   return (
-                    <Tr key={anualy_id}>
-                      <Td>{anualy_id}</Td>
-                      <Td>
+                    <tr className="tr" key={anualy_id}>
+                      <td className="td">{anualy_id}</td>
+                      <td className="td">
                         {edit === anualy_id ? (
                           <>
                             <Select
@@ -189,8 +186,8 @@ const Table = () => {
                             {a(locomative_name?.fuel_type)} {reprairtype}
                           </>
                         )}
-                      </Td>
-                      <Td>
+                      </td>
+                      <td className="td">
                         {edit === anualy_id ? (
                           <Input
                             style={{ width: "80px" }}
@@ -199,8 +196,8 @@ const Table = () => {
                         ) : (
                           sections_reprair_number
                         )}
-                      </Td>
-                      <Td>
+                      </td>
+                      <td className="td">
                         {edit === anualy_id ? (
                           <Input
                             style={{ width: "80px" }}
@@ -209,8 +206,8 @@ const Table = () => {
                         ) : (
                           all_price
                         )}
-                      </Td>
-                      <Td>
+                      </td>
+                      <td className="td">
                         <div
                           style={{
                             display: "flex",
@@ -222,7 +219,10 @@ const Table = () => {
                         >
                           {edit === anualy_id ? (
                             <>
-                              <Button type="green">
+                              <Button
+                                onClick={() => onSave(anualy_id)}
+                                type="green"
+                              >
                                 <Icon2 />
                               </Button>
                               <Button type="red" onClick={() => setEdit(false)}>
@@ -238,18 +238,20 @@ const Table = () => {
                             </Button>
                           )}
                         </div>
-                      </Td>
-                    </Tr>
+                      </td>
+                    </tr>
                   );
                 }
               )
             ) : (
-              <Tr>
-                <Td colSpan={5}>hech narsa topilmadi</Td>
-              </Tr>
+              <tr className="tr">
+                <td className="td" colSpan={5}>
+                  hech narsa topilmadi
+                </td>
+              </tr>
             )}
-            <tr>
-              <td colSpan={9}>
+            <tr className="tr">
+              <td className="td" colSpan={9}>
                 <Bottom>
                   <Name>
                     Lokomativlardan foydalanish boshqarmasi boshlig'i:
@@ -264,8 +266,8 @@ const Table = () => {
                 </Bottom>
               </td>
             </tr>
-            <tr>
-              <td colSpan={9}>
+            <tr className="tr">
+              <td className="td" colSpan={9}>
                 <div
                   style={{
                     display: "flex",
@@ -294,7 +296,7 @@ const Table = () => {
               </td>
             </tr>
           </tbody>
-        </T>
+        </table>
         <Footer>
           <Btn type="blue" onClick={() => navigate("/annual-add-1")}>
             ma'lumot qo'shish
@@ -303,9 +305,10 @@ const Table = () => {
             hujjatni saqlash
           </Btn>
         </Footer>
-      </Container>
+      </div>
       <div style={{ display: "none" }}>
-        <Container
+        <div
+          className="wrapper"
           style={{
             border: "none",
           }}
@@ -326,14 +329,14 @@ const Table = () => {
             ta'mirlash uchun yillik
             <div className="p">prognoz</div>
           </Title>
-          <T>
+          <table className="table">
             <thead>
-              <Tr>
-                <Th>№</Th>
-                <Th className="p">Lokomativ va ta'mir turi</Th>
-                <Th className="p">{year} yilga reja (seksiya)</Th>
-                <Th className="p">Jami qiymati</Th>
-              </Tr>
+              <tr className="tr">
+                <th className="th">№</th>
+                <th className="p">Lokomativ va ta'mir turi</th>
+                <th className="p">{year} yilga reja (seksiya)</th>
+                <th className="p">Jami qiymati</th>
+              </tr>
             </thead>
             <tbody>
               {currentData.length !== 0 ? (
@@ -346,26 +349,26 @@ const Table = () => {
                     locomative_name,
                   }) => {
                     return (
-                      <Tr key={anualy_id}>
-                        <Td className="p">{anualy_id}</Td>
-                        <Td className="p">
-                          {locomative_name?.name}{" "}
+                      <tr className="tr" key={anualy_id}>
+                        <td className="p td">{anualy_id}</td>
+                        <td className="p td">
+                          {locomative_name?.name}
                           {a(locomative_name?.fuel_type)} {reprairtype}
-                        </Td>
-                        <Td className="p">{sections_reprair_number}</Td>
-                        <Td className="p">{all_price}</Td>
-                      </Tr>
+                        </td>
+                        <td className="p td">{sections_reprair_number}</td>
+                        <td className="p td">{all_price}</td>
+                      </tr>
                     );
                   }
                 )
               ) : (
-                <Tr>
-                  <Td className="p" colSpan={5}>
+                <tr className="tr">
+                  <td className="p td" colSpan={5}>
                     hech narsa topilmadi
-                  </Td>
-                </Tr>
+                  </td>
+                </tr>
               )}
-              <tr>
+              <tr className="tr">
                 <td colSpan={9}>
                   <Bottom>
                     <Name className="p">
@@ -383,8 +386,8 @@ const Table = () => {
                 </td>
               </tr>
             </tbody>
-          </T>
-        </Container>
+          </table>
+        </div>
       </div>
     </div>
   );

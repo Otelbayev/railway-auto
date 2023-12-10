@@ -63,6 +63,7 @@ export const Contents = styled(Content)`
   overflow: auto;
   &::-webkit-scrollbar {
     width: 3px;
+    height: 3px;
   }
 
   &::-webkit-scrollbar-track {
