@@ -9,6 +9,13 @@ const AnnualTable2 = React.lazy(() => import("../Pages/Annual/Table1.2"));
 const Create1 = React.lazy(() => import("../Pages/Annual/Create1"));
 const Create2 = React.lazy(() => import("../Pages/Annual/Create1.1"));
 
+const QuarterPage1 = React.lazy(() => import("../Pages/QuarterPage/Table"));
+const QuarterPage2 = React.lazy(() => import("../Pages/QuarterPage/Table2"));
+const AddQuarterPage = React.lazy(() => import("../Pages/QuarterPage/Create"));
+const AddQuarterPage2 = React.lazy(() =>
+  import("../Pages/QuarterPage/Create2")
+);
+
 const UserPage = React.lazy(() => import("../Pages/UserPage"));
 const UsersPage = React.lazy(() => import("../Pages/UsersPage"));
 
@@ -123,6 +130,50 @@ export const navbar = [
       </div>
     ),
   },
+  {
+    id: 9,
+    path: "/quarter-table-1",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <QuarterPage1 />
+        </Suspense>
+      </div>
+    ),
+  },
+  {
+    id: 10,
+    path: "/quarter-table-2",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <QuarterPage2 />
+        </Suspense>
+      </div>
+    ),
+  },
+  {
+    id: 11,
+    path: "/quarter-add-1",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <AddQuarterPage />
+        </Suspense>
+      </div>
+    ),
+  },
+  {
+    id: 12,
+    path: "/quarter-add-2",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <AddQuarterPage2 />
+        </Suspense>
+      </div>
+    ),
+  },
 ];
 
 function getItem(label, key, icon, children) {
@@ -150,7 +201,14 @@ export const SidebarItems = () => {
       ),
     ]),
     getItem("Chorak plan", "sub3", <PieChartOutlined />, [
-      getItem(<NavLink to="/quarter-doc">Hujjat</NavLink>, "/quarter-doc"),
+      getItem(
+        <NavLink to="/quarter-table-1">Jadval</NavLink>,
+        "/quarter-table-1"
+      ),
+      getItem(
+        <NavLink to="/quarter-table-2">Jadval 2.1</NavLink>,
+        "/quarter-table-2"
+      ),
     ]),
     getItem("Oylik plan", "sub2", <InsertRowAboveOutlined />, [
       getItem(<NavLink to="/monthly-doc">Hujjat</NavLink>, "/monthly-doc"),

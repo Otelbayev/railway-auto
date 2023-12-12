@@ -4,6 +4,7 @@ import {
   CheckOutlined,
   CloseOutlined,
   DeleteOutlined,
+  PlusOutlined,
 } from "@ant-design/icons";
 import { Pagination } from "antd";
 
@@ -77,6 +78,15 @@ export const Icon4 = styled(DeleteOutlined)`
   }
 `;
 
+export const Add = styled(PlusOutlined)`
+  ${common};
+  color: green;
+  &:hover {
+    color: #fff;
+    background: green;
+  }
+`;
+
 export const Paginations = styled(Pagination)`
   display: flex;
   justify-content: flex-end;
@@ -106,6 +116,9 @@ export const Btn = styled.button`
   cursor: pointer;
   &:active {
     opacity: 0.7;
+  }
+  &:disabled {
+    opacity: 0.5;
   }
 `;
 

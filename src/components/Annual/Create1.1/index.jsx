@@ -1,309 +1,78 @@
-import React, { useContext, useRef, useState } from "react";
-import {
-  Container,
-  Table,
-  Th,
-  Tr,
-  Button,
-  Td,
-  Icon1,
-  Icon2,
-  Icon3,
-} from "./style";
+import React, { useState } from "react";
+import { Btn } from "../Table1/style";
 import { useNavigate } from "react-router-dom";
-import { Button as Btn, Input, Select } from "antd";
-import { months, place, repair, registrDepo, models } from "../../../mock/mock";
-import { PlanContext } from "../../../context/PlanContext";
+import { models, months, repair } from "../../../mock/mock";
+import { Input, Select } from "antd";
 
-const Create = () => {
+const Create1 = () => {
   const navigate = useNavigate();
-  const [data, setData] = useContext(PlanContext);
-  const [newData, setNewData] = useState([]);
-
-  const numRef = useRef();
-  const sectionRef = useRef();
-
-  const [modelValue, setmodelValue] = useState(data[0].model);
-  const [depoValue, setdepoValue] = useState(data[0].depo);
-  const [repairValue, setrepairValue] = useState(data[0].repairMode);
-  const [placeValue, setplaceValue] = useState(data[0].repairPlace);
-  const [outValue, setoutValue] = useState(data[0].outRepair);
-  const [editId, setEditId] = useState(0);
-
-  const handleClick = () => {
-    setNewData([
-      ...newData,
-      {
-        id: newData.length ? newData.length + data.length + 1 : data.length + 1,
-        model: modelValue,
-        number: numRef.current.input.value,
-        depo: depoValue,
-        repairMode: repairValue,
-        repairPlace: placeValue,
-        outRepair: outValue,
-        section: sectionRef?.current?.input?.value,
-      },
-    ]);
-  };
-
-  const handleSubmit = () => {
-    setData([...data, ...newData]);
-    setNewData([]);
-  };
-
-  const onEdit = (id) => {
-    setEditId(id);
-  };
-
-  const onSave = (id) => {
-    let res = newData.map((item) => {
-      if (item.id === id) {
-        return {
-          id,
-          model: modelValue,
-          number: numRef.current.input.value,
-          depo: depoValue,
-          repairMode: repairValue,
-          repairPlace: placeValue,
-          outRepair: outValue,
-          section: sectionRef?.current?.input?.value,
-        };
-      }
-      return item;
-    });
-    setNewData(res);
-    setEditId("");
-  };
-
+  const [body, setBody] = useState({
+    anualy_id: 0,
+    information_confirmed_date: "2023-12-11T06:15:06.774Z",
+    month_plan: {
+      yanvar: 0,
+      fevral: 0,
+      mart: 0,
+      aprel: 0,
+      may: 0,
+      iyun: 0,
+      iyul: 0,
+      avgust: 0,
+      sentyabr: 0,
+      oktyabr: 0,
+      noyabr: 0,
+      dekabr: 0,
+    },
+  });
   return (
     <div className="container">
-      <div className="title">Yillik plan qo'shish</div>
-      <Container>
-        <Table>
+      <div className="title">Yillik Jadval 1.1 malumot qo'shish</div>
+      <div className="wrapper">
+        <table className="table">
           <thead>
-            <Tr>
-              <Th>№</Th>
-              <Th>Lokomativ rusimi va raqami</Th>
-              <Th>Lokomativ royxatdan o'tgan depo</Th>
-              <Th>Tamirlash turi</Th>
-              <Th>Tamirlash joyi</Th>
-              <Th>Tamirdan chiqishi</Th>
-              <Th>Seksiyalar soni</Th>
-              <Th>Tahrirlash</Th>
-            </Tr>
-            <Tr>
-              <Th>#</Th>
-              <Th>
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 4,
-                  }}
-                >
-                  <Select
-                    options={models}
-                    onChange={(e) => setmodelValue(e)}
-                    defaultValue={models[0].value}
-                  />
-                  <Input
-                    ref={numRef}
-                    defaultValue={15}
-                    style={{
-                      minWidth: "50px",
-                    }}
-                    type="text"
-                  />
-                </div>
-              </Th>
-              <Th>
-                <Select
-                  defaultValue={registrDepo[0].value}
-                  options={registrDepo}
-                  onChange={(e) => setdepoValue(e)}
-                />
-              </Th>
-              <Th>
-                <Select
-                  defaultValue={repair[0].value}
-                  onChange={(e) => setrepairValue(e)}
-                  options={repair}
-                />
-              </Th>
-              <Th>
-                <Select
-                  defaultValue={place[0].value}
-                  onChange={(e) => setplaceValue(e)}
-                  options={place}
-                />
-              </Th>
-              <Th>
-                <Select
-                  defaultValue={months[0].value}
-                  onChange={(e) => setoutValue(e)}
-                  options={months}
-                />
-              </Th>
-              <Th>
-                <Input type="number" ref={sectionRef} defaultValue={1} />
-              </Th>
-              <Th>
-                <Btn type="primary" onClick={handleClick}>
-                  Qoshish
-                </Btn>
-              </Th>
-            </Tr>
-          </thead>
-          <tbody>
-            {newData.map(
-              ({
-                id,
-                model,
-                number,
-                depo,
-                repairMode,
-                repairPlace,
-                outRepair,
-                section,
-              }) => {
+            <tr className="tr">
+              <th className="th">№</th>
+              <th className="th">Lokomativ rusumi</th>
+              <th className="th">Ta'mirlash turi</th>
+              {months.map((item) => {
                 return (
-                  <Tr key={id}>
-                    <Td>{id}</Td>
-                    <Td>
-                      {id === editId ? (
-                        <div
-                          style={{
-                            display: "flex",
-                            gap: 4,
-                          }}
-                        >
-                          <Select
-                            options={models}
-                            onChange={(e) => setmodelValue(e)}
-                            defaultValue={models[0].value}
-                          />
-                          <Input
-                            ref={numRef}
-                            defaultValue={15}
-                            style={{
-                              minWidth: "50px",
-                            }}
-                            type="text"
-                          />
-                        </div>
-                      ) : (
-                        `${model} ${number}`
-                      )}
-                    </Td>
-                    <Td>
-                      {id === editId ? (
-                        <Select
-                          defaultValue={registrDepo[0].value}
-                          options={registrDepo}
-                          onChange={(e) => setdepoValue(e)}
-                        />
-                      ) : (
-                        depo
-                      )}
-                    </Td>
-                    <Td>
-                      {id === editId ? (
-                        <Select
-                          defaultValue={repair[0].value}
-                          options={repair}
-                          onChange={(e) => setrepairValue(e)}
-                        />
-                      ) : (
-                        repairMode
-                      )}
-                    </Td>
-                    <Td>
-                      {id === editId ? (
-                        <Select
-                          defaultValue={place[0].value}
-                          onChange={(e) => setplaceValue(e)}
-                          options={place}
-                        />
-                      ) : (
-                        repairPlace
-                      )}
-                    </Td>
-                    <Td>
-                      {id === editId ? (
-                        <Select
-                          defaultValue={months[0].value}
-                          onChange={(e) => setoutValue(e)}
-                          options={months}
-                        />
-                      ) : (
-                        outRepair
-                      )}
-                    </Td>
-                    <Td>
-                      {id === editId ? (
-                        <Input
-                          type="number"
-                          ref={sectionRef}
-                          defaultValue={1}
-                        />
-                      ) : (
-                        section
-                      )}
-                    </Td>
-                    <Td>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "5px",
-                          width: "100%",
-                        }}
-                      >
-                        {id === editId ? (
-                          <Button type="blue" onClick={() => onSave(id)}>
-                            <Icon2 />
-                          </Button>
-                        ) : (
-                          <Button type="gold" onClick={() => onEdit(id)}>
-                            <Icon1 />
-                          </Button>
-                        )}
-                        <Button type="red">
-                          <Icon3 />
-                        </Button>
-                      </div>
-                    </Td>
-                  </Tr>
+                  <th key={item.value} className="th">
+                    {item.label}
+                  </th>
                 );
-              }
-            )}
-          </tbody>
-        </Table>
-        <div style={{ textAlign: "center" }}>
-          <Btn
-            style={{
-              background: "red",
-              color: "#fff",
-              width: "100px",
-            }}
-            onClick={() => navigate(-1)}
-          >
-            Orqaga
-          </Btn>
-          <Btn
-            style={{
-              background: "green",
-              color: "#fff",
-              width: "100px",
-            }}
-            onClick={handleSubmit}
-          >
-            Saqlash
+              })}
+              <th className="th">Qo'shish</th>
+            </tr>
+            <tr className="tr">
+              <th className="th">#</th>
+              <th className="th">
+                <Select options={models} style={{ width: "90px" }} />
+              </th>
+              <th className="th">
+                <Select options={repair} style={{ width: "70px" }} />
+              </th>
+              {months.map((item) => {
+                return (
+                  <th className="th" key={item.value}>
+                    <Input name={item.label} style={{ width: "60px" }} />
+                  </th>
+                );
+              })}
+              <th className="th">
+                <Btn type="blue">Qo'shish</Btn>
+              </th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div className="bottom">
+          <Btn type="red" onClick={() => navigate(-1)}>
+            orqaga
           </Btn>
         </div>
-      </Container>
+      </div>
     </div>
   );
 };
 
-export default Create;
+export default Create1;

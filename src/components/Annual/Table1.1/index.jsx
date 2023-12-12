@@ -24,6 +24,23 @@ import Cookies from "js-cookie";
 import html2pdf from "html2pdf.js";
 
 const Table = () => {
+  const [body, setBody] = useState({
+    information_confirmed_date: "2023-12-11T06:20:13.919Z",
+    month_plan: {
+      yanvar: 0,
+      fevral: 0,
+      mart: 0,
+      aprel: 0,
+      may: 0,
+      iyun: 0,
+      iyul: 0,
+      avgust: 0,
+      sentyabr: 0,
+      oktyabr: 0,
+      noyabr: 0,
+      dekabr: 0,
+    },
+  });
   const [data, setData] = useState([]);
 
   const [edit, setEdit] = useState(false);
@@ -45,7 +62,7 @@ const Table = () => {
     setItems(e);
   };
 
-  useEffect(() => {
+  const getData = () => {
     fetch(`/api/anualyplan/getallanualyplanone?year=${year}`, {
       headers: {
         "Content-Type": "application/json",
@@ -54,6 +71,10 @@ const Table = () => {
     })
       .then((res) => res.json())
       .then((res) => setData(res));
+  };
+
+  useEffect(() => {
+    getData();
   }, [year]);
 
   const a = (number) => {
@@ -86,6 +107,29 @@ const Table = () => {
     }
   };
 
+  const handleChange = ({ target: { value, name } }) => {
+    setBody({
+      ...body,
+      month_plan: {
+        ...body?.month_plan,
+        [name]: value,
+      },
+    });
+  };
+
+  const onSave = async (id) => {
+    await fetch(`/api/anualyplan/updateanualyplanone/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+      body: JSON.stringify(body),
+    });
+    setEdit(false);
+    getData();
+  };
+
   let tep = 0;
   return (
     <div className="container">
@@ -114,14 +158,14 @@ const Table = () => {
               <Th rowSpan={2}>Ta'mirlash turi</Th>
               <Th rowSpan={2}>2023 yil reja</Th>
               {months.map((item) => (
-                <Th key={item.id}>{item.value}</Th>
+                <Th key={item.value}>{item.label}</Th>
               ))}
               <Th rowSpan={2}>Tahrirlash</Th>
             </Tr>
 
             <Tr>
               {months.map((item) => (
-                <Th key={item.id}>rejasi</Th>
+                <Th key={item.value}>rejasi</Th>
               ))}
             </Tr>
           </thead>
@@ -162,90 +206,24 @@ const Table = () => {
                       <Th>{locomative_name.name}</Th>
                       <Th>{reprairtype}</Th>
                       <Th>{count}</Th>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.yanvar
-                        )}
-                      </Td>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.fevral
-                        )}
-                      </Td>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.mart
-                        )}
-                      </Td>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.aprel
-                        )}
-                      </Td>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.may
-                        )}
-                      </Td>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.iyun
-                        )}
-                      </Td>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.iyul
-                        )}
-                      </Td>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.avgust
-                        )}
-                      </Td>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.sentyabr
-                        )}
-                      </Td>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.oktyabr
-                        )}
-                      </Td>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.noyabr
-                        )}
-                      </Td>
-                      <Td>
-                        {edit === a_o_id ? (
-                          <Input type="text" style={{ width: "50px" }} />
-                        ) : (
-                          month_plan.dekabr
-                        )}
-                      </Td>
+                      {months.map((item) => {
+                        return (
+                          <Td key={item.value}>
+                            {edit === a_o_id ? (
+                              <Input
+                                type="text"
+                                name={item.label}
+                                style={{ width: "50px" }}
+                                onChange={handleChange}
+                                defaultValue={month_plan[item.label]}
+                              />
+                            ) : (
+                              month_plan[item.label]
+                            )}
+                          </Td>
+                        );
+                      })}
+
                       <Td>
                         <div
                           style={{
@@ -258,7 +236,10 @@ const Table = () => {
                         >
                           {edit === a_o_id ? (
                             <>
-                              <Button type="green">
+                              <Button
+                                type="green"
+                                onClick={() => onSave(a_o_id)}
+                              >
                                 <Icon2 />
                               </Button>
                               <Button type="red" onClick={() => setEdit(false)}>
@@ -397,16 +378,16 @@ const Table = () => {
                 <Th className="p" rowSpan={2}>
                   2023 yil reja
                 </Th>
-                {months.map((item) => (
-                  <Th key={item.id} className="p">
+                {months.map((item, index) => (
+                  <Th key={index} className="p">
                     {item.value}
                   </Th>
                 ))}
               </Tr>
 
               <Tr>
-                {months.map((item) => (
-                  <Th key={item.id} className="p">
+                {months.map((item, index) => (
+                  <Th key={index} className="p">
                     rejasi
                   </Th>
                 ))}

@@ -40,20 +40,66 @@ body {
   border-collapse: collapse;
   background-color: #fff;
   width: 100%;
+  border:1px solid lightgray;
 }
 
 .tr{
   text-align: center;
   font-weight: 500;
+  border:1px solid lightgray;
 }
 
 .th{
   padding: 10px;
   border: 1px solid lightgray;
+  max-width:80px;
 }
 
 .td{
   padding: 8px;
   color: rgba(0, 0, 0, 0.9);
   border: 1px solid lightgray;
+}
+
+.epig{
+  display: flex;
+  justify-content: flex-end;
+  & > div {
+    line-height: 22px;
+    text-align: center;
+    padding: 5px 20px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+}
+
+.doctitle{
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 20px 0;
+  & > div {
+    text-transform: uppercase;
+  }
+}
+
+.bottom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.bottomName{
+  font-size: 16px;
+  font-weight: 500;
+  margin: 10px 15px;
+}
+
+.footer{
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }

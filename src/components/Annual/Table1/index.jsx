@@ -14,13 +14,32 @@ import {
 } from "./style";
 import { useNavigate } from "react-router-dom";
 import { Select, Pagination, Input } from "antd";
-import { models, repair } from "../../../mock/mock";
+import {
+  models,
+  repair,
+  teplovozModel,
+  elektrovozModel,
+  drezinaModel,
+  check,
+} from "../../../mock/mock";
 import Cookies from "js-cookie";
 import html2pdf from "html2pdf.js";
 
 const Table = () => {
   const [data, setData] = useState([]);
   const [edit, setEdit] = useState(false);
+
+  const [body, setBody] = useState({
+    locomative_name: {
+      loco_id: 0,
+      name: "string",
+      fuel_type: 1,
+    },
+    all_price: 0,
+    sections_reprair_number: 0,
+    reprair_type: 1,
+    information_confirmed_date: "2023-12-10T22:16:02.828Z",
+  });
 
   const year = new Date().getFullYear();
   const navigate = useNavigate();
@@ -39,44 +58,7 @@ const Table = () => {
     setItems(e);
   };
 
-  //!filter
-  // const initialState = {
-  //   id: query.get("id") || null,
-  //   number: query.get("number") || null,
-  //   section: query.get("section") || null,
-  //   model: query.get("model") || null,
-  //   depos: query.get("depos") || null,
-  //   repairMode: query.get("repairMode") || null,
-  //   repairPlace: query.get("repairPlace") || null,
-  //   outRepair: query.get("outRepair") || null,
-  // };
-
-  // const [formData, setFormData] = useState(initialState);
-
-  // const onInputChange = ({ target: { value, name } }) => {
-  //   setFormData({ ...formData, [name]: value });
-  //   navigate(`${location?.pathname}${useReplace(name, value)}`);
-  // };
-  // const onSelectionChange = (value, type) => {
-  //   setFormData({ ...formData, [type]: value });
-  //   navigate(`${location.pathname}${useReplace(type, value)}`);
-  // };
-
-  // const onCancle = () => {
-  //   navigate(`${location.pathname}`);
-  //   setFormData({
-  //     id: null,
-  //     number: null,
-  //     section: null,
-  //     model: null,
-  //     depos: null,
-  //     repairMode: null,
-  //     repairPlace: null,
-  //     outRepair: null,
-  //   });
-  // };
-
-  useEffect(() => {
+  const getData = () => {
     fetch(`/api/anualyplan/getallanualyplan?year=${year}`, {
       headers: {
         "Content-Type": "application/json",
@@ -85,12 +67,16 @@ const Table = () => {
     })
       .then((res) => res.json())
       .then((res) => setData(res));
-  }, [year]);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const a = (number) => {
     switch (number) {
       case 1:
-        return "Tlektrovoz";
+        return "Elektrovoz";
       case 2:
         return "Teplovoz";
       case 3:
@@ -98,7 +84,14 @@ const Table = () => {
     }
   };
 
+  const getName = (name) => {
+    if (elektrovozModel.includes(name)) return 1;
+    if (teplovozModel.includes(name)) return 2;
+    if (drezinaModel.includes(name)) return 3;
+  };
+
   const wrapper = document.getElementById("wrapper");
+
   const convertToPdf = () => {
     if (wrapper) {
       const pdfOptions = {
@@ -119,7 +112,25 @@ const Table = () => {
     }
   };
 
-  const onSave = (id) => {};
+  const handelChange = ({ target: { name, value } }) => {
+    setBody({
+      ...body,
+      [name]: value,
+    });
+  };
+
+  const onSave = async (id) => {
+    await fetch(`/api/anualyplan/updateanualyplan/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+      body: JSON.stringify(body),
+    });
+    setEdit(false);
+    getData();
+  };
 
   return (
     <div className="container">
@@ -127,7 +138,7 @@ const Table = () => {
         <div className="title">Yillik Prognoz - {year}</div>
       </Header>
       <div className="wrapper">
-        <Epig>
+        <div className="epig">
           <div>
             <p>"TASDIQLAYMAN"</p>
             <p>"O'zbekiston temir yo'llari" AJ</p>
@@ -135,13 +146,13 @@ const Table = () => {
             <p>_________________ Z.E.Maxamatov</p>
             <p>"___"_________________yil</p>
           </div>
-        </Epig>
-        <Title>
+        </div>
+        <div className="doctitle">
           Lokomativlardan foydalanish boshqarmasining 2023 yilga mo'ljallangan
           joriy, kapital va xizmat muddati uzaytirilgan holda kapital ta'mirlash
           uchun yillik
           <div>prognoz</div>
-        </Title>
+        </div>
         <table className="table">
           <thead>
             <tr className="tr">
@@ -155,29 +166,42 @@ const Table = () => {
           <tbody>
             {currentData.length !== 0 ? (
               currentData.map(
-                ({
-                  all_price,
-                  anualy_id,
-                  reprairtype,
-                  sections_reprair_number,
-                  locomative_name,
-                }) => {
+                (
+                  {
+                    all_price,
+                    anualy_id,
+                    reprairtype,
+                    sections_reprair_number,
+                    locomative_name,
+                  },
+                  index
+                ) => {
                   return (
                     <tr className="tr" key={anualy_id}>
-                      <td className="td">{anualy_id}</td>
+                      <td className="td">{index + 1}</td>
                       <td className="td">
                         {edit === anualy_id ? (
                           <>
                             <Select
                               options={models}
                               defaultValue={locomative_name?.name}
+                              onChange={(value) => {
+                                setBody({
+                                  ...body,
+                                  locomative_name: {
+                                    loco_id: locomative_name?.loco_id,
+                                    name: value,
+                                    fuel_type: getName(value),
+                                  },
+                                });
+                              }}
                             />
-                            {"  "}
-                            {a(locomative_name?.fuel_type)}
-                            {"  "}
                             <Select
                               options={repair}
                               defaultValue={reprairtype}
+                              onChange={(value) =>
+                                setBody({ ...body, reprair_type: value })
+                              }
                             />
                           </>
                         ) : (
@@ -192,6 +216,8 @@ const Table = () => {
                           <Input
                             style={{ width: "80px" }}
                             defaultValue={sections_reprair_number}
+                            name="sections_reprair_number"
+                            onChange={handelChange}
                           />
                         ) : (
                           sections_reprair_number
@@ -202,6 +228,8 @@ const Table = () => {
                           <Input
                             style={{ width: "80px" }}
                             defaultValue={all_price}
+                            name="all_price"
+                            onChange={handelChange}
                           />
                         ) : (
                           all_price
@@ -232,7 +260,9 @@ const Table = () => {
                           ) : (
                             <Button
                               type="gold"
-                              onClick={() => setEdit(anualy_id)}
+                              onClick={() => {
+                                setEdit(anualy_id);
+                              }}
                             >
                               <Icon1 />
                             </Button>

@@ -1,296 +1,140 @@
-import React, { useContext, useRef, useState } from "react";
-import {
-  Container,
-  Table,
-  Th,
-  Tr,
-  Button,
-  Td,
-  Icon1,
-  Icon2,
-  Icon3,
-} from "./style";
+import { Input, Select } from "antd";
+import React, { useState } from "react";
+import { models, repair } from "../../../mock/mock";
+import { Btn } from "../Table1/style";
 import { useNavigate } from "react-router-dom";
-import { Button as Btn, Input, Select } from "antd";
-import { months, place, repair, registrDepo, models } from "../../../mock/mock";
-import { PlanContext } from "../../../context/PlanContext";
+import Cookies from "js-cookie";
+import {
+  elektrovozModel,
+  teplovozModel,
+  drezinaModel,
+} from "../../../mock/mock";
 
-const Create = () => {
-  const navigate = useNavigate();
-  const [data, setData] = useContext(PlanContext);
-  const [newData, setNewData] = useState([]);
+const Create1 = () => {
+  const [data, setData] = useState(null);
+  const [body, setBody] = useState({
+    locomative_name: {
+      loco_id: 0,
+      name: "string",
+      fuel_type: 1,
+    },
+    all_price: 0,
+    sections_reprair_number: 0,
+    reprair_type: 1,
+    information_confirmed_date: "2023-12-11T05:37:10.217Z",
+  });
 
-  const numRef = useRef();
-  const sectionRef = useRef();
+  const naviagte = useNavigate();
 
-  const [modelValue, setmodelValue] = useState(data[0].model);
-  const [depoValue, setdepoValue] = useState(data[0].depo);
-  const [repairValue, setrepairValue] = useState(data[0].repairMode);
-  const [placeValue, setplaceValue] = useState(data[0].repairPlace);
-  const [outValue, setoutValue] = useState(data[0].outRepair);
-  const [editId, setEditId] = useState(0);
-
-  const handleClick = () => {
-    setNewData([
-      ...newData,
-      {
-        id: newData.length ? newData.length + data.length + 1 : data.length + 1,
-        model: modelValue,
-        number: numRef.current.input.value,
-        depo: depoValue,
-        repairMode: repairValue,
-        repairPlace: placeValue,
-        outRepair: outValue,
-        section: sectionRef?.current?.input?.value,
-      },
-    ]);
-  };
-
-  const handleSubmit = () => {
-    setData([...data, ...newData]);
-    setNewData([]);
-    navigate(-1);
-  };
-
-  const onEdit = (id) => {
-    setEditId(id);
-  };
-
-  const onSave = (id) => {
-    let res = newData.map((item) => {
-      if (item.id === id) {
-        return {
-          id,
-          model: modelValue,
-          number: numRef.current.input.value,
-          depo: depoValue,
-          repairMode: repairValue,
-          repairPlace: placeValue,
-          outRepair: outValue,
-          section: sectionRef?.current?.input?.value,
-        };
-      }
-      return item;
-    });
-    setNewData(res);
-    setEditId("");
-  };
-
-  const year = new Date().getFullYear();
-
-  const a = (txt) => {
-    switch (txt) {
-      case "Tlektrovoz":
-        return 1;
-      case "Teplovoz":
-        return 2;
-      case "Drezina":
-        return 3;
+  const addData = async () => {
+    try {
+      await fetch("/api/anualyplan/createanualyplan", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      setData("Malumot muvoffaqiyatli qo'shildi");
+    } catch (err) {
+      setData("Xatolik yuz berdi");
     }
+  };
+
+  const handleChanga = ({ target: { value, name } }) => {
+    setBody({
+      ...body,
+      [name]: value,
+    });
+  };
+
+  const getName = (name) => {
+    if (elektrovozModel.includes(name)) return 1;
+    if (teplovozModel.includes(name)) return 2;
+    if (drezinaModel.includes(name)) return 3;
   };
 
   return (
     <div className="container">
       <div className="title">Yillik plan qo'shish</div>
-      <Container>
-        <Table>
+      <div className="wrapper">
+        <table className="table">
           <thead>
-            <Tr>
-              <Th>№</Th>
-              <Th>Lokomativ va ta'mir turi</Th>
-              <Th>{year} yilga reja (seksiya)</Th>
-              <Th>Jami qiymati</Th>
-              <Th>Tahrirlash</Th>
-            </Tr>
-            <Tr>
-              <Th>#</Th>
-
-              <Th>
+            <tr className="tr">
+              <th className="th">№</th>
+              <th className="th">Lokomativ rusumi</th>
+              <th className="th">Ta'mirlash turi</th>
+              <th className="th">Seksiyalar soni</th>
+              <th className="th">Jami qiymati</th>
+              <th className="th">Tahrirlash</th>
+            </tr>
+            <tr className="tr">
+              <th className="th">#</th>
+              <th className="th">
                 <Select
-                  defaultValue={registrDepo[0].value}
-                  options={registrDepo}
-                  onChange={(e) => setdepoValue(e)}
+                  options={models}
+                  onChange={(value) =>
+                    setBody({
+                      ...body,
+                      locomative_name: {
+                        loco_id: 0,
+                        name: value,
+                        fuel_type: getName(value),
+                      },
+                    })
+                  }
+                  style={{ width: "90px" }}
                 />
+              </th>
+              <th className="th">
                 <Select
-                  defaultValue={registrDepo[0].value}
-                  style={{
-                    margin: "0 10px",
+                  options={repair}
+                  onChange={(value) => {
+                    setBody({ ...body, reprair_type: value });
                   }}
-                  options={registrDepo}
-                  onChange={(e) => setdepoValue(e)}
+                  style={{ width: "90px" }}
                 />
-                <Select
-                  defaultValue={registrDepo[0].value}
-                  options={registrDepo}
-                  onChange={(e) => setdepoValue(e)}
+              </th>
+              <th className="th">
+                <Input
+                  type="text"
+                  name="sections_reprair_number"
+                  style={{ width: "90px" }}
+                  onChange={handleChanga}
                 />
-              </Th>
-
-              <Th>
-                <Input type="number" />
-              </Th>
-
-              <Th>
-                <Input type="number" ref={sectionRef} defaultValue={1} />
-              </Th>
-              <Th>
-                <Btn type="primary" onClick={handleClick}>
+              </th>
+              <th className="th">
+                <Input
+                  type="text"
+                  name="all_price"
+                  style={{ width: "90px" }}
+                  onChange={handleChanga}
+                />
+              </th>
+              <th className="th">
+                <Btn type="blue" onClick={addData}>
                   Qoshish
                 </Btn>
-              </Th>
-            </Tr>
+              </th>
+            </tr>
           </thead>
           <tbody>
-            {newData.map(
-              ({
-                id,
-                model,
-                number,
-                depo,
-                repairMode,
-                repairPlace,
-                outRepair,
-                section,
-              }) => {
-                return (
-                  <Tr key={id}>
-                    <Td>{id}</Td>
-                    <Td>
-                      {id === editId ? (
-                        <div
-                          style={{
-                            display: "flex",
-                            gap: 4,
-                          }}
-                        >
-                          <Select
-                            options={models}
-                            onChange={(e) => setmodelValue(e)}
-                            defaultValue={models[0].value}
-                          />
-                          <Input
-                            ref={numRef}
-                            defaultValue={15}
-                            style={{
-                              minWidth: "50px",
-                            }}
-                            type="text"
-                          />
-                        </div>
-                      ) : (
-                        `${model} ${number}`
-                      )}
-                    </Td>
-                    <Td>
-                      {id === editId ? (
-                        <Select
-                          defaultValue={registrDepo[0].value}
-                          options={registrDepo}
-                          onChange={(e) => setdepoValue(e)}
-                        />
-                      ) : (
-                        depo
-                      )}
-                    </Td>
-                    <Td>
-                      {id === editId ? (
-                        <Select
-                          defaultValue={repair[0].value}
-                          options={repair}
-                          onChange={(e) => setrepairValue(e)}
-                        />
-                      ) : (
-                        repairMode
-                      )}
-                    </Td>
-                    <Td>
-                      {id === editId ? (
-                        <Select
-                          defaultValue={place[0].value}
-                          onChange={(e) => setplaceValue(e)}
-                          options={place}
-                        />
-                      ) : (
-                        repairPlace
-                      )}
-                    </Td>
-                    <Td>
-                      {id === editId ? (
-                        <Select
-                          defaultValue={months[0].value}
-                          onChange={(e) => setoutValue(e)}
-                          options={months}
-                        />
-                      ) : (
-                        outRepair
-                      )}
-                    </Td>
-                    <Td>
-                      {id === editId ? (
-                        <Input
-                          type="number"
-                          ref={sectionRef}
-                          defaultValue={1}
-                        />
-                      ) : (
-                        section
-                      )}
-                    </Td>
-                    <Td>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          gap: "5px",
-                          width: "100%",
-                        }}
-                      >
-                        {id === editId ? (
-                          <Button type="blue" onClick={() => onSave(id)}>
-                            <Icon2 />
-                          </Button>
-                        ) : (
-                          <Button type="gold" onClick={() => onEdit(id)}>
-                            <Icon1 />
-                          </Button>
-                        )}
-                        <Button type="red">
-                          <Icon3 />
-                        </Button>
-                      </div>
-                    </Td>
-                  </Tr>
-                );
-              }
-            )}
+            <tr className="tr" style={{ textAlign: "center" }}>
+              <td className="td" colSpan={10}>
+                {data}
+              </td>
+            </tr>
           </tbody>
-        </Table>
-        <div style={{ textAlign: "center" }}>
-          <Btn
-            style={{
-              background: "red",
-              color: "#fff",
-              width: "100px",
-            }}
-            onClick={() => navigate(-1)}
-          >
-            Orqaga
-          </Btn>
-          <Btn
-            style={{
-              background: "green",
-              color: "#fff",
-              width: "100px",
-            }}
-            onClick={handleSubmit}
-          >
-            Saqlash
+        </table>
+        <div className="bottom">
+          <Btn type="red" onClick={() => naviagte(-1)}>
+            oqraga
           </Btn>
         </div>
-      </Container>
+      </div>
     </div>
   );
 };
 
-export default Create;
+export default Create1;

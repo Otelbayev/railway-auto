@@ -23,6 +23,7 @@ const UserContextProvider = ({ children }) => {
     setToken(res.token);
     Cookies.set("userDetails", JSON.stringify(res.userDetails));
     Cookies.set("token", res.token);
+    console.log(res);
   };
 
   const signOut = () => {
