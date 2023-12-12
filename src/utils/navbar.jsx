@@ -214,7 +214,7 @@ export const SidebarItems = () => {
       getItem(<NavLink to="/monthly-doc">Hujjat</NavLink>, "/monthly-doc"),
     ]),
     getItem(<NavLink to="/user">Profil</NavLink>, "/user", <UserOutlined />),
-    userDetails?.id === 1 &&
+    userDetails?.role === 1 &&
       getItem(
         <NavLink to="/users">Users</NavLink>,
         "/users",

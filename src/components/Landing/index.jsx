@@ -30,6 +30,15 @@ const Landing = () => {
     }
   };
 
+  const getRole = (role) => {
+    switch (role) {
+      case 1:
+        return "Admin";
+      case 2:
+        return "Xodim";
+    }
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -38,7 +47,7 @@ const Landing = () => {
             <Logo src={logo} />
             <Title>"O'ZTEMIRYO'LMASHTAMIR" AJ</Title>
             <Button onClick={onClick}>
-              {userDetails?.firstName || "KIRISH"}
+              {getRole(userDetails?.role) || "KIRISH"}
             </Button>
           </Header>
           <Body1 id="body1">
