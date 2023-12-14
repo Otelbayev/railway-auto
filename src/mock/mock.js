@@ -82,3 +82,15 @@ export const check = (loc) => {
   if (teplovozModel.includes(loc)) return 2;
   if (drezinaModel.includes(loc)) return 3;
 };
+
+export const getQuarter = (month) => {
+  if (month <= 3) return 1;
+  else if (month > 3 && month <= 6) return 2;
+  else if (month > 6 && month <= 9) return 3;
+  else if (month > 9 && month <= 12) return 4;
+};
+
+export const getMonth = (month) => {
+  const res = months.find((e) => e.value == month);
+  return res.label;
+};
