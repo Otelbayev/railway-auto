@@ -16,6 +16,17 @@ const AddQuarterPage2 = React.lazy(() =>
   import("../Pages/QuarterPage/Create2")
 );
 
+const MonthlyTable = React.lazy(() => import("../Pages/MonthlyPage/Table"));
+const MonthlyTable2 = React.lazy(() => import("../Pages/MonthlyPage/Table3.1"));
+
+const LargeTable = React.lazy(() => import("../Pages/LargeTablePage/Table"));
+const LargeTable2 = React.lazy(() =>
+  import("../Pages/LargeTablePage/Table4.1")
+);
+const LargeTable3 = React.lazy(() =>
+  import("../Pages/LargeTablePage/Table4.2")
+);
+
 const UserPage = React.lazy(() => import("../Pages/UserPage"));
 const UsersPage = React.lazy(() => import("../Pages/UsersPage"));
 
@@ -29,9 +40,9 @@ import {
   InsertRowAboveOutlined,
   CalendarOutlined,
   UsergroupAddOutlined,
+  TableOutlined,
 } from "@ant-design/icons";
 import { Spin } from "antd";
-import Cookies from "js-cookie";
 
 const wrapperStyle = {
   display: "flex",
@@ -174,6 +185,61 @@ export const navbar = [
       </div>
     ),
   },
+  {
+    id: 13,
+    path: "/monthly-table-1",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <MonthlyTable />
+        </Suspense>
+      </div>
+    ),
+  },
+  {
+    id: 14,
+    path: "/monthly-table-2",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <MonthlyTable2 />
+        </Suspense>
+      </div>
+    ),
+  },
+  {
+    id: 15,
+    path: "/last-table-1",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <LargeTable />
+        </Suspense>
+      </div>
+    ),
+  },
+  {
+    id: 16,
+    path: "/last-table-2",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <LargeTable2 />
+        </Suspense>
+      </div>
+    ),
+  },
+  {
+    id: 17,
+    path: "/last-table-3",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <LargeTable3 />
+        </Suspense>
+      </div>
+    ),
+  },
 ];
 
 function getItem(label, key, icon, children) {
@@ -200,7 +266,7 @@ export const SidebarItems = () => {
         "/annual-table-2"
       ),
     ]),
-    getItem("Chorak plan", "sub3", <PieChartOutlined />, [
+    getItem("Chorak plan", "sub2", <PieChartOutlined />, [
       getItem(
         <NavLink to="/quarter-table-1">Jadval</NavLink>,
         "/quarter-table-1"
@@ -210,8 +276,26 @@ export const SidebarItems = () => {
         "/quarter-table-2"
       ),
     ]),
-    getItem("Oylik plan", "sub2", <InsertRowAboveOutlined />, [
-      getItem(<NavLink to="/monthly-doc">Hujjat</NavLink>, "/monthly-doc"),
+    getItem("Oylik plan", "sub3", <InsertRowAboveOutlined />, [
+      getItem(
+        <NavLink to="/monthly-table-1">Jadval</NavLink>,
+        "/monthly-table-1"
+      ),
+      getItem(
+        <NavLink to="/monthly-table-2">Jadval 3.1</NavLink>,
+        "/monthly-table-2"
+      ),
+    ]),
+    getItem("Jadval", "sub4", <TableOutlined />, [
+      getItem(<NavLink to="/last-table-1">Jadval</NavLink>, "/last-table-1"),
+      getItem(
+        <NavLink to="/last-table-2">Jadval 4.1</NavLink>,
+        "/last-table-2"
+      ),
+      getItem(
+        <NavLink to="/last-table-3">Jadval 4.2</NavLink>,
+        "/last-table-3"
+      ),
     ]),
     getItem(<NavLink to="/user">Profil</NavLink>, "/user", <UserOutlined />),
     userDetails?.role === 1 &&

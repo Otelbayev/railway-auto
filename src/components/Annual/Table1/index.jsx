@@ -282,18 +282,18 @@ const Table = () => {
             )}
             <tr className="tr">
               <td className="td" colSpan={9}>
-                <Bottom>
-                  <Name>
+                <div className="bottom">
+                  <div className="bottomName">
                     Lokomativlardan foydalanish boshqarmasi boshlig'i:
-                  </Name>
-                  <Name>N.O.Ramatov</Name>
-                </Bottom>
-                <Bottom>
-                  <Name>
+                  </div>
+                  <div className="bottomName">N.O.Ramatov</div>
+                </div>
+                <div className="bottom">
+                  <div className="bottomName">
                     Ishlab chiqarish boyicha bosh distpecherlik bo'lim boshligi:
-                  </Name>
-                  <Name>J.Y.Shomurodov</Name>
-                </Bottom>
+                  </div>
+                  <div className="bottomName">J.Y.Shomurodov</div>
+                </div>
               </td>
             </tr>
             <tr className="tr">
@@ -327,14 +327,14 @@ const Table = () => {
             </tr>
           </tbody>
         </table>
-        <Footer>
+        <div className="footer">
           <Btn type="blue" onClick={() => navigate("/annual-add-1")}>
             ma'lumot qo'shish
           </Btn>
           <Btn type="green" onClick={convertToPdf}>
             hujjatni saqlash
           </Btn>
-        </Footer>
+        </div>
       </div>
       <div style={{ display: "none" }}>
         <div

@@ -108,13 +108,13 @@ const Table = () => {
               })
             ) : (
               <tr className="tr" style={{ textAlign: "center" }}>
-                <td className="td" colSpan={10}>
+                <td className="td" colSpan={15}>
                   Hech narsa topilmadi
                 </td>
               </tr>
             )}
             <tr className="tr">
-              <td className="td" colSpan={9}>
+              <td className="td" colSpan={15}>
                 <div className="bottom">
                   <div className="bottomName">
                     Lokomativlardan foydalanish boshqarmasi boshlig'i:

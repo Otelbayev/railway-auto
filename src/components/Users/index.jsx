@@ -175,7 +175,6 @@ const Users = () => {
               <th className="th">
                 <Select
                   options={status}
-                  defaultValue={2}
                   onChange={(value) => {
                     setAdd({
                       ...add,

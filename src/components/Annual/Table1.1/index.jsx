@@ -14,7 +14,6 @@ import {
   Btn,
   Title,
   Epig,
-  Bottom,
   Name,
 } from "./style";
 import { useNavigate } from "react-router-dom";
@@ -298,16 +297,19 @@ const Table = () => {
             </Tr>
             <tr>
               <td colSpan={20}>
-                <Bottom>
-                  <Name>Ishlab chiqarish boyicha direktor o'rinbosari:</Name>
-                  <Name>N.O.Ramatov</Name>
-                </Bottom>
-                <Bottom>
-                  <Name>
-                    Ishlab chiqarish boyicha bosh distpecherlik bo'lim boshligi:
-                  </Name>
-                  <Name>J.Y.Shomurodov</Name>
-                </Bottom>
+                                 <div className="bottom">
+                    <div className="p bottomName">
+                      Ishlab chiqarish boyicha direktor o'rinbosari:
+                    </div>
+                    <div className="p bottomName">N.O.Ramatov</div>
+                  </div>
+                  <div className="bottom">
+                    <div className="p bottomName">
+                      Ishlab chiqarish boyicha bosh distpecherlik bo'lim
+                      boshligi:
+                    </div>
+                    <div className="p bottomName">J.Y.Shomurodov</div>
+                  </div>
               </td>
             </tr>
             <tr>
@@ -341,14 +343,14 @@ const Table = () => {
             </tr>
           </tbody>
         </T>
-        <Footer>
+        <div className="footer">
           <Btn type="blue" onClick={() => navigate("/annual-add-2")}>
             ma'lumot qo'shish
           </Btn>
           <Btn type="green" onClick={convertToPdf}>
             hujjatni saqlash
           </Btn>
-        </Footer>
+        </div>
       </Container>
       <div style={{ display: "none" }}>
         <Container id="wrapper">
@@ -565,19 +567,19 @@ const Table = () => {
               </Tr>
               <tr>
                 <td colSpan={20}>
-                  <Bottom>
-                    <Name className="p">
+                  <div className="bottom">
+                    <div className="p bottomName">
                       Ishlab chiqarish boyicha direktor o'rinbosari:
-                    </Name>
-                    <Name className="p">N.O.Ramatov</Name>
-                  </Bottom>
-                  <Bottom>
-                    <Name className="p">
+                    </div>
+                    <div className="p bottomName">N.O.Ramatov</div>
+                  </div>
+                  <div className="bottom">
+                    <div className="p bottomName">
                       Ishlab chiqarish boyicha bosh distpecherlik bo'lim
                       boshligi:
-                    </Name>
-                    <Name className="p">J.Y.Shomurodov</Name>
-                  </Bottom>
+                    </div>
+                    <div className="p bottomName">J.Y.Shomurodov</div>
+                  </div>
                 </td>
               </tr>
             </tbody>
