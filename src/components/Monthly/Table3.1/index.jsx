@@ -5,8 +5,8 @@ import { months, getMonth, getQuarter } from "../../../mock/mock";
 import { Btn } from "../../Annual/Table1/style";
 
 const Table2 = () => {
-  const month = Number(Cookies.get("month"));
-  const [value, setValue] = useState(month || 1);
+  const month = Number(Cookies.get("month")) || 1;
+  const [value, setValue] = useState(month);
   const [data, setData] = useState([]);
 
   const getData = () => {
@@ -28,8 +28,6 @@ const Table2 = () => {
   useEffect(() => {
     getData();
   }, [month]);
-
-  console.log(data);
 
   return (
     <div className="container">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Btn, Button, Icon1 } from "../../Annual/Table1/style";
 import { Radio } from "antd";
-import { months, getMonth, getQuarter } from "../../../mock/mock";
+import { months, getMonth, getQuarter, models } from "../../../mock/mock";
 import Cookies from "js-cookie";
 
 const Table = () => {
@@ -67,51 +67,43 @@ const Table = () => {
               <th className="th">Ta'mirlash turi</th>
               <th className="th">sek/dona</th>
               <th className="th">{getMonth(month)}</th>
-              {data.length !== 0 && <th className="th">Tahrirlash</th>}
             </tr>
           </thead>
           <tbody>
-            {data.length === 0 ? (
+            {data.length !== 0 ? (
+              models.map(({ label }) => {
+                return data
+                  .filter(
+                    (item) =>
+                      item?.quarterPlanTwo?.locomative_name?.name === label
+                  )
+                  .map(
+                    (
+                      {
+                        quarterPlanTwo: {
+                          locomative_name,
+                          reprair_type,
+                          section_num,
+                          locomative_number,
+                        },
+                      },
+                      index
+                    ) => (
+                      <tr className="tr" key={index}>
+                        <td className="td">{locomative_name.name}</td>
+                        <td className="td">{reprair_type}</td>
+                        <td className="td">{section_num}</td>
+                        <td className="td">{locomative_number}</td>
+                      </tr>
+                    )
+                  );
+              })
+            ) : (
               <tr className="tr">
-                <td className="td" colSpan={20}>
-                  Hech narsa topilmadi.
+                <td className="td" colSpan={10}>
+                  hech narsa topilmadi
                 </td>
               </tr>
-            ) : (
-              data.map(
-                (
-                  {
-                    quarterPlanTwo: {
-                      section_num,
-                      reprair_type,
-                      locomative_number,
-                      locomative_name,
-                    },
-                  },
-                  index
-                ) => (
-                  <React.Fragment key={index}>
-                    <tr className="tr">
-                      <td className="td" rowSpan={2}>
-                        {locomative_name?.name}
-                      </td>
-                      <td className="td">{reprair_type}</td>
-                      <td className="td">{section_num}</td>
-                      <td className="td">{locomative_number}</td>
-                      <td className="td" rowSpan={2}>
-                        <Button type="gold">
-                          <Icon1 />
-                        </Button>
-                      </td>
-                    </tr>
-                    <tr className="tr">
-                      <td className="td">{reprair_type}</td>
-                      <td className="td">{section_num}</td>
-                      <td className="td">{locomative_number}</td>
-                    </tr>
-                  </React.Fragment>
-                )
-              )
             )}
           </tbody>
         </table>
