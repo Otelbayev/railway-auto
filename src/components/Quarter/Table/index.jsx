@@ -20,19 +20,16 @@ const Table = () => {
   const [data, setData] = useState([]);
   const [edit, setEdit] = useState(false);
 
-  const [body, setBody] = useState({});
-
-  const getById = async (id) => {
-    setEdit(id);
-    await fetch(`/api/quarterplan/getbyidquarterplan/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${Cookies.get("token")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => setBody(res));
-  };
+  const [body, setBody] = useState({
+    organization: {
+      org_id: 2,
+      type: "Uzbekiston",
+    },
+    information_confirmed_date: "2023-12-19T20:10:57.481Z",
+    quarter: value,
+    plan_year: "2023-12-19T20:10:57.481Z",
+    section_0: 0,
+  });
 
   const getData = () => {
     fetch(`/api/quarterplan/getallquarterplan?year=2023&quarter=${value}`, {
@@ -57,6 +54,8 @@ const Table = () => {
         Authorization: `Bearer ${Cookies.get("token")}`,
       },
       body: JSON.stringify(body),
+    }).catch((err) => {
+      console.log("error");
     });
     getData();
   };
@@ -145,7 +144,7 @@ const Table = () => {
                   },
                   index
                 ) => (
-                  <tr key={locomative_name.loco_id} className="tr">
+                  <tr key={index} className="tr">
                     <td className="td">{index + 1}</td>
                     <td className="td">
                       {" "}
@@ -156,13 +155,10 @@ const Table = () => {
                             onChange={(value) =>
                               setBody({
                                 ...body,
-                                locomativeFuelType: locomativ
-                                  .find((item) => item.value == check(value))
-                                  .label.toLocaleLowerCase(),
                                 locomative_name: {
-                                  fuel_type: body?.locomative_name?.fuel_type,
-                                  loco_id: body?.locomative_name?.loco_id,
+                                  loco_id: 0,
                                   name: value,
+                                  fuel_type: 1,
                                 },
                               })
                             }
@@ -181,19 +177,7 @@ const Table = () => {
                     </td>
                     <td className="td">
                       {edit === quarter_id ? (
-                        <Select
-                          options={depo}
-                          style={{ width: "115px" }}
-                          onChange={(value) =>
-                            setBody({
-                              ...body,
-                              organization: {
-                                org_id: 0,
-                                type: value,
-                              },
-                            })
-                          }
-                        />
+                        <Select options={depo} style={{ width: "115px" }} />
                       ) : (
                         organization.type
                       )}
@@ -203,7 +187,7 @@ const Table = () => {
                         <Select
                           style={{ width: "70px" }}
                           onChange={(value) =>
-                            setBody({ ...body, reprair_type: value })
+                            setBody({ ...body, reprair_id: Number(value) })
                           }
                           options={repair}
                         />
@@ -217,7 +201,10 @@ const Table = () => {
                         <Select
                           style={{ width: "80px" }}
                           onChange={(value) =>
-                            setBody({ ...body, monthofreprair: value })
+                            setBody({
+                              ...body,
+                              month_of_reprair: Number(value),
+                            })
                           }
                           options={getMonth(quarter)}
                         />
@@ -252,7 +239,7 @@ const Table = () => {
                           </Button>
                         </>
                       ) : (
-                        <Button type="gold" onClick={() => getById(quarter_id)}>
+                        <Button type="gold" onClick={() => setEdit(quarter_id)}>
                           <Icon1 />
                         </Button>
                       )}

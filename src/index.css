@@ -13,10 +13,10 @@ body {
 }
 
 .container{
-  padding: 15px;
+  padding: 8px;
   width:100%;
   min-height: 500px;
-}
+} 
 
 .wrapper {
   font-family: "Montserrat";
@@ -34,6 +34,7 @@ body {
   align-items: center;
   justify-content: space-between;
   color:rgb(58, 58, 58);
+  padding:10px 0 0 10px;
 }
 
 .table{

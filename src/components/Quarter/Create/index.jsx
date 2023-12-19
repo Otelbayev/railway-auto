@@ -6,18 +6,49 @@ import { Btn } from "../../Annual/Table1/style";
 import { useNavigate } from "react-router-dom";
 
 const Create = () => {
-  const [body, setBody] = useState({});
+  const [data, setData] = useState(null);
+  const quarter = Number(Cookies.get("quarter")) || 1;
 
-  const onAdd = () => {
-    console.log(body);
+  const getMonth = (quarter) => {
+    switch (quarter) {
+      case 1:
+        return months.slice(0, 3);
+      case 2:
+        return months.slice(3, 6);
+      case 3:
+        return months.slice(6, 9);
+      case 4:
+        return months.slice(9, 12);
+    }
+  };
+
+  const [body, setBody] = useState({
+    organization: {
+      org_id: 2,
+      type: "Uzbekiston",
+    },
+    information_confirmed_date: "2023-12-19T19:22:40.745Z",
+    quarter,
+    plan_year: "2023-12-19T19:22:40.745Z",
+    section_0: 0,
+  });
+
+  const onAdd = async () => {
+    await fetch("/api/quarterplan/createquareterplan", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+      body: JSON.stringify(body),
+    });
+    setData("Malumot muvoffaqiyatli qo'shildi");
   };
 
   const navigate = useNavigate();
   return (
     <div className="container">
-      <div className="title">
-        {Cookies.get("quarter") || 1} - chorak malumot qo'shish
-      </div>
+      <div className="title">{quarter} - chorak malumot qo'shish</div>
       <div className="wrapper">
         <table className="table">
           <thead>
@@ -36,7 +67,16 @@ const Create = () => {
               <th className="th">
                 <Select
                   options={models}
-                  onChange={(value) => setBody({ ...body, name: value })}
+                  onChange={(value) =>
+                    setBody({
+                      ...body,
+                      locomative_name: {
+                        loco_id: 0,
+                        name: value,
+                        fuel_type: 1,
+                      },
+                    })
+                  }
                   style={{ width: "100px" }}
                 />
               </th>
@@ -50,24 +90,22 @@ const Create = () => {
                 />
               </th>
               <th className="th">
-                <Select
-                  options={depo}
-                  onChange={(value) => setBody({ ...body, depo: value })}
-                  style={{ width: "100px" }}
-                />
+                <Select options={depo} style={{ width: "100px" }} />
               </th>
               <th className="th">
                 <Select
                   options={repair}
-                  onChange={(value) => setBody({ ...body, repair: value })}
+                  onChange={(value) =>
+                    setBody({ ...body, reprair_id: Number(value) })
+                  }
                   style={{ width: "100px" }}
                 />
               </th>
               <th className="th">
                 <Select
-                  options={months}
+                  options={getMonth(quarter)}
                   onChange={(value) =>
-                    setBody({ ...body, month_of_reprair: value })
+                    setBody({ ...body, month_of_reprair: Number(value) })
                   }
                   style={{ width: "100px" }}
                 />
@@ -88,6 +126,15 @@ const Create = () => {
               </th>
             </tr>
           </thead>
+          <tbody>
+            {data && (
+              <tr className="tr" style={{ textAlign: "center" }}>
+                <td className="td" colSpan={10}>
+                  {data}
+                </td>
+              </tr>
+            )}
+          </tbody>
         </table>
         <div className="bottom">
           <Btn type="red" onClick={() => navigate(-1)}>

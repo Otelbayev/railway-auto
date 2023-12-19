@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Btn } from "../../Annual/Table1/style";
 import { useNavigate } from "react-router-dom";
-import { months } from "../../../mock/mock";
+import { months, repair } from "../../../mock/mock";
 
 const Table = () => {
   const [value, setValue] = useState(Number(Cookies.get("quarter")) || 1);
@@ -25,7 +25,21 @@ const Table = () => {
     }
   };
 
-  useEffect(() => {}, []);
+  const getData = () => {
+    fetch(`/api/quarterplan/getallquarterplantwo?year=2023&quarter=${value}`, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setData(res));
+  };
+
+  useEffect(() => {
+    getData();
+  }, [value]);
+
+  const getABC = (a1, a2, a3, a4) => {};
 
   return (
     <div className="container">
@@ -102,10 +116,41 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            {data.length ? (
-              data.map(() => {
-                <tr className="tr"></tr>;
-              })
+            {data.length !== 0 ? (
+              data.map(
+                ({
+                  q_pt_id,
+                  quarter_plan: {
+                    locomative_name,
+                    reprair_type,
+                    section_num,
+                    locomative_number,
+                  },
+                  section_1,
+                  section_2,
+                  section_3,
+                  section_4,
+                }) => {
+                  return (
+                    <tr key={q_pt_id} className="tr">
+                      <td className="td"></td>
+                      <td className="td">{locomative_name?.name}</td>
+                      <td className="td">{reprair_type}</td>
+                      <td className="td"></td>
+                      <td className="td"></td>
+                      <td className="td"></td>
+                      <td className="td"></td>
+                      <td className="td">{section_num}</td>
+                      <td className="td">
+                        {locomative_number}{" "}
+                        {getABC(section_1, section_2, section_3, section_4)}{" "}
+                      </td>
+                      <td className="td"></td>
+                      <td className="td"></td>
+                    </tr>
+                  );
+                }
+              )
             ) : (
               <tr className="tr" style={{ textAlign: "center" }}>
                 <td className="td" colSpan={15}>
