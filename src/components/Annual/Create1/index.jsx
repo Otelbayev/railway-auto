@@ -120,11 +120,13 @@ const Create1 = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="tr" style={{ textAlign: "center" }}>
-              <td className="td" colSpan={10}>
-                {data}
-              </td>
-            </tr>
+            {data && (
+              <tr className="tr" style={{ textAlign: "center" }}>
+                <td className="td" colSpan={10}>
+                  {data}
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
         <div className="bottom">

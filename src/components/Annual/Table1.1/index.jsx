@@ -177,19 +177,19 @@ const Table = () => {
                 Lokomativlardan foydalanish boshqarmasi
               </Td>
               <Th colSpan={2}>Jami elektrovozlar</Th>
-              <Td>0</Td>
-              <Td>0</Td>
-              <Td>0</Td>
-              <Td>0</Td>
-              <Td>0</Td>
-              <Td>0</Td>
-              <Td>0</Td>
-              <Td>0</Td>
-              <Td>0</Td>
-              <Td>0</Td>
-              <Td>0</Td>
-              <Td>0</Td>
-              <Td>0</Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
+              <Td></Td>
               <Td></Td>
             </Tr>
             {currentData.length !== 0 ? (
@@ -216,7 +216,7 @@ const Table = () => {
                                 onChange={handleChange}
                                 defaultValue={month_plan[item.label]}
                               />
-                            ) : (
+                            ) : month_plan[item.label] == "0" ? null : (
                               month_plan[item.label]
                             )}
                           </Td>
@@ -297,19 +297,18 @@ const Table = () => {
             </Tr>
             <tr>
               <td colSpan={20}>
-                                 <div className="bottom">
-                    <div className="p bottomName">
-                      Ishlab chiqarish boyicha direktor o'rinbosari:
-                    </div>
-                    <div className="p bottomName">N.O.Ramatov</div>
+                <div className="bottom">
+                  <div className="p bottomName">
+                    Ishlab chiqarish boyicha direktor o'rinbosari:
                   </div>
-                  <div className="bottom">
-                    <div className="p bottomName">
-                      Ishlab chiqarish boyicha bosh distpecherlik bo'lim
-                      boshligi:
-                    </div>
-                    <div className="p bottomName">J.Y.Shomurodov</div>
+                  <div className="p bottomName">N.O.Ramatov</div>
+                </div>
+                <div className="bottom">
+                  <div className="p bottomName">
+                    Ishlab chiqarish boyicha bosh distpecherlik bo'lim boshligi:
                   </div>
+                  <div className="p bottomName">J.Y.Shomurodov</div>
+                </div>
               </td>
             </tr>
             <tr>

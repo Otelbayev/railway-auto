@@ -6,24 +6,8 @@ import { Input, Select } from "antd";
 
 const Create1 = () => {
   const navigate = useNavigate();
-  const [body, setBody] = useState({
-    anualy_id: 0,
-    information_confirmed_date: "2023-12-11T06:15:06.774Z",
-    month_plan: {
-      yanvar: 0,
-      fevral: 0,
-      mart: 0,
-      aprel: 0,
-      may: 0,
-      iyun: 0,
-      iyul: 0,
-      avgust: 0,
-      sentyabr: 0,
-      oktyabr: 0,
-      noyabr: 0,
-      dekabr: 0,
-    },
-  });
+  const [body, setBody] = useState({});
+
   return (
     <div className="container">
       <div className="title">Yillik Jadval 1.1 malumot qo'shish</div>
@@ -32,8 +16,7 @@ const Create1 = () => {
           <thead>
             <tr className="tr">
               <th className="th">№</th>
-              <th className="th">Lokomativ rusumi</th>
-              <th className="th">Ta'mirlash turi</th>
+              <th className="th">ID</th>
               {months.map((item) => {
                 return (
                   <th key={item.value} className="th">
@@ -46,20 +29,23 @@ const Create1 = () => {
             <tr className="tr">
               <th className="th">#</th>
               <th className="th">
-                <Select options={models} style={{ width: "90px" }} />
-              </th>
-              <th className="th">
-                <Select options={repair} style={{ width: "70px" }} />
+                <Select />
               </th>
               {months.map((item) => {
                 return (
                   <th className="th" key={item.value}>
-                    <Input name={item.label} style={{ width: "60px" }} />
+                    <Input
+                      type="number"
+                      name={item.label}
+                      style={{ width: "50px" }}
+                    />
                   </th>
                 );
               })}
               <th className="th">
-                <Btn type="blue">Qo'shish</Btn>
+                <Btn type="blue" style={{ fontSize: "14px", padding: "4px" }}>
+                  Qo'shish
+                </Btn>
               </th>
             </tr>
           </thead>
