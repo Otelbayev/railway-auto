@@ -65,8 +65,8 @@ const Table2 = () => {
         <table className="table">
           <thead>
             <tr className="tr">
-              <th className="th" rowSpan={2}>
-                Tsexlar
+              <th className="th" style={{ minWidth: "120px" }} rowSpan={2}>
+                Sexlar
               </th>
               <th className="th" rowSpan={2}>
                 Nomlanishlar
@@ -198,7 +198,7 @@ const Table2 = () => {
                 {/*//! Elektrapparat tsexi */}
                 <tr className="tr">
                   <th className="th" rowSpan={2}>
-                    Elektrapparat tsexi
+                    Elektroapparat sexi
                   </th>
                   <td className="td">
                     Teplovoz + elektrovoz uchun el.sxema yig'ish

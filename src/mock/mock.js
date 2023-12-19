@@ -15,14 +15,10 @@ export const months = [
 
 export const repair = [
   { value: 1, label: "TT-1" },
-  { value: 2, label: "КР_1" },
-  { value: 3, label: "TT-2" },
-  { value: 4, label: "TIT" },
-  { value: 5, label: "КРП" },
-  { value: 6, label: "TQT" },
-  { value: 7, label: "КВР" },
-  { value: 8, label: "TJ-3" },
-  { value: 9, label: "ТР-3" },
+  { value: 2, label: "TT-2" },
+  { value: 3, label: "TIT" },
+  { value: 4, label: "TQT" },
+  { value: 5, label: "TJ-3" },
 ];
 
 export const registrDepo = [
@@ -66,8 +62,10 @@ export const elektrovozModel = [
   "UZY",
   "UZEL",
   "UZELR",
-  "O'zbekiston",
+  "Uzbekiston",
 ];
+
+export const depo = [{ value: "Uzbekiston", label: "Uzbekiston" }];
 
 export const drezinaModel = ["АДМ", "АДМ"];
 
@@ -92,5 +90,5 @@ export const getQuarter = (month) => {
 
 export const getMonth = (month) => {
   const res = months.find((e) => e.value == month);
-  return res.label;
+  return res?.label;
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { months } from "../../../mock/mock";
-import { Btn } from "../../Annual/Table1/style";
+import { Btn, Button, Icon1 } from "../../Annual/Table1/style";
+import { Input } from "antd";
 
 const Table = () => {
   const style = {
@@ -9,6 +10,9 @@ const Table = () => {
     fontSize: "15px",
     padding: "5px",
   };
+
+  const date = new Date();
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -32,7 +36,7 @@ const Table = () => {
                 Tamirlash turi
               </th>
               <th className="th" rowSpan={2} style={style}>
-                Tseksiya
+                Seksiya
               </th>
               <th className="th" rowSpan={2} style={style}>
                 Qismlarga ajratish
@@ -111,6 +115,9 @@ const Table = () => {
               <th className="th" rowSpan={2} style={style}>
                 Jo'natish
               </th>
+              <th className="th" rowSpan={2} style={style}>
+                tahrirlash
+              </th>
             </tr>
             <tr className="tr">
               <th className="th" style={style}>
@@ -149,40 +156,43 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            {months.map((e) => (
-              <tr key={e.value} className="tr">
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-                <td className="td">0</td>
-              </tr>
-            ))}
+            <tr className="tr">
+              <td className="td">1</td>
+              <td className="td">UzTE16M</td>
+              <td className="td">Uzbekiston</td>
+              <td className="td">TQT</td>
+              <td className="td">5</td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td"></td>
+              <td className="td">
+                <Button type="gold">
+                  <Icon1 />
+                </Button>
+              </td>
+            </tr>
           </tbody>
         </table>
         <div className="footer">

@@ -118,17 +118,6 @@ const Table = () => {
                 <td className="td">{Sum1("TT-1")}</td>
               </tr>
               <tr className="tr">
-                <th className="th">КР_1</th>
-                {models.map((item) => {
-                  return (
-                    <td key={item.value} className="td">
-                      {filteredData(item.label, "КР_1")}
-                    </td>
-                  );
-                })}
-                <td className="td">{Sum1("КР_1")}</td>
-              </tr>
-              <tr className="tr">
                 <th className="th">TT-2</th>
                 {models.map((item) => {
                   return (
@@ -151,17 +140,6 @@ const Table = () => {
                 <td className="td">{Sum1("TIT")}</td>
               </tr>
               <tr className="tr">
-                <th className="th">КРП</th>
-                {models.map((item) => {
-                  return (
-                    <td key={item.value} className="td">
-                      {filteredData(item.label, "КРП")}
-                    </td>
-                  );
-                })}
-                <td className="td">{Sum1("КРП")}</td>
-              </tr>
-              <tr className="tr">
                 <th className="th">TQT</th>
                 {models.map((item) => {
                   return (
@@ -173,17 +151,6 @@ const Table = () => {
                 <td className="td">{Sum1("TQT")}</td>
               </tr>
               <tr className="tr">
-                <th className="th">КВР</th>
-                {models.map((item) => {
-                  return (
-                    <td key={item.value} className="td">
-                      {filteredData(item.label, "КВР")}
-                    </td>
-                  );
-                })}
-                <td className="td">{Sum1("КВР")}</td>
-              </tr>
-              <tr className="tr">
                 <th className="th">TJ-3</th>
                 {models.map((item) => {
                   return (
@@ -193,17 +160,6 @@ const Table = () => {
                   );
                 })}
                 <td className="td">{Sum1("TJ-3")}</td>
-              </tr>
-              <tr className="tr">
-                <th className="th">ТР-3</th>
-                {models.map((item) => {
-                  return (
-                    <td key={item.value} className="td">
-                      {filteredData(item.label, "ТР-3")}
-                    </td>
-                  );
-                })}
-                <td className="td">{Sum1("ТР-3")}</td>
               </tr>
               <tr className="tr">
                 <th className="th">yig'indi</th>

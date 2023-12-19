@@ -1,13 +1,38 @@
-import { Radio } from "antd";
+import { Input, Radio, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { Button, Btn, Icon1 } from "../../Annual/Table1/style";
+import { Button, Btn, Icon1, Icon2, Icon3 } from "../../Annual/Table1/style";
 import { useNavigate } from "react-router-dom";
+import {
+  models,
+  months,
+  repair,
+  depo,
+  check,
+  locomativ,
+} from "../../../mock/mock";
 
 const Table = () => {
-  const [value, setValue] = useState(Number(Cookies.get("quarter")) || 1);
+  const quarter = Number(Cookies.get("quarter")) || 1;
+
+  const [value, setValue] = useState(quarter);
 
   const [data, setData] = useState([]);
+  const [edit, setEdit] = useState(false);
+
+  const [body, setBody] = useState({});
+
+  const getById = async (id) => {
+    setEdit(id);
+    await fetch(`/api/quarterplan/getbyidquarterplan/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setBody(res));
+  };
 
   const getData = () => {
     fetch(`/api/quarterplan/getallquarterplan?year=2023&quarter=${value}`, {
@@ -22,6 +47,32 @@ const Table = () => {
   }, [value]);
 
   const navigate = useNavigate();
+
+  const onSave = async (id) => {
+    setEdit(false);
+    await fetch(`/api/quarterplan/updatequarterplan/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+      body: JSON.stringify(body),
+    });
+    getData();
+  };
+
+  const getMonth = (quarter) => {
+    switch (quarter) {
+      case 1:
+        return months.slice(0, 3);
+      case 2:
+        return months.slice(3, 6);
+      case 3:
+        return months.slice(6, 9);
+      case 4:
+        return months.slice(9, 12);
+    }
+  };
 
   return (
     <div className="container">
@@ -71,7 +122,7 @@ const Table = () => {
           <thead>
             <tr className="tr">
               <th className="th">№</th>
-              <th className="th">Lokomativ rusui va raqami</th>
+              <th className="th">Lokomativ rusumi va raqami</th>
               <th className="th">Lokomativ royhatdan o'tgan depo</th>
               <th className="th">Ta'mirlash turi</th>
               <th className="th">Ta'mirdan chiqishi</th>
@@ -90,22 +141,121 @@ const Table = () => {
                     reprair_type,
                     monthofreprair,
                     section_num,
+                    quarter_id,
                   },
                   index
                 ) => (
                   <tr key={locomative_name.loco_id} className="tr">
                     <td className="td">{index + 1}</td>
                     <td className="td">
-                      {locomative_name.name} {locomative_number}
+                      {" "}
+                      {edit === quarter_id ? (
+                        <>
+                          <Select
+                            options={models}
+                            onChange={(value) =>
+                              setBody({
+                                ...body,
+                                locomativeFuelType: locomativ
+                                  .find((item) => item.value == check(value))
+                                  .label.toLocaleLowerCase(),
+                                locomative_name: {
+                                  fuel_type: body?.locomative_name?.fuel_type,
+                                  loco_id: body?.locomative_name?.loco_id,
+                                  name: value,
+                                },
+                              })
+                            }
+                            style={{ width: "80px" }}
+                          />
+                          <Input
+                            style={{ width: "70px" }}
+                            onChange={({ target: { value } }) =>
+                              setBody({ ...body, locomative_number: value })
+                            }
+                          />
+                        </>
+                      ) : (
+                        `${locomative_name.name} ${locomative_number}`
+                      )}
                     </td>
-                    <td className="td">{organization.type}</td>
-                    <td className="td">{reprair_type}</td>
-                    <td className="td">{monthofreprair}</td>
-                    <td className="td">{section_num}</td>
                     <td className="td">
-                      <Button type="gold">
-                        <Icon1 />
-                      </Button>
+                      {edit === quarter_id ? (
+                        <Select
+                          options={depo}
+                          style={{ width: "115px" }}
+                          onChange={(value) =>
+                            setBody({
+                              ...body,
+                              organization: {
+                                org_id: 0,
+                                type: value,
+                              },
+                            })
+                          }
+                        />
+                      ) : (
+                        organization.type
+                      )}
+                    </td>
+                    <td className="td">
+                      {edit === quarter_id ? (
+                        <Select
+                          style={{ width: "70px" }}
+                          onChange={(value) =>
+                            setBody({ ...body, reprair_type: value })
+                          }
+                          options={repair}
+                        />
+                      ) : (
+                        reprair_type
+                      )}
+                    </td>
+                    <td className="td">
+                      {" "}
+                      {edit === quarter_id ? (
+                        <Select
+                          style={{ width: "80px" }}
+                          onChange={(value) =>
+                            setBody({ ...body, monthofreprair: value })
+                          }
+                          options={getMonth(quarter)}
+                        />
+                      ) : (
+                        monthofreprair
+                      )}
+                    </td>
+                    <td className="td">
+                      {edit === quarter_id ? (
+                        <Input
+                          style={{ width: "70px" }}
+                          type="number"
+                          onChange={({ target: { value } }) =>
+                            setBody({ ...body, section_num: Number(value) })
+                          }
+                        />
+                      ) : (
+                        section_num
+                      )}
+                    </td>
+                    <td className="td">
+                      {edit === quarter_id ? (
+                        <>
+                          <Button
+                            type="green"
+                            onClick={() => onSave(quarter_id)}
+                          >
+                            <Icon2 />
+                          </Button>
+                          <Button type="red" onClick={() => setEdit(false)}>
+                            <Icon3 />
+                          </Button>
+                        </>
+                      ) : (
+                        <Button type="gold" onClick={() => getById(quarter_id)}>
+                          <Icon1 />
+                        </Button>
+                      )}
                     </td>
                   </tr>
                 )

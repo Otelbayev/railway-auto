@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import { useUserContext } from "../context/UserContext";
 
 const HomePage = React.lazy(() => import("../Pages/HomePage"));
@@ -18,6 +18,10 @@ const AddQuarterPage2 = React.lazy(() =>
 
 const MonthlyTable = React.lazy(() => import("../Pages/MonthlyPage/Table"));
 const MonthlyTable2 = React.lazy(() => import("../Pages/MonthlyPage/Table3.1"));
+
+const WeeklyTable = React.lazy(() => import("../Pages/WeeklyPage/Table"));
+
+const DailyTable = React.lazy(() => import("../Pages/DillyPage/Table"));
 
 const LargeTable = React.lazy(() => import("../Pages/LargeTablePage/Table"));
 const LargeTable2 = React.lazy(() =>
@@ -41,6 +45,8 @@ import {
   CalendarOutlined,
   UsergroupAddOutlined,
   TableOutlined,
+  OrderedListOutlined,
+  UnorderedListOutlined,
 } from "@ant-design/icons";
 import { Spin } from "antd";
 
@@ -240,6 +246,28 @@ export const navbar = [
       </div>
     ),
   },
+  {
+    id: 18,
+    path: "/weekly-table-1",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <WeeklyTable />
+        </Suspense>
+      </div>
+    ),
+  },
+  {
+    id: 19,
+    path: "/daily-table-1",
+    element: (
+      <div style={wrapperStyle}>
+        <Suspense fallback={<Spin size="large" />}>
+          <DailyTable />
+        </Suspense>
+      </div>
+    ),
+  },
 ];
 
 function getItem(label, key, icon, children) {
@@ -286,7 +314,7 @@ export const SidebarItems = () => {
         "/monthly-table-2"
       ),
     ]),
-    getItem("Jadval", "sub4", <TableOutlined />, [
+    getItem("Jadval", "sub6", <TableOutlined />, [
       getItem(<NavLink to="/last-table-1">Jadval</NavLink>, "/last-table-1"),
       getItem(
         <NavLink to="/last-table-2">Jadval 4.1</NavLink>,
@@ -297,6 +325,16 @@ export const SidebarItems = () => {
         "/last-table-3"
       ),
     ]),
+    getItem(
+      <NavLink to="/weekly-table-1">Haftalik plan</NavLink>,
+      "/weekly-table-1",
+      <UnorderedListOutlined />
+    ),
+    getItem(
+      <NavLink to="/daily-table-1">Kunlik plan</NavLink>,
+      "/daily-table-1",
+      <OrderedListOutlined />
+    ),
     getItem(<NavLink to="/user">Profil</NavLink>, "/user", <UserOutlined />),
     userDetails?.role === 1 &&
       getItem(
