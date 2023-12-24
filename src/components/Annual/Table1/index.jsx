@@ -20,7 +20,6 @@ import {
   teplovozModel,
   elektrovozModel,
   drezinaModel,
-  check,
 } from "../../../mock/mock";
 import Cookies from "js-cookie";
 import html2pdf from "html2pdf.js";
@@ -43,20 +42,6 @@ const Table = () => {
 
   const year = new Date().getFullYear();
   const navigate = useNavigate();
-
-  //!pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const [items, setItems] = useState(10);
-  const itemsPerPage = items;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentData = data.slice(indexOfFirstItem, indexOfLastItem);
-  const handleChangePage = (page) => {
-    setCurrentPage(page);
-  };
-  const handleSelect = (e) => {
-    setItems(e);
-  };
 
   const getData = () => {
     fetch(`/api/anualyplan/getallanualyplan?year=${year}`, {
@@ -164,8 +149,8 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            {currentData.length !== 0 ? (
-              currentData.map(
+            {data.length !== 0 ? (
+              data.map(
                 (
                   {
                     all_price,
@@ -296,35 +281,6 @@ const Table = () => {
                 </div>
               </td>
             </tr>
-            <tr className="tr">
-              <td className="td" colSpan={9}>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "20px 0",
-                  }}
-                >
-                  <Select
-                    defaultValue={10}
-                    options={[
-                      { value: 10 },
-                      { value: 20 },
-                      { value: 30 },
-                      { value: data.length },
-                    ]}
-                    onChange={(e) => handleSelect(e)}
-                  />
-                  <Pagination
-                    defaultCurrent={1}
-                    total={data.length}
-                    onChange={handleChangePage}
-                    pageSize={itemsPerPage}
-                  />
-                </div>
-              </td>
-            </tr>
           </tbody>
         </table>
         <div className="footer">
@@ -369,8 +325,8 @@ const Table = () => {
               </tr>
             </thead>
             <tbody>
-              {currentData.length !== 0 ? (
-                currentData.map(
+              {data.length !== 0 ? (
+                data.map(
                   ({
                     all_price,
                     anualy_id,

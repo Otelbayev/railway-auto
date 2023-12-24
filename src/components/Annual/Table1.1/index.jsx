@@ -10,15 +10,13 @@ import {
   Icon2,
   Icon3,
   Header,
-  Footer,
   Btn,
   Title,
   Epig,
-  Name,
 } from "./style";
 import { useNavigate } from "react-router-dom";
-import { Select, Pagination, Input } from "antd";
-import { models, repair, months } from "../../../mock/mock";
+import { Input } from "antd";
+import { months } from "../../../mock/mock";
 import Cookies from "js-cookie";
 import html2pdf from "html2pdf.js";
 
@@ -46,20 +44,6 @@ const Table = () => {
 
   const year = new Date().getFullYear();
   const navigate = useNavigate();
-
-  //!pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const [items, setItems] = useState(10);
-  const itemsPerPage = items;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentData = data.slice(indexOfFirstItem, indexOfLastItem);
-  const handleChangePage = (page) => {
-    setCurrentPage(page);
-  };
-  const handleSelect = (e) => {
-    setItems(e);
-  };
 
   const getData = () => {
     fetch(`/api/anualyplan/getallanualyplanone?year=${year}`, {
@@ -172,7 +156,7 @@ const Table = () => {
             <Tr style={{ background: "rgb(233, 233, 233)" }}>
               <Td
                 style={{ maxWidth: "120px", background: "#fff" }}
-                rowSpan={currentData.length + 3}
+                rowSpan={data.length + 3}
               >
                 Lokomativlardan foydalanish boshqarmasi
               </Td>
@@ -192,8 +176,8 @@ const Table = () => {
               <Td></Td>
               <Td></Td>
             </Tr>
-            {currentData.length !== 0 ? (
-              currentData.map(
+            {data.length !== 0 ? (
+              data.map(
                 ({ a_o_id, locomative_name, reprairtype, month_plan }) => {
                   let count = 0;
                   for (let i in month_plan) {
@@ -311,35 +295,6 @@ const Table = () => {
                 </div>
               </td>
             </tr>
-            <tr>
-              <td colSpan={20}>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "20px 0",
-                  }}
-                >
-                  <Select
-                    defaultValue={10}
-                    options={[
-                      { value: 10 },
-                      { value: 20 },
-                      { value: 30 },
-                      { value: data.length },
-                    ]}
-                    onChange={(e) => handleSelect(e)}
-                  />
-                  <Pagination
-                    defaultCurrent={1}
-                    total={data.length}
-                    onChange={handleChangePage}
-                    pageSize={itemsPerPage}
-                  />
-                </div>
-              </td>
-            </tr>
           </tbody>
         </T>
         <div className="footer">
@@ -398,7 +353,7 @@ const Table = () => {
               <Tr style={{ background: "rgb(233, 233, 233)" }}>
                 <Td
                   style={{ maxWidth: "120px", background: "#fff" }}
-                  rowSpan={currentData.length + 3}
+                  rowSpan={data.length + 3}
                   className="p"
                 >
                   Lokomativlardan foydalanish boshqarmasi
@@ -420,8 +375,8 @@ const Table = () => {
                 <Td className="p">0</Td>
                 <Td className="p">0</Td>
               </Tr>
-              {currentData.length !== 0 ? (
-                currentData.map(
+              {data.length !== 0 ? (
+                data.map(
                   ({ a_o_id, locomative_name, reprairtype, month_plan }) => {
                     let count = 0;
                     for (let i in month_plan) {
