@@ -47,20 +47,17 @@ body {
 .tr{
   text-align: center;
   font-weight: 500;
-  border:1px solid lightgray;
   font-size:13px;
 }
 
 .th{
   padding: 8px;
-  border: 1px solid lightgray;
   max-width:80px;
 }
 
 .td{
   padding: 4px;
   color: rgba(0, 0, 0, 0.9);
-  border: 1px solid lightgray;
 }
 
 .epig{

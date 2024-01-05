@@ -43,7 +43,6 @@ const Table = () => {
   const [edit, setEdit] = useState(false);
 
   const year = new Date().getFullYear();
-  const navigate = useNavigate();
 
   const getData = () => {
     fetch(`/api/anualyplan/getallanualyplanone?year=${year}`, {
@@ -56,8 +55,19 @@ const Table = () => {
       .then((res) => setData(res));
   };
 
+  const refresh = () => {
+    fetch(`/api/anualyplan/createanualyplanone?year=${year}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    }).then((res) => res.json());
+  };
+
   useEffect(() => {
     getData();
+    refresh();
   }, [year]);
 
   const a = (number) => {
@@ -126,20 +136,20 @@ const Table = () => {
             <p>"O'zbekiston temir yo'llari" AJ</p>
             <p>Boshqaruv raisi</p>
             <p>_________________ K. U. Xalikov </p>
-            <p>"___"_________________2023-yil</p>
+            <p>"___"_________________2024-yil</p>
           </div>
         </Epig>
         <Title>
           "O'ztemiryolmashta'mir"AJsida teplovozlar, elektrovozlarni ta'mirdan
-          chiqarish bo'yicha <div>2023 yil rejasi</div>
+          chiqarish bo'yicha <div>2024 yil rejasi</div>
         </Title>
-        <T>
+        <T className="table" border={1}>
           <thead>
             <Tr>
               <Th rowSpan={2}></Th>
               <Th rowSpan={2}>Lokomativ seriasi</Th>
               <Th rowSpan={2}>Ta'mirlash turi</Th>
-              <Th rowSpan={2}>2023 yil reja</Th>
+              <Th rowSpan={2}>2024 yil reja</Th>
               {months.map((item) => (
                 <Th key={item.value}>{item.label}</Th>
               ))}
@@ -156,24 +166,24 @@ const Table = () => {
             <Tr style={{ background: "rgb(233, 233, 233)" }}>
               <Td
                 style={{ maxWidth: "120px", background: "#fff" }}
-                rowSpan={data.length + 3}
+                rowSpan={data.length + 2}
               >
                 Lokomativlardan foydalanish boshqarmasi
               </Td>
               <Th colSpan={2}>Jami elektrovozlar</Th>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
-              <Td></Td>
+              <Td>0</Td>
+              <Td>0</Td>
+              <Td>0</Td>
+              <Td>0</Td>
+              <Td>0</Td>
+              <Td>0</Td>
+              <Td>0</Td>
+              <Td>0</Td>
+              <Td>0</Td>
+              <Td>0</Td>
+              <Td>0</Td>
+              <Td>0</Td>
+              <Td>0</Td>
               <Td></Td>
             </Tr>
             {data.length !== 0 ? (
@@ -263,7 +273,7 @@ const Table = () => {
               <Td></Td>
             </Tr>
             <Tr style={{ background: "rgb(173, 173, 173)" }}>
-              <Th colSpan={2}>Jami lokomativlar</Th>
+              <Th colSpan={3}>Jami lokomativlar</Th>
               <Td>0</Td>
               <Td>0</Td>
               <Td>0</Td>
@@ -282,32 +292,29 @@ const Table = () => {
             <tr>
               <td colSpan={20}>
                 <div className="bottom">
-                  <div className="p bottomName">
+                  <div className="bottomName">
                     Ishlab chiqarish boyicha direktor o'rinbosari:
                   </div>
-                  <div className="p bottomName">N.O.Ramatov</div>
+                  <div className="bottomName">N.O.Ramatov</div>
                 </div>
                 <div className="bottom">
-                  <div className="p bottomName">
+                  <div className="bottomName">
                     Ishlab chiqarish boyicha bosh distpecherlik bo'lim boshligi:
                   </div>
-                  <div className="p bottomName">J.Y.Shomurodov</div>
+                  <div className="bottomName">J.Y.Shomurodov</div>
                 </div>
               </td>
             </tr>
           </tbody>
         </T>
         <div className="footer">
-          <Btn type="blue" onClick={() => navigate("/annual-add-2")}>
-            ma'lumot qo'shish
-          </Btn>
           <Btn type="green" onClick={convertToPdf}>
             hujjatni saqlash
           </Btn>
         </div>
       </Container>
       <div style={{ display: "none" }}>
-        <Container id="wrapper">
+        <Container id="wrapper" style={{ border: "none" }}>
           <Epig>
             <div>
               <p className="p">"TASDIQLAYMAN"</p>
@@ -321,7 +328,7 @@ const Table = () => {
             "O'ztemiryolmashta'mir"AJsida teplovozlar, elektrovozlarni ta'mirdan
             chiqarish bo'yicha <div className="p">2023 yil rejasi</div>
           </Title>
-          <T>
+          <T className="table" border={1}>
             <thead>
               <Tr>
                 <Th className="p" rowSpan={2}></Th>
@@ -353,7 +360,7 @@ const Table = () => {
               <Tr style={{ background: "rgb(233, 233, 233)" }}>
                 <Td
                   style={{ maxWidth: "120px", background: "#fff" }}
-                  rowSpan={data.length + 3}
+                  rowSpan={data.length + 2}
                   className="p"
                 >
                   Lokomativlardan foydalanish boshqarmasi
@@ -478,31 +485,61 @@ const Table = () => {
                 )
               ) : (
                 <Tr>
-                  <Td className="p" colSpan={5}>
+                  <Td className="p" colSpan={12}>
                     hech narsa topilmadi
                   </Td>
                 </Tr>
               )}
-              <Tr style={{ background: "rgb(233, 233, 233)" }}>
-                <Th className="p" colSpan={2}>
+              <Tr>
+                <Th
+                  style={{ background: "rgb(233, 233, 233)" }}
+                  className="p"
+                  colSpan={2}
+                >
                   Jami teplovozlar
                 </Th>
-                <Td className="p">{tep}</Td>
-                <Td className="p">0</Td>
-                <Td className="p">0</Td>
-                <Td className="p">0</Td>
-                <Td className="p">0</Td>
-                <Td className="p">0</Td>
-                <Td className="p">0</Td>
-                <Td className="p">0</Td>
-                <Td className="p">0</Td>
-                <Td className="p">0</Td>
-                <Td className="p">0</Td>
-                <Td className="p">0</Td>
-                <Td className="p">0</Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  {tep}
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
+                <Td style={{ background: "rgb(233, 233, 233)" }} className="p">
+                  0
+                </Td>
               </Tr>
-              <Tr style={{ background: "rgb(173, 173, 173)" }}>
-                <Th className="p" colSpan={2}>
+              <Tr style={{ background: "rgb(233, 233, 233)" }}>
+                <Th className="p" colSpan={3}>
                   Jami lokomativlar
                 </Th>
                 <Td className="p">0</Td>

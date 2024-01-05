@@ -36,9 +36,9 @@ const Create1 = () => {
         },
         body: JSON.stringify(body),
       });
-      setData("Malumot muvoffaqiyatli qo'shildi");
+      naviagte(-1);
     } catch (err) {
-      setData("Xatolik yuz berdi");
+      console.log(err);
     }
   };
 
@@ -119,21 +119,7 @@ const Create1 = () => {
               </th>
             </tr>
           </thead>
-          <tbody>
-            {data && (
-              <tr className="tr" style={{ textAlign: "center" }}>
-                <td className="td" colSpan={10}>
-                  {data}
-                </td>
-              </tr>
-            )}
-          </tbody>
         </table>
-        <div className="bottom">
-          <Btn type="red" onClick={() => naviagte(-1)}>
-            oqraga
-          </Btn>
-        </div>
       </div>
     </div>
   );

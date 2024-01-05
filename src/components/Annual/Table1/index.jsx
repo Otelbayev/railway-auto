@@ -138,7 +138,7 @@ const Table = () => {
           uchun yillik
           <div>prognoz</div>
         </div>
-        <table className="table">
+        <table className="table" border={1}>
           <thead>
             <tr className="tr">
               <th className="th">№</th>
@@ -315,7 +315,7 @@ const Table = () => {
             ta'mirlash uchun yillik
             <div className="p">prognoz</div>
           </Title>
-          <table className="table">
+          <table className="table" border={1}>
             <thead>
               <tr className="tr">
                 <th className="th">№</th>
@@ -327,16 +327,19 @@ const Table = () => {
             <tbody>
               {data.length !== 0 ? (
                 data.map(
-                  ({
-                    all_price,
-                    anualy_id,
-                    reprairtype,
-                    sections_reprair_number,
-                    locomative_name,
-                  }) => {
+                  (
+                    {
+                      all_price,
+                      anualy_id,
+                      reprairtype,
+                      sections_reprair_number,
+                      locomative_name,
+                    },
+                    index
+                  ) => {
                     return (
                       <tr className="tr" key={anualy_id}>
-                        <td className="p td">{anualy_id}</td>
+                        <td className="p td">{index + 1}</td>
                         <td className="p td">
                           {locomative_name?.name}
                           {a(locomative_name?.fuel_type)} {reprairtype}

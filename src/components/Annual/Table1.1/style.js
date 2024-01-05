@@ -24,12 +24,10 @@ export const Tr = styled.tr`
 export const Th = styled.th`
   padding: 10px 5px;
   max-width: 70px;
-  border: 1px solid lightgray;
 `;
 export const Td = styled.td`
   padding: 4px;
   color: rgba(0, 0, 0, 0.9);
-  border: 1px solid lightgray;
   max-width: 70px;
 `;
 
@@ -92,12 +90,6 @@ export const Icon3 = styled(CloseOutlined)`
     color: #fff;
     background: red;
   }
-`;
-
-export const Paginations = styled(Pagination)`
-  display: flex;
-  justify-content: flex-end;
-  margin: 30px 30px 0 0;
 `;
 
 export const Header = styled.div`

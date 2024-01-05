@@ -10,6 +10,7 @@ const Home = () => {
   useEffect(() => {
     fetch("/api/usercrud/getalluser", {
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${Cookies.get("token")}`,
       },
     })

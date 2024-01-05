@@ -82,9 +82,9 @@ const Table = () => {
       <div className="wrapper">
         <div id="wrapper">
           <div className="doctitle">
-            УЭП bo'yicha 2023-yil lokomativlar plani
+            УЭП bo'yicha 2024-yil lokomativlar plani
           </div>
-          <table className="table">
+          <table className="table" border={1}>
             <thead>
               <tr className="tr">
                 <th className="th" style={{ width: "120px" }} rowSpan={2}>
