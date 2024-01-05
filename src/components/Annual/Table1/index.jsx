@@ -133,7 +133,7 @@ const Table = () => {
           </div>
         </div>
         <div className="doctitle">
-          Lokomativlardan foydalanish boshqarmasining 2023 yilga mo'ljallangan
+          Lokomativlardan foydalanish boshqarmasining 2024 yilga mo'ljallangan
           joriy, kapital va xizmat muddati uzaytirilgan holda kapital ta'mirlash
           uchun yillik
           <div>prognoz</div>
