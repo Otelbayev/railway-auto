@@ -42,7 +42,7 @@ const Create = () => {
       },
       body: JSON.stringify(body),
     });
-    setData("Malumot muvoffaqiyatli qo'shildi");
+    navigate(-1);
   };
 
   const navigate = useNavigate();
@@ -136,11 +136,6 @@ const Create = () => {
             )}
           </tbody>
         </table>
-        <div className="bottom">
-          <Btn type="red" onClick={() => navigate(-1)}>
-            Orqaga
-          </Btn>
-        </div>
       </div>
     </div>
   );

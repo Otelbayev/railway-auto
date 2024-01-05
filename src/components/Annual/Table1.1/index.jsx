@@ -321,12 +321,12 @@ const Table = () => {
               <p className="p">"O'zbekiston temir yo'llari" AJ</p>
               <p className="p">Boshqaruv raisi</p>
               <p className="p">_________________ K. U. Xalikov </p>
-              <p className="p">"___"_________________2023-yil</p>
+              <p className="p">"___"_________________ yil</p>
             </div>
           </Epig>
           <Title className="p">
             "O'ztemiryolmashta'mir"AJsida teplovozlar, elektrovozlarni ta'mirdan
-            chiqarish bo'yicha <div className="p">2023 yil rejasi</div>
+            chiqarish bo'yicha <div className="p">2024 yil rejasi</div>
           </Title>
           <T className="table" border={1}>
             <thead>

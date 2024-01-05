@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Button, Btn, Icon1, Icon2, Icon3 } from "../../Annual/Table1/style";
 import { useNavigate } from "react-router-dom";
+import html2pdf from "html2pdf.js";
 import {
   models,
   months,
@@ -36,7 +37,10 @@ const Table = () => {
       headers: { Authorization: `Bearer ${Cookies.get("token")}` },
     })
       .then((res) => res.json())
-      .then((res) => setData(res));
+      .then((res) => {
+        console.log(res);
+        setData(res);
+      });
   };
 
   useEffect(() => {
@@ -70,6 +74,28 @@ const Table = () => {
         return months.slice(6, 9);
       case 4:
         return months.slice(9, 12);
+    }
+  };
+
+  const wrapper = document.getElementById("wrapper");
+
+  const convertToPdf = () => {
+    if (wrapper) {
+      const pdfOptions = {
+        margin: 5,
+        filename: `plan2024.pdf`,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      };
+
+      wrapper.style.fontFamily = "Times New Roman";
+
+      document.querySelectorAll(".p").forEach((item) => {
+        item.style.fontFamily = "Times New Roman";
+      });
+
+      html2pdf().from(wrapper).set(pdfOptions).save();
     }
   };
 
@@ -108,16 +134,16 @@ const Table = () => {
             <p>"O'zbekiston temir yo'llari" AJ</p>
             <p>bosh menejer- bosh muhandis a.b</p>
             <p>_________________ Z.E.Maxamatov</p>
-            <p>"___"_________________ 2023yil</p>
+            <p>"___"_________________ 2024yil</p>
           </div>
         </div>
         <div className="doctitle">
-          2023 yilning {value} - choragi uchun "O'ztemiryo'lmashta'mir"
-          aksiyadorlik jamiyati ==|==|== lokomativ depolarida === xajmida
-          kapital ta'mirlash hamda +++++ xajmida joriy ta'mirlashda joriy
+          2024 yilning {value} - choragi uchun "O'ztemiryo'lmashta'mir"
+          aksiyadorlik jamiyati ______________ lokomativ depolarida _____
+          xajmida kapital ta'mirlash hamda ____ xajmida joriy ta'mirlashda joriy
           ta'mirdan chiqarish jadvali
         </div>
-        <table className="table">
+        <table className="table" border={1}>
           <thead>
             <tr className="tr">
               <th className="th">№</th>
@@ -276,9 +302,168 @@ const Table = () => {
           <Btn type="blue" onClick={() => navigate("/quarter-add-1")}>
             ma'lumot qo'shish
           </Btn>
-          <Btn type="green" disabled={data.length > 0 ? false : true}>
+          <Btn
+            type="green"
+            onClick={convertToPdf}
+            disabled={data.length > 0 ? false : true}
+          >
             hujjatni saqlash
           </Btn>
+        </div>
+      </div>
+      <div style={{ display: "none" }}>
+        <div className="wrapper" id="wrapper" style={{ border: "none" }}>
+          <div className="epig">
+            <div>
+              <p>"TASDIQLAYMAN"</p>
+              <p>"O'zbekiston temir yo'llari" AJ</p>
+              <p>bosh menejer- bosh muhandis a.b</p>
+              <p>_________________ Z.E.Maxamatov</p>
+              <p>"___"_________________ 2024yil</p>
+            </div>
+          </div>
+          <div className="doctitle">
+            2024 yilning {value} - choragi uchun "O'ztemiryo'lmashta'mir"
+            aksiyadorlik jamiyati ______________ lokomativ depolarida _____
+            xajmida kapital ta'mirlash hamda ____ xajmida joriy ta'mirlashda
+            joriy ta'mirdan chiqarish jadvali
+          </div>
+          <table className="table" border={1}>
+            <thead>
+              <tr className="tr">
+                <th className="th">№</th>
+                <th className="th">Lokomativ rusumi va raqami</th>
+                <th className="th">Lokomativ royhatdan o'tgan depo</th>
+                <th className="th">Ta'mirlash turi</th>
+                <th className="th">Ta'mirdan chiqishi</th>
+                <th className="th">Seksiyalar soni</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.length > 0 ? (
+                data.map(
+                  (
+                    {
+                      locomative_name,
+                      locomative_number,
+                      organization,
+                      reprair_type,
+                      monthofreprair,
+                      section_num,
+                      quarter_id,
+                    },
+                    index
+                  ) => (
+                    <tr key={index} className="tr">
+                      <td className="td">{index + 1}</td>
+                      <td className="td">
+                        {" "}
+                        {edit === quarter_id ? (
+                          <>
+                            <Select
+                              options={models}
+                              onChange={(value) =>
+                                setBody({
+                                  ...body,
+                                  locomative_name: {
+                                    loco_id: 0,
+                                    name: value,
+                                    fuel_type: 1,
+                                  },
+                                })
+                              }
+                              style={{ width: "80px" }}
+                            />
+                            <Input
+                              style={{ width: "70px" }}
+                              onChange={({ target: { value } }) =>
+                                setBody({ ...body, locomative_number: value })
+                              }
+                            />
+                          </>
+                        ) : (
+                          `${locomative_name.name} ${locomative_number}`
+                        )}
+                      </td>
+                      <td className="td">
+                        {edit === quarter_id ? (
+                          <Select options={depo} style={{ width: "115px" }} />
+                        ) : (
+                          organization.type
+                        )}
+                      </td>
+                      <td className="td">
+                        {edit === quarter_id ? (
+                          <Select
+                            style={{ width: "70px" }}
+                            onChange={(value) =>
+                              setBody({ ...body, reprair_id: Number(value) })
+                            }
+                            options={repair}
+                          />
+                        ) : (
+                          reprair_type
+                        )}
+                      </td>
+                      <td className="td">
+                        {" "}
+                        {edit === quarter_id ? (
+                          <Select
+                            style={{ width: "80px" }}
+                            onChange={(value) =>
+                              setBody({
+                                ...body,
+                                month_of_reprair: Number(value),
+                              })
+                            }
+                            options={getMonth(quarter)}
+                          />
+                        ) : (
+                          monthofreprair
+                        )}
+                      </td>
+                      <td className="td">
+                        {edit === quarter_id ? (
+                          <Input
+                            style={{ width: "70px" }}
+                            type="number"
+                            onChange={({ target: { value } }) =>
+                              setBody({ ...body, section_num: Number(value) })
+                            }
+                          />
+                        ) : (
+                          section_num
+                        )}
+                      </td>
+                    </tr>
+                  )
+                )
+              ) : (
+                <tr className="tr" style={{ textAlign: "center" }}>
+                  <td className="td" colSpan={10}>
+                    Hech narsa topilmadi
+                  </td>
+                </tr>
+              )}
+              <tr className="tr">
+                <td className="td" colSpan={9}>
+                  <div className="bottom">
+                    <div className="bottomName">
+                      Lokomativlardan foydalanish boshqarmasi boshlig'i:
+                    </div>
+                    <div className="bottomName">N.O.Ramatov</div>
+                  </div>
+                  <div className="bottom">
+                    <div className="bottomName">
+                      Ishlab chiqarish boyicha bosh distpecherlik bo'lim
+                      boshligi:
+                    </div>
+                    <div className="bottomName">J.Y.Shomurodov</div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 const Create2 = () => {
   const navigate = useNavigate();
+  const addData = () => {
+    navigate(-1);
+  };
   return (
     <div className="container">
       <div className="title">
@@ -46,16 +49,13 @@ const Create2 = () => {
                 <Input style={{ width: "100px" }} />
               </th>
               <th className="th">
-                <Btn type="blue">Qo'shish</Btn>
+                <Btn type="blue" onClick={addData}>
+                  Qo'shish
+                </Btn>
               </th>
             </tr>
           </thead>
         </table>
-        <div className="bottom">
-          <Btn type="red" onClick={() => navigate(-1)}>
-            Orqaga
-          </Btn>
-        </div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { Btn, Button, Icon1 } from "../../Annual/Table1/style";
 import { Radio } from "antd";
 import { months, getMonth, getQuarter, models } from "../../../mock/mock";
 import Cookies from "js-cookie";
+import html2pdf from "html2pdf.js";
 
 const Table = () => {
   const month = Number(Cookies.get("month")) || 1;
@@ -29,6 +30,28 @@ const Table = () => {
     getData();
   }, [month]);
 
+  const wrapper = document.getElementById("wrapper");
+
+  const convertToPdf = () => {
+    if (wrapper) {
+      const pdfOptions = {
+        margin: 5,
+        filename: `plan2024.pdf`,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      };
+
+      wrapper.style.fontFamily = "Times New Roman";
+
+      document.querySelectorAll(".p").forEach((item) => {
+        item.style.fontFamily = "Times New Roman";
+      });
+
+      html2pdf().from(wrapper).set(pdfOptions).save();
+    }
+  };
+
   return (
     <div className="container">
       <div className="title">Oylik Jadval</div>
@@ -53,14 +76,14 @@ const Table = () => {
             <p>"O'zbekiston temir yo'llari" AJ</p>
             <p>Boshqaruv raisi</p>
             <p>_________________ K. U. Xalikov </p>
-            <p>"___"_________________2023-yil</p>
+            <p>"___"_________________2024-yil</p>
           </div>
         </div>
         <div className="doctitle">
           "O'ztemiryolmashta'mir" AJsida tplovozlar ta'mirlashdan chiqarish
-          boyicha 2023 yil {getMonth(month)} oy rejasi
+          boyicha 2024 yil {getMonth(month)} oy rejasi
         </div>
-        <table className="table">
+        <table className="table" border={1}>
           <thead>
             <tr className="tr">
               <th className="th">Lokomativ turi</th>
@@ -114,9 +137,83 @@ const Table = () => {
           <div className="bottomName">J.Y. Shomurodov</div>
         </div>
         <div className="footer">
-          <Btn type="green" disabled={data.length === 0 ? true : false}>
+          <Btn
+            type="green"
+            onClick={convertToPdf}
+            disabled={data.length === 0 ? true : false}
+          >
             hujjatni saqlash
           </Btn>
+        </div>
+      </div>
+      <div style={{ display: "none" }}>
+        <div className="wrapper" id="wrapper" style={{ border: "none" }}>
+          <div className="epig">
+            <div>
+              <p>"TASDIQLAYMAN"</p>
+              <p>"O'zbekiston temir yo'llari" AJ</p>
+              <p>Boshqaruv raisi</p>
+              <p>_________________ K. U. Xalikov </p>
+              <p>"___"_________________2024-yil</p>
+            </div>
+          </div>
+          <div className="doctitle">
+            "O'ztemiryolmashta'mir" AJsida tplovozlar ta'mirlashdan chiqarish
+            boyicha 2024 yil {getMonth(month)} oy rejasi
+          </div>
+          <table className="table" border={1}>
+            <thead>
+              <tr className="tr">
+                <th className="th">Lokomativ turi</th>
+                <th className="th">Ta'mirlash turi</th>
+                <th className="th">sek/dona</th>
+                <th className="th">{getMonth(month)}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.length !== 0 ? (
+                models.map(({ label }) => {
+                  return data
+                    .filter(
+                      (item) =>
+                        item?.quarterPlanTwo?.locomative_name?.name === label
+                    )
+                    .map(
+                      (
+                        {
+                          quarterPlanTwo: {
+                            locomative_name,
+                            reprair_type,
+                            section_num,
+                            locomative_number,
+                          },
+                        },
+                        index
+                      ) => (
+                        <tr className="tr" key={index}>
+                          <td className="td">{locomative_name.name}</td>
+                          <td className="td">{reprair_type}</td>
+                          <td className="td">{section_num}</td>
+                          <td className="td">{locomative_number}</td>
+                        </tr>
+                      )
+                    );
+                })
+              ) : (
+                <tr className="tr">
+                  <td className="td" colSpan={10}>
+                    hech narsa topilmadi
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          <div className="bottom">
+            <div className="bottomName">
+              Ishlab chiqarish dispetcherlik bo'lim boshlog'i
+            </div>
+            <div className="bottomName">J.Y. Shomurodov</div>
+          </div>
         </div>
       </div>
     </div>
