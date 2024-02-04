@@ -73,7 +73,7 @@ const Table = () => {
   const a = (number) => {
     switch (number) {
       case 1:
-        return "Tlektrovoz";
+        return "Elektrovoz";
       case 2:
         return "Teplovoz";
       case 3:

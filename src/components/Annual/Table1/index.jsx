@@ -128,7 +128,7 @@ const Table = () => {
             <p>"TASDIQLAYMAN"</p>
             <p>"O'zbekiston temir yo'llari" AJ</p>
             <p>bosh menejer- bosh muhandis a.b</p>
-            <p>_________________ Z.E.Maxamatov</p>
+            <p>_________________ H.N.Xosiov</p>
             <p>"___"_________________yil</p>
           </div>
         </div>
@@ -305,7 +305,7 @@ const Table = () => {
               <p className="p">"TASDIQLAYMAN"</p>
               <p className="p">"O'zbekiston temir yo'llari" AJ</p>
               <p className="p">bosh menejer- bosh muhandis a.b</p>
-              <p className="p">_________________ Z.E.Maxamatov</p>
+              <p className="p">_________________ H.N.Xosiov</p>
               <p className="p">"___"_________________yil</p>
             </div>
           </Epig>
