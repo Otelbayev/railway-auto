@@ -7,7 +7,6 @@ const AnnualTable = React.lazy(() => import("../Pages/Annual/Table1"));
 const AnnualTable1 = React.lazy(() => import("../Pages/Annual/Table1.1"));
 const AnnualTable2 = React.lazy(() => import("../Pages/Annual/Table1.2"));
 const Create1 = React.lazy(() => import("../Pages/Annual/Create1"));
-const Create2 = React.lazy(() => import("../Pages/Annual/Create1.1"));
 
 const QuarterPage1 = React.lazy(() => import("../Pages/QuarterPage/Table"));
 const QuarterPage2 = React.lazy(() => import("../Pages/QuarterPage/Table2"));
@@ -110,17 +109,6 @@ export const navbar = [
       <div style={wrapperStyle}>
         <Suspense fallback={<Spin size="large" />}>
           <Create1 />
-        </Suspense>
-      </div>
-    ),
-  },
-  {
-    id: 6,
-    path: "/annual-add-2",
-    element: (
-      <div style={wrapperStyle}>
-        <Suspense fallback={<Spin size="large" />}>
-          <Create2 />
         </Suspense>
       </div>
     ),
