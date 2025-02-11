@@ -1,8 +1,36 @@
-# React + Vite
+# O'ZTEMIRYO'LMASHTA'MIR Document Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a document management system developed for **O'ZTEMIRYO'LMASHTA'MIR**. The system streamlines document circulation and workflow processes within the company.
 
-Currently, two official plugins are available:
+## 🚀 Technologies Used
+- **React.js** – Frontend framework
+- **Ant Design** – UI components library
+- **JavaScript** – Programming language
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📂 Features
+- Document creation, editing, and management
+- User authentication and role-based access control
+- Advanced search and filtering options
+- Responsive design for various screen sizes
+
+## 🔧 Installation & Setup
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/Otelbayev/railway-auto.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd railway-auto
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+4. Start the development server:
+   ```sh
+   npm start
+   ```
+
+## 📬 Contact
+- **Email:** [jasurdev1604@gmail.com](mailto:jasurdev1604@gmail.com)
+- **GitHub:** [Otelbayev](https://github.com/Otelbayev/railway-auto)
